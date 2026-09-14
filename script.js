@@ -196,6 +196,7 @@ function observeElements() {
                 entry.target.style.opacity = '1';
                 entry.target.style.transform = 'translateY(0)';
             }
+
         });
     }, {
         threshold: 0.1
@@ -209,10 +210,21 @@ function observeElements() {
     });
 }
 
+// Gallery image fallback handling
+function setupGalleryFallbacks() {
+    const fallbackImage = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%23C41E3A'/%3E%3Cstop offset='1' stop-color='%238B2E2E'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1200' height='800' fill='url(%23g)'/%3E%3Ctext x='50%25' y='48%25' text-anchor='middle' fill='white' font-family='Georgia,serif' font-size='54'%3EYotode Events%3C/text%3E%3Ctext x='50%25' y='58%25' text-anchor='middle' fill='%23FCEFC8' font-family='Georgia,serif' font-size='30'%3EEthiopian Celebration Gallery%3C/text%3E%3C/svg%3E";
+    document.querySelectorAll('.gallery-image').forEach((img) => {
+        img.addEventListener('error', () => {
+            img.src = fallbackImage;
+        }, { once: true });
+    });
+}
+
 // Run on page load
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
         observeElements();
+        setupGalleryFallbacks();
         const contactForm = document.querySelector('#contact-form');
         if (contactForm) {
             contactForm.addEventListener('submit', handleSubmit);
@@ -220,6 +232,7 @@ if (document.readyState === 'loading') {
     });
 } else {
     observeElements();
+    setupGalleryFallbacks();
     const contactForm = document.querySelector('#contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', handleSubmit);

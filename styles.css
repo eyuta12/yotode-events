@@ -626,10 +626,6 @@ body {
     transition: transform 0.3s ease;
 }
 
-.gallery-image.is-fallback {
-    display: none;
-}
-
 .gallery-item:hover .gallery-image {
     transform: scale(1.05);
 }
