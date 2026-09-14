@@ -28,6 +28,9 @@ async function handleSubmit(event) {
         const formData = new FormData(form);
         const response = await fetch(form.action, {
             method: 'POST',
+            headers: {
+                'Accept': 'application/json'
+            },
             body: formData
         });
         const result = await response.json();
