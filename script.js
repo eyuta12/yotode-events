@@ -1,53 +1,78 @@
-// Handle form submission with email service
+// Handle form submission with FormSubmit
 async function handleSubmit(event) {
     event.preventDefault();
-    
+
     const form = event.target;
-    
-    // Get form values
-    const name = form.querySelector('input[type="text"]').value;
-    const email = form.querySelector('input[type="email"]').value;
-    const phone = form.querySelector('input[type="tel"]').value;
-    const eventType = form.querySelector('select').value;
-    const message = form.querySelector('textarea').value;
-    
-    // Show loading state
+    const status = form.querySelector('.form-status');
     const submitBtn = form.querySelector('.submit-btn');
+    const name = form.querySelector('input[name="name"]').value.trim();
+    const email = form.querySelector('input[name="email"]').value.trim();
+    const phone = form.querySelector('input[name="phone"]').value.trim();
+    const eventType = form.querySelector('select[name="eventType"]').value;
+    const message = form.querySelector('textarea[name="message"]').value.trim();
+
+    if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+    }
+
+    if (!name || !email || !phone || !eventType || message.length < 10) {
+        status.textContent = 'Please complete all fields with valid details before sending.';
+        status.className = 'form-status error';
+        return;
+    }
+
     const originalText = submitBtn.textContent;
-    submitBtn.textContent = 'Sending...';
     submitBtn.disabled = true;
-    
+    submitBtn.classList.add('loading');
+    submitBtn.textContent = 'Sending...';
+    status.textContent = 'Sending your inquiry...';
+    status.className = 'form-status sending';
+
     try {
-        // Send email using EmailJS service
-        emailjs.init('8CpTyX8oj8dHSw5Re'); // Initialize with your public key
-        
-        // Send email to your address
-        const response = await emailjs.send(
-            'service_k8e4r7m', // Your EmailJS Service ID
-            'template_7x3q9gg', // Your EmailJS Template ID
-            {
-                to_email: 'eyuab35@gmail.com', // Your email address
-                from_name: name,
-                from_email: email,
-                phone: phone,
-                event_type: eventType,
-                message: message,
-                reply_to: email
+        const formData = new FormData(form);
+        const response = await fetch(form.action, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json'
+            },
+            body: formData
+        });
+        let result = null;
+        let responseText = '';
+        const contentType = response.headers.get('content-type') || '';
+        try {
+            if (contentType.includes('application/json')) {
+                result = await response.json();
+            } else {
+                responseText = await response.text();
             }
-        );
-        
-        if (response.status === 200) {
-            // Show success message
-            showNotification('✅ Your inquiry has been sent successfully! We will contact you soon.', 'success');
-            form.reset();
+        } catch (parseError) {
+            result = null;
         }
+
+        if (response.ok) {
+            form.reset();
+            const successMessage = result && result.message
+                ? `✅ ${result.message}`
+                : '✅ Inquiry sent successfully. We will contact you soon.';
+            status.textContent = successMessage;
+            status.className = 'form-status success';
+            showNotification('✅ Inquiry sent successfully. Thank you!', 'success');
+            return;
+        }
+
+        const serverMessage = (result && result.message) || responseText || 'Form submission failed';
+        throw new Error(serverMessage);
     } catch (error) {
-        console.error('Error sending email:', error);
-        showNotification('❌ There was an error sending your inquiry. Please try again or contact us directly.', 'error');
+        console.error('Error sending inquiry:', error);
+        status.textContent = `❌ ${error.message || 'Could not send inquiry. Please try again or call us directly.'}`;
+        status.className = 'form-status error';
+        showNotification('❌ Could not send inquiry. Please try again.', 'error');
     } finally {
-        // Restore button state
-        submitBtn.textContent = originalText;
         submitBtn.disabled = false;
+        submitBtn.classList.remove('loading');
+        submitBtn.textContent = originalText;
     }
 }
 
@@ -115,8 +140,12 @@ function showNotification(message, type) {
 // Smooth scroll for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
+        const targetId = this.getAttribute('href');
+        if (!targetId || targetId === '#') {
+            return;
+        }
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const target = document.querySelector(targetId);
         if (target) {
             target.scrollIntoView({
                 behavior: 'smooth',
@@ -145,24 +174,16 @@ document.querySelectorAll('.nav-menu a').forEach(link => {
     });
 });
 
-// CTA Button scroll to contact
-const ctaBtn = document.querySelector('.cta-btn');
-if (ctaBtn) {
-    ctaBtn.addEventListener('click', () => {
-        const contactSection = document.querySelector('#contact');
-        if (contactSection) {
-            contactSection.scrollIntoView({ behavior: 'smooth' });
-        }
-    });
-}
-
-// Package inquiry buttons
-document.querySelectorAll('.package-btn').forEach(btn => {
+// Scroll-to-contact buttons
+document.querySelectorAll('.scroll-to-contact').forEach(btn => {
     btn.addEventListener('click', (e) => {
         e.preventDefault();
         const contactSection = document.querySelector('#contact');
         if (contactSection) {
-            contactSection.scrollIntoView({ behavior: 'smooth' });
+            contactSection.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
         }
     });
 });
@@ -175,6 +196,7 @@ function observeElements() {
                 entry.target.style.opacity = '1';
                 entry.target.style.transform = 'translateY(0)';
             }
+
         });
     }, {
         threshold: 0.1
@@ -188,14 +210,31 @@ function observeElements() {
     });
 }
 
-// Run on page load
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', observeElements);
-} else {
-    observeElements();
+// Gallery image fallback handling
+function setupGalleryFallbacks() {
+    const fallbackImage = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%23C41E3A'/%3E%3Cstop offset='1' stop-color='%238B2E2E'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1200' height='800' fill='url(%23g)'/%3E%3Ctext x='50%25' y='48%25' text-anchor='middle' fill='white' font-family='Georgia,serif' font-size='54'%3EYotode Events%3C/text%3E%3Ctext x='50%25' y='58%25' text-anchor='middle' fill='%23FCEFC8' font-family='Georgia,serif' font-size='30'%3EEthiopian Celebration Gallery%3C/text%3E%3C/svg%3E";
+    document.querySelectorAll('.gallery-image').forEach((img) => {
+        img.addEventListener('error', () => {
+            img.src = fallbackImage;
+        }, { once: true });
+    });
 }
 
-// Load EmailJS library
-const script = document.createElement('script');
-script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/index.min.js';
-document.head.appendChild(script);
+// Run on page load
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        observeElements();
+        setupGalleryFallbacks();
+        const contactForm = document.querySelector('#contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', handleSubmit);
+        }
+    });
+} else {
+    observeElements();
+    setupGalleryFallbacks();
+    const contactForm = document.querySelector('#contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', handleSubmit);
+    }
+}
