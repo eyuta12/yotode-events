@@ -627,7 +627,7 @@ body {
 }
 
 .gallery-image.is-fallback {
-    opacity: 0;
+    display: none;
 }
 
 .gallery-item:hover .gallery-image {

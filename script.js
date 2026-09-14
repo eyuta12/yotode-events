@@ -11,6 +11,11 @@ async function handleSubmit(event) {
     const eventType = form.querySelector('select[name="eventType"]').value;
     const message = form.querySelector('textarea[name="message"]').value.trim();
 
+    if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+    }
+
     if (!name || !email || !phone || !eventType || message.length < 10) {
         status.textContent = 'Please complete all fields with valid details before sending.';
         status.className = 'form-status error';
