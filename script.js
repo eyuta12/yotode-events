@@ -1,53 +1,55 @@
-// Handle form submission with email service
+// Handle form submission with FormSubmit
 async function handleSubmit(event) {
     event.preventDefault();
-    
+
     const form = event.target;
-    
-    // Get form values
-    const name = form.querySelector('input[type="text"]').value;
-    const email = form.querySelector('input[type="email"]').value;
-    const phone = form.querySelector('input[type="tel"]').value;
-    const eventType = form.querySelector('select').value;
-    const message = form.querySelector('textarea').value;
-    
-    // Show loading state
+    const status = form.querySelector('.form-status');
     const submitBtn = form.querySelector('.submit-btn');
+    const name = form.querySelector('input[name="name"]').value.trim();
+    const email = form.querySelector('input[name="email"]').value.trim();
+    const phone = form.querySelector('input[name="phone"]').value.trim();
+    const eventType = form.querySelector('select[name="eventType"]').value;
+    const message = form.querySelector('textarea[name="message"]').value.trim();
+
+    if (!name || !email || !phone || !eventType || message.length < 10) {
+        status.textContent = 'Please complete all fields with valid details before sending.';
+        status.className = 'form-status error';
+        return;
+    }
+
     const originalText = submitBtn.textContent;
-    submitBtn.textContent = 'Sending...';
     submitBtn.disabled = true;
-    
+    submitBtn.classList.add('loading');
+    submitBtn.textContent = 'Sending...';
+    status.textContent = 'Sending your inquiry...';
+    status.className = 'form-status sending';
+
     try {
-        // Send email using EmailJS service
-        emailjs.init('8CpTyX8oj8dHSw5Re'); // Initialize with your public key
-        
-        // Send email to your address
-        const response = await emailjs.send(
-            'service_k8e4r7m', // Your EmailJS Service ID
-            'template_7x3q9gg', // Your EmailJS Template ID
-            {
-                to_email: 'eyuab35@gmail.com', // Your email address
-                from_name: name,
-                from_email: email,
-                phone: phone,
-                event_type: eventType,
-                message: message,
-                reply_to: email
-            }
-        );
-        
-        if (response.status === 200) {
-            // Show success message
-            showNotification('✅ Your inquiry has been sent successfully! We will contact you soon.', 'success');
+        const formData = new FormData(form);
+        const response = await fetch(form.action, {
+            method: 'POST',
+            body: formData
+        });
+        const result = await response.json();
+
+        if (response.ok && (result.success === true || result.success === 'true')) {
             form.reset();
+            status.textContent = '✅ Inquiry sent successfully. We will contact you soon.';
+            status.className = 'form-status success';
+            showNotification('✅ Inquiry sent successfully. Thank you!', 'success');
+            return;
         }
+
+        throw new Error('Form submission failed');
     } catch (error) {
-        console.error('Error sending email:', error);
-        showNotification('❌ There was an error sending your inquiry. Please try again or contact us directly.', 'error');
+        console.error('Error sending inquiry:', error);
+        status.textContent = '❌ Could not send inquiry. Please try again or call us directly.';
+        status.className = 'form-status error';
+        showNotification('❌ Could not send inquiry. Please try again.', 'error');
     } finally {
-        // Restore button state
-        submitBtn.textContent = originalText;
         submitBtn.disabled = false;
+        submitBtn.classList.remove('loading');
+        submitBtn.textContent = originalText;
     }
 }
 
@@ -115,8 +117,12 @@ function showNotification(message, type) {
 // Smooth scroll for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
+        const targetId = this.getAttribute('href');
+        if (!targetId || targetId === '#') {
+            return;
+        }
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const target = document.querySelector(targetId);
         if (target) {
             target.scrollIntoView({
                 behavior: 'smooth',
@@ -145,24 +151,16 @@ document.querySelectorAll('.nav-menu a').forEach(link => {
     });
 });
 
-// CTA Button scroll to contact
-const ctaBtn = document.querySelector('.cta-btn');
-if (ctaBtn) {
-    ctaBtn.addEventListener('click', () => {
-        const contactSection = document.querySelector('#contact');
-        if (contactSection) {
-            contactSection.scrollIntoView({ behavior: 'smooth' });
-        }
-    });
-}
-
-// Package inquiry buttons
-document.querySelectorAll('.package-btn').forEach(btn => {
+// Scroll-to-contact buttons
+document.querySelectorAll('.scroll-to-contact').forEach(btn => {
     btn.addEventListener('click', (e) => {
         e.preventDefault();
         const contactSection = document.querySelector('#contact');
         if (contactSection) {
-            contactSection.scrollIntoView({ behavior: 'smooth' });
+            contactSection.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
         }
     });
 });
@@ -190,12 +188,17 @@ function observeElements() {
 
 // Run on page load
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', observeElements);
+    document.addEventListener('DOMContentLoaded', () => {
+        observeElements();
+        const contactForm = document.querySelector('#contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', handleSubmit);
+        }
+    });
 } else {
     observeElements();
+    const contactForm = document.querySelector('#contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', handleSubmit);
+    }
 }
-
-// Load EmailJS library
-const script = document.createElement('script');
-script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/index.min.js';
-document.head.appendChild(script);
