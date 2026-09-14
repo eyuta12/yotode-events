@@ -615,6 +615,7 @@ body {
     height: 300px;
     overflow: hidden;
     cursor: pointer;
+    background: linear-gradient(135deg, #C41E3A 0%, #8B2E2E 100%);
 }
 
 .gallery-image {
@@ -623,6 +624,10 @@ body {
     display: block;
     object-fit: cover;
     transition: transform 0.3s ease;
+}
+
+.gallery-image.is-fallback {
+    opacity: 0;
 }
 
 .gallery-item:hover .gallery-image {

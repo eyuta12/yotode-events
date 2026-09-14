@@ -34,8 +34,14 @@ async function handleSubmit(event) {
             body: formData
         });
         let result = null;
+        let responseText = '';
+        const contentType = response.headers.get('content-type') || '';
         try {
-            result = await response.json();
+            if (contentType.includes('application/json')) {
+                result = await response.json();
+            } else {
+                responseText = await response.text();
+            }
         } catch (parseError) {
             result = null;
         }
@@ -51,10 +57,11 @@ async function handleSubmit(event) {
             return;
         }
 
-        throw new Error('Form submission failed');
+        const serverMessage = (result && result.message) || responseText || 'Form submission failed';
+        throw new Error(serverMessage);
     } catch (error) {
         console.error('Error sending inquiry:', error);
-        status.textContent = '❌ Could not send inquiry. Please try again or call us directly.';
+        status.textContent = `❌ ${error.message || 'Could not send inquiry. Please try again or call us directly.'}`;
         status.className = 'form-status error';
         showNotification('❌ Could not send inquiry. Please try again.', 'error');
     } finally {
