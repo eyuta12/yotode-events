@@ -1,91 +1,201 @@
+// Handle form submission with email service
+async function handleSubmit(event) {
+    event.preventDefault();
+    
+    const form = event.target;
+    
+    // Get form values
+    const name = form.querySelector('input[type="text"]').value;
+    const email = form.querySelector('input[type="email"]').value;
+    const phone = form.querySelector('input[type="tel"]').value;
+    const eventType = form.querySelector('select').value;
+    const message = form.querySelector('textarea').value;
+    
+    // Show loading state
+    const submitBtn = form.querySelector('.submit-btn');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+    
+    try {
+        // Send email using EmailJS service
+        emailjs.init('8CpTyX8oj8dHSw5Re'); // Initialize with your public key
+        
+        // Send email to your address
+        const response = await emailjs.send(
+            'service_k8e4r7m', // Your EmailJS Service ID
+            'template_7x3q9gg', // Your EmailJS Template ID
+            {
+                to_email: 'eyuab35@gmail.com', // Your email address
+                from_name: name,
+                from_email: email,
+                phone: phone,
+                event_type: eventType,
+                message: message,
+                reply_to: email
+            }
+        );
+        
+        if (response.status === 200) {
+            // Show success message
+            showNotification('✅ Your inquiry has been sent successfully! We will contact you soon.', 'success');
+            form.reset();
+        }
+    } catch (error) {
+        console.error('Error sending email:', error);
+        showNotification('❌ There was an error sending your inquiry. Please try again or contact us directly.', 'error');
+    } finally {
+        // Restore button state
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+    }
+}
+
+// Show notification message
+function showNotification(message, type) {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.textContent = message;
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 15px 20px;
+        border-radius: 8px;
+        background-color: ${type === 'success' ? '#4CAF50' : '#f44336'};
+        color: white;
+        font-size: 15px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        z-index: 10000;
+        animation: slideIn 0.3s ease;
+        max-width: 400px;
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Add animation
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+        }
+    `;
+    if (!document.querySelector('style[data-notification-anim]')) {
+        style.setAttribute('data-notification-anim', 'true');
+        document.head.appendChild(style);
+    }
+    
+    // Remove notification after 4 seconds
+    setTimeout(() => {
+        notification.style.animation = 'slideOut 0.3s ease';
+        setTimeout(() => {
+            notification.remove();
+        }, 300);
+    }, 4000);
+}
+
+// Smooth scroll for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
 // Mobile menu toggle
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 
 if (hamburger) {
     hamburger.addEventListener('click', () => {
-        navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
-        navMenu.style.position = 'absolute';
-        navMenu.style.top = '100%';
-        navMenu.style.left = '0';
-        navMenu.style.right = '0';
-        navMenu.style.flexDirection = 'column';
-        navMenu.style.backgroundColor = '#FFFFFF';
-        navMenu.style.padding = '20px';
-        navMenu.style.gap = '15px';
-        navMenu.style.boxShadow = '0 5px 10px rgba(0, 0, 0, 0.1)';
+        navMenu.classList.toggle('active');
+        hamburger.classList.toggle('active');
     });
 }
 
-// Smooth scrolling for nav links
-const navLinks = document.querySelectorAll('.nav-menu a');
-navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
+// Close mobile menu when clicking on a link
+document.querySelectorAll('.nav-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        hamburger.classList.remove('active');
+    });
+});
+
+// CTA Button scroll to contact
+const ctaBtn = document.querySelector('.cta-btn');
+if (ctaBtn) {
+    ctaBtn.addEventListener('click', () => {
+        const contactSection = document.querySelector('#contact');
+        if (contactSection) {
+            contactSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+}
+
+// Package inquiry buttons
+document.querySelectorAll('.package-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
         e.preventDefault();
-        const targetId = link.getAttribute('href');
-        const targetSection = document.querySelector(targetId);
-        if (targetSection) {
-            targetSection.scrollIntoView({ behavior: 'smooth' });
-            if (navMenu && navMenu.style.display === 'flex') {
-                navMenu.style.display = 'none';
+        const contactSection = document.querySelector('#contact');
+        if (contactSection) {
+            contactSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+});
+
+// Add scroll animation for elements
+function observeElements() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
             }
-        }
+        });
+    }, {
+        threshold: 0.1
     });
-});
-
-// Form submission
-const contactForm = document.querySelector('.contact-form');
-if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        alert('Thank you for your inquiry! We will contact you shortly.');
-        contactForm.reset();
+    
+    document.querySelectorAll('.event-card, .service-item, .package-card, .gallery-item').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        observer.observe(el);
     });
 }
 
-// Scroll animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
+// Run on page load
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', observeElements);
+} else {
+    observeElements();
+}
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-// Observe ceremony cards
-const ceremonyCards = document.querySelectorAll('.ceremony-card');
-cermonyCards.forEach(card => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(20px)';
-    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(card);
-});
-
-// Observe service items
-const serviceItems = document.querySelectorAll('.service-item');
-serviceItems.forEach(item => {
-    item.style.opacity = '0';
-    item.style.transform = 'translateY(20px)';
-    item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(item);
-});
-
-// Gallery items interaction
-const galleryItems = document.querySelectorAll('.gallery-item');
-galleryItems.forEach(item => {
-    item.addEventListener('click', () => {
-        const imageName = item.querySelector('p').textContent;
-        alert(`View full image: ${imageName}\n\nPlease add your photos to the gallery!`);
-    });
-});
-
-// Scroll to top on page load
-window.addEventListener('load', () => {
-    window.scrollTo(0, 0);
-});
+// Load EmailJS library
+const script = document.createElement('script');
+script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/index.min.js';
+document.head.appendChild(script);
