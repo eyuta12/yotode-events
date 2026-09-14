@@ -1,0 +1,585 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-red: #C41E3A;
+    --dark-red: #8B2E2E;
+    --accent-gold: #D4A574;
+    --text-dark: #333333;
+    --text-light: #666666;
+    --light-bg: #F5F1ED;
+    --white: #FFFFFF;
+}
+
+body {
+    font-family: 'Georgia', serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--light-bg);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Navigation */
+.navbar {
+    background-color: var(--white);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+}
+
+.logo h1 {
+    font-size: 28px;
+    color: var(--primary-red);
+    font-style: italic;
+}
+
+.logo p {
+    font-size: 12px;
+    color: var(--text-light);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-menu a:hover {
+    color: var(--primary-red);
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: var(--primary-red);
+    margin: 5px 0;
+    transition: 0.3s;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, #8B2E2E 0%, #C41E3A 100%);
+    color: var(--white);
+    padding: 120px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 35px,
+            rgba(255, 255, 255, 0.05) 35px,
+            rgba(255, 255, 255, 0.05) 70px
+        );
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+}
+
+.hero-content h2 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.hero-content p {
+    font-size: 22px;
+    margin-bottom: 30px;
+    font-style: italic;
+    opacity: 0.95;
+}
+
+.cta-btn {
+    background-color: var(--accent-gold);
+    color: var(--dark-red);
+    padding: 15px 40px;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.cta-btn:hover {
+    background-color: var(--white);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* About Section */
+.about {
+    background-color: var(--white);
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.about h2 {
+    font-size: 40px;
+    color: var(--primary-red);
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+.about p {
+    font-size: 18px;
+    color: var(--text-light);
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+
+/* Ceremonies Section */
+.ceremonies {
+    background-color: var(--light-bg);
+    padding: 80px 20px;
+}
+
+.ceremonies h2 {
+    font-size: 40px;
+    color: var(--primary-red);
+    text-align: center;
+    margin-bottom: 60px;
+    font-weight: 700;
+}
+
+.ceremonies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.ceremony-card {
+    background-color: var(--white);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-top: 4px solid var(--primary-red);
+}
+
+.ceremony-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(196, 30, 58, 0.15);
+}
+
+.ceremony-icon {
+    font-size: 50px;
+    color: var(--primary-red);
+    margin-bottom: 20px;
+}
+
+.ceremony-card h3 {
+    font-size: 22px;
+    color: var(--dark-red);
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.ceremony-card p {
+    color: var(--text-light);
+    margin-bottom: 20px;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.ceremony-details {
+    list-style: none;
+    text-align: left;
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+.ceremony-details li {
+    margin: 10px 0;
+    padding-left: 0;
+}
+
+/* Services Section */
+.services {
+    background-color: var(--white);
+    padding: 80px 20px;
+}
+
+.services h2 {
+    font-size: 40px;
+    color: var(--primary-red);
+    text-align: center;
+    margin-bottom: 60px;
+    font-weight: 700;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+}
+
+.service-item {
+    text-align: center;
+}
+
+.service-item i {
+    font-size: 50px;
+    color: var(--primary-red);
+    margin-bottom: 20px;
+}
+
+.service-item h3 {
+    font-size: 20px;
+    color: var(--dark-red);
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.service-item p {
+    color: var(--text-light);
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* Gallery Section */
+.gallery {
+    background-color: var(--light-bg);
+    padding: 80px 20px;
+}
+
+.gallery h2 {
+    font-size: 40px;
+    color: var(--primary-red);
+    text-align: center;
+    margin-bottom: 60px;
+    font-weight: 700;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.gallery-item {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+}
+
+.gallery-image {
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.gallery-image i {
+    font-size: 60px;
+    margin-bottom: 15px;
+}
+
+.gallery-image p {
+    font-size: 18px;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Testimonials Section */
+.testimonials {
+    background-color: var(--white);
+    padding: 80px 20px;
+}
+
+.testimonials h2 {
+    font-size: 40px;
+    color: var(--primary-red);
+    text-align: center;
+    margin-bottom: 60px;
+    font-weight: 700;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.testimonial-card {
+    background-color: var(--light-bg);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    border-left: 4px solid var(--accent-gold);
+}
+
+.stars {
+    color: var(--accent-gold);
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.testimonial-card p {
+    font-size: 16px;
+    color: var(--text-light);
+    margin-bottom: 15px;
+    font-style: italic;
+    line-height: 1.7;
+}
+
+.testimonial-card h4 {
+    color: var(--primary-red);
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.testimonial-card span {
+    color: var(--text-light);
+    font-size: 14px;
+}
+
+/* Contact Section */
+.contact {
+    background: linear-gradient(135deg, #8B2E2E 0%, #C41E3A 100%);
+    color: var(--white);
+    padding: 80px 20px;
+}
+
+.contact h2 {
+    font-size: 40px;
+    text-align: center;
+    margin-bottom: 60px;
+    font-weight: 700;
+}
+
+.contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.info-item i {
+    font-size: 30px;
+    color: var(--accent-gold);
+    flex-shrink: 0;
+}
+
+.info-item h4 {
+    font-size: 18px;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.info-item p {
+    font-size: 16px;
+    opacity: 0.95;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.social-links a {
+    width: 45px;
+    height: 45px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 18px;
+}
+
+.social-links a:hover {
+    background-color: var(--accent-gold);
+    color: var(--primary-red);
+    transform: translateY(-5px);
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 12px 15px;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Georgia', serif;
+    font-size: 15px;
+    background-color: rgba(255, 255, 255, 0.95);
+    color: var(--text-dark);
+    transition: background-color 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    background-color: var(--white);
+    box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.3);
+}
+
+.submit-btn {
+    padding: 12px 30px;
+    background-color: var(--accent-gold);
+    color: var(--primary-red);
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Georgia', serif;
+}
+
+.submit-btn:hover {
+    background-color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Footer */
+.footer {
+    background-color: var(--dark-red);
+    color: var(--white);
+    text-align: center;
+    padding: 30px 20px;
+    font-size: 14px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .hero-content h2 {
+        font-size: 32px;
+    }
+
+    .hero-content p {
+        font-size: 18px;
+    }
+
+    .ceremonies-grid,
+    .services-grid,
+    .gallery-grid,
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-wrapper {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    h2 {
+        font-size: 32px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo h1 {
+        font-size: 20px;
+    }
+
+    .hero-content h2 {
+        font-size: 24px;
+    }
+
+    .hero-content p {
+        font-size: 16px;
+    }
+
+    .ceremony-card,
+    .service-item {
+        padding: 20px;
+    }
+}
