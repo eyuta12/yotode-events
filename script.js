@@ -33,11 +33,19 @@ async function handleSubmit(event) {
             },
             body: formData
         });
-        const result = await response.json();
+        let result = null;
+        try {
+            result = await response.json();
+        } catch (parseError) {
+            result = null;
+        }
 
-        if (response.ok && (result.success === true || result.success === 'true')) {
+        if (response.ok) {
             form.reset();
-            status.textContent = '✅ Inquiry sent successfully. We will contact you soon.';
+            const successMessage = result && result.message
+                ? `✅ ${result.message}`
+                : '✅ Inquiry sent successfully. We will contact you soon.';
+            status.textContent = successMessage;
             status.className = 'form-status success';
             showNotification('✅ Inquiry sent successfully. Thank you!', 'success');
             return;
