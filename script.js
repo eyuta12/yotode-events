@@ -78,6 +78,12 @@ async function handleSubmit(event) {
 
 // Show notification message
 function showNotification(message, type) {
+    const rootStyles = getComputedStyle(document.documentElement);
+    const successBg = rootStyles.getPropertyValue('--accent-gold').trim() || '#D9B98A';
+    const successText = rootStyles.getPropertyValue('--dark-red').trim() || '#611517';
+    const errorBg = rootStyles.getPropertyValue('--primary-red').trim() || '#9E3031';
+    const lightText = rootStyles.getPropertyValue('--white').trim() || '#FFFDF9';
+
     // Create notification element
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
@@ -88,8 +94,8 @@ function showNotification(message, type) {
         right: 20px;
         padding: 15px 20px;
         border-radius: 8px;
-        background-color: ${type === 'success' ? '#4CAF50' : '#f44336'};
-        color: white;
+        background-color: ${type === 'success' ? successBg : errorBg};
+        color: ${type === 'success' ? successText : lightText};
         font-size: 15px;
         box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         z-index: 10000;
@@ -212,7 +218,7 @@ function observeElements() {
 
 // Gallery image fallback handling
 function setupGalleryFallbacks() {
-    const fallbackImage = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%23C41E3A'/%3E%3Cstop offset='1' stop-color='%238B2E2E'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1200' height='800' fill='url(%23g)'/%3E%3Ctext x='50%25' y='48%25' text-anchor='middle' fill='white' font-family='Georgia,serif' font-size='54'%3EYotode Events%3C/text%3E%3Ctext x='50%25' y='58%25' text-anchor='middle' fill='%23FCEFC8' font-family='Georgia,serif' font-size='30'%3EEthiopian Celebration Gallery%3C/text%3E%3C/svg%3E";
+    const fallbackImage = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%239E3031'/%3E%3Cstop offset='1' stop-color='%23611517'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1200' height='800' fill='url(%23g)'/%3E%3Ctext x='50%25' y='48%25' text-anchor='middle' fill='%23FFFDF9' font-family='Georgia,serif' font-size='54'%3EYotode Events%3C/text%3E%3Ctext x='50%25' y='58%25' text-anchor='middle' fill='%23F8E4C3' font-family='Georgia,serif' font-size='30'%3EEthiopian Celebration Gallery%3C/text%3E%3C/svg%3E";
     document.querySelectorAll('.gallery-image').forEach((img) => {
         img.addEventListener('error', () => {
             img.src = fallbackImage;
