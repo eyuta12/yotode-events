@@ -3,70 +3,69 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yotode Event Planner | Elegant Ethiopian Celebrations</title>
+  <title>Yotode Event Planner | Ethiopian Luxury Celebrations</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --burgundy: #7A1C28;
+      --burgundy-deep: #59131d;
       --gold: #C5A059;
+      --gold-soft: #e7d4aa;
       --cream: #FAF8F5;
-      --ink: #1f1a16;
-      --muted: #5a5148;
       --white: #ffffff;
-      --shadow: 0 14px 30px rgba(25, 15, 10, 0.08);
-      --radius: 14px;
+      --ink: #201715;
+      --muted: #695c56;
+      --line: rgba(122, 28, 40, 0.12);
+      --shadow: 0 20px 40px rgba(40, 19, 21, 0.1);
+      --radius: 24px;
+      --radius-sm: 16px;
+      --nav-width: min(24rem, calc(100vw - 2rem));
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html { scroll-behavior: smooth; }
+    html, body { min-height: 100%; }
 
     body {
       font-family: 'Montserrat', sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(197, 160, 89, 0.18), transparent 28%),
+        linear-gradient(180deg, #fffdfa 0%, var(--cream) 100%);
       color: var(--ink);
-      background: var(--cream);
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
-    h1, h2, h3 { font-family: 'Cormorant Garamond', serif; line-height: 1.2; }
+    body.menu-open { overflow: hidden; }
 
-    .container {
-      width: min(1120px, 92%);
+    img { max-width: 100%; display: block; }
+
+    button, input, select, textarea { font: inherit; }
+
+    a { color: inherit; }
+
+    .site-shell {
+      width: min(1200px, calc(100% - 2rem));
       margin: 0 auto;
     }
-
-    section { padding: 5.5rem 0; scroll-margin-top: 6rem; }
-
-    .section-header {
-      text-align: center;
-      margin-bottom: 2.25rem;
-    }
-
-    .section-header h2 {
-      font-size: clamp(2rem, 4vw, 2.9rem);
-      color: var(--burgundy);
-      margin-bottom: 0.6rem;
-    }
-
-    .section-header p { color: var(--muted); max-width: 700px; margin: 0 auto; }
 
     .site-header {
       position: sticky;
       top: 0;
-      z-index: 100;
-      background: rgba(250, 248, 245, 0.95);
-      border-bottom: 1px solid rgba(122, 28, 40, 0.15);
-      backdrop-filter: blur(8px);
+      z-index: 1000;
+      backdrop-filter: blur(12px);
+      background: rgba(250, 248, 245, 0.86);
+      border-bottom: 1px solid var(--line);
     }
 
-    .nav-wrap {
+    .header-bar {
+      min-height: 5.25rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 1.5rem;
-      min-height: 82px;
+      gap: 1rem;
     }
 
     .brand {
@@ -74,519 +73,1336 @@
       align-items: center;
       gap: 0.9rem;
       text-decoration: none;
-      color: inherit;
+      min-width: 0;
     }
 
-    .brand img { width: 56px; height: auto; display: block; }
-
-    .brand strong {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.7rem;
-      color: var(--burgundy);
+    .brand img {
+      width: 3.4rem;
+      height: 3.4rem;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 14px rgba(122, 28, 40, 0.16));
     }
 
-    .brand span {
-      display: block;
-      font-size: 0.72rem;
-      color: var(--muted);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-    }
-
-    .nav-links {
-      list-style: none;
+    .brand-mark {
       display: flex;
-      gap: 1.3rem;
-      flex-wrap: wrap;
-      justify-content: flex-end;
+      flex-direction: column;
+      min-width: 0;
     }
 
-    .nav-links a {
-      text-decoration: none;
-      color: var(--ink);
-      font-size: 0.95rem;
-      font-weight: 600;
-      transition: color 0.25s ease;
-    }
-
-    .nav-links a:hover,
-    .nav-links a:focus-visible { color: var(--burgundy); }
-
-    .hero {
-      padding-top: 6.5rem;
-      padding-bottom: 5rem;
-      background:
-        radial-gradient(circle at 10% 10%, rgba(197, 160, 89, 0.18), transparent 45%),
-        radial-gradient(circle at 88% 85%, rgba(122, 28, 40, 0.1), transparent 42%),
-        var(--cream);
-    }
-
-    .hero-grid {
-      display: grid;
-      gap: 2.4rem;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      align-items: center;
-    }
-
-    .hero-copy h1 {
-      font-size: clamp(2.2rem, 4.8vw, 3.9rem);
+    .brand-mark strong {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.7rem, 2vw, 2rem);
       color: var(--burgundy);
-      margin-bottom: 0.9rem;
+      line-height: 1;
     }
 
-    .hero-copy p {
+    .brand-mark span,
+    .page-kicker,
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-size: 0.68rem;
       color: var(--muted);
-      max-width: 54ch;
-      margin-bottom: 1.4rem;
-      font-size: 1.02rem;
     }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .page-kicker {
+      display: none;
+      padding: 0.55rem 0.85rem;
+      border-radius: 999px;
+      border: 1px solid rgba(197, 160, 89, 0.45);
+      background: rgba(255, 255, 255, 0.72);
+      color: var(--burgundy);
+      white-space: nowrap;
+    }
+
+    .menu-toggle {
+      width: 3.35rem;
+      height: 3.35rem;
+      border: 1px solid rgba(122, 28, 40, 0.14);
+      border-radius: 50%;
+      background: var(--white);
+      display: inline-grid;
+      place-items: center;
+      cursor: pointer;
+      box-shadow: 0 10px 20px rgba(122, 28, 40, 0.08);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    }
+
+    .menu-toggle:hover,
+    .menu-toggle:focus-visible {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 24px rgba(122, 28, 40, 0.14);
+      background: #fff8f1;
+    }
+
+    .menu-toggle span {
+      width: 1.35rem;
+      height: 2px;
+      background: var(--burgundy);
+      border-radius: 999px;
+      display: block;
+      transition: transform 0.28s ease, opacity 0.2s ease;
+    }
+
+    .menu-toggle span + span { margin-top: 0.28rem; }
+
+    .menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .menu-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(36, 17, 18, 0.4);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.28s ease;
+      z-index: 900;
+    }
+
+    .menu-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .menu-drawer {
+      position: fixed;
+      top: 0.9rem;
+      right: 0.9rem;
+      bottom: 0.9rem;
+      width: var(--nav-width);
+      padding: 1.4rem;
+      border-radius: 2rem;
+      background:
+        linear-gradient(145deg, rgba(122, 28, 40, 0.98), rgba(89, 19, 29, 0.94)),
+        var(--burgundy);
+      color: var(--white);
+      box-shadow: 0 25px 50px rgba(20, 9, 9, 0.3);
+      transform: translateX(calc(100% + 2rem));
+      transition: transform 0.34s ease;
+      z-index: 950;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      overflow: auto;
+    }
+
+    .menu-drawer.open { transform: translateX(0); }
+
+    .drawer-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .drawer-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.9rem;
+      line-height: 1;
+    }
+
+    .drawer-links {
+      list-style: none;
+      display: grid;
+      gap: 0.8rem;
+      margin-top: 0.4rem;
+    }
+
+    .drawer-links a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 1.05rem;
+      border-radius: 1.1rem;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: transform 0.24s ease, background 0.24s ease, border-color 0.24s ease;
+    }
+
+    .drawer-links a:hover,
+    .drawer-links a:focus-visible,
+    .drawer-links a.active {
+      transform: translateX(-4px);
+      background: rgba(255, 255, 255, 0.16);
+      border-color: rgba(197, 160, 89, 0.7);
+    }
+
+    .drawer-links strong {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+    }
+
+    .drawer-links span {
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 0.88rem;
+      max-width: 14rem;
+      text-align: right;
+    }
+
+    .drawer-note {
+      margin-top: auto;
+      padding: 1rem 1.05rem;
+      border-radius: 1.25rem;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    .main-stage {
+      padding: 2rem 0 4rem;
+      min-height: calc(100vh - 5.25rem);
+    }
+
+    .page-panel {
+      display: none;
+      animation: pageFade 0.45s ease;
+    }
+
+    .page-panel.active { display: block; }
+
+    @keyframes pageFade {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .page-hero,
+    .section-card,
+    .stat-card,
+    .service-card,
+    .package-card,
+    .process-step,
+    .story-card,
+    .contact-panel,
+    .gallery-card,
+    .detail-card,
+    .video-card {
+      background: rgba(255, 255, 255, 0.94);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+    }
+
+    .hero-layout,
+    .services-layout,
+    .contact-layout,
+    .story-layout,
+    .gallery-grid,
+    .detail-grid,
+    .mini-grid,
+    .package-grid,
+    .process-grid,
+    .stats-grid,
+    .offer-grid {
+      display: grid;
+      gap: 1.4rem;
+    }
+
+    .hero-layout,
+    .services-layout,
+    .contact-layout { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    .page-hero {
+      overflow: hidden;
+      padding: clamp(1.5rem, 3vw, 2rem);
+      position: relative;
+      isolation: isolate;
+    }
+
+    .page-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top right, rgba(197, 160, 89, 0.22), transparent 35%),
+        radial-gradient(circle at bottom left, rgba(122, 28, 40, 0.14), transparent 32%);
+      z-index: -1;
+    }
+
+    .hero-copy {
+      display: grid;
+      align-content: center;
+      gap: 1rem;
+      padding: 0.25rem;
+    }
+
+    .eyebrow { color: var(--burgundy); font-weight: 700; }
+
+    h1, h2, h3, h4 {
+      font-family: 'Cormorant Garamond', serif;
+      line-height: 1.06;
+      color: var(--burgundy);
+    }
+
+    h1 { font-size: clamp(2.7rem, 7vw, 4.9rem); }
+    h2 { font-size: clamp(2.2rem, 4vw, 3.2rem); margin-bottom: 0.45rem; }
+    h3 { font-size: clamp(1.55rem, 3vw, 2rem); }
+    p { color: var(--muted); }
+
+    .hero-copy p { font-size: 1rem; max-width: 58ch; }
 
     .hero-actions {
       display: flex;
-      gap: 0.9rem;
       flex-wrap: wrap;
+      gap: 0.8rem;
+      padding-top: 0.25rem;
     }
 
     .btn {
       border: 1px solid transparent;
       border-radius: 999px;
-      padding: 0.8rem 1.4rem;
-      font-weight: 600;
+      padding: 0.9rem 1.35rem;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      gap: 0.45rem;
       cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+      font-weight: 600;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
     }
+
+    .btn:hover,
+    .btn:focus-visible { transform: translateY(-2px); }
 
     .btn-primary {
-      background: var(--burgundy);
+      background: linear-gradient(135deg, var(--burgundy), var(--burgundy-deep));
       color: var(--white);
-      box-shadow: 0 10px 20px rgba(122, 28, 40, 0.22);
+      box-shadow: 0 16px 24px rgba(122, 28, 40, 0.24);
     }
 
-    .btn-primary:hover,
-    .btn-primary:focus-visible {
-      transform: translateY(-2px);
-      background: #651621;
-    }
-
-    .btn-outline {
-      border-color: var(--gold);
+    .btn-secondary {
+      background: rgba(197, 160, 89, 0.16);
+      border-color: rgba(197, 160, 89, 0.5);
       color: var(--burgundy);
-      background: transparent;
     }
 
-    .btn-outline:hover,
-    .btn-outline:focus-visible {
-      background: rgba(197, 160, 89, 0.14);
-      transform: translateY(-2px);
-    }
-
-    .hero-card {
-      background: var(--white);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 1.4rem;
-      border: 1px solid rgba(122, 28, 40, 0.1);
-    }
-
-    .hero-card img {
-      width: min(330px, 100%);
-      margin-inline: auto;
-      display: block;
-      height: auto;
-    }
-
-    .services-grid,
-    .packages-grid,
-    .timeline,
-    .contact-grid {
+    .hero-highlights,
+    .timeline-list,
+    .detail-list,
+    .contact-list,
+    .package-list,
+    .offer-list {
+      list-style: none;
       display: grid;
-      gap: 1.15rem;
+      gap: 0.8rem;
     }
 
-    .services-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .hero-highlights li,
+    .detail-list li,
+    .contact-list li,
+    .package-list li,
+    .offer-list li {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      color: var(--ink);
+    }
 
-    .card {
-      background: var(--white);
-      border: 1px solid rgba(122, 28, 40, 0.1);
-      border-radius: var(--radius);
+    .hero-highlights li::before,
+    .detail-list li::before,
+    .contact-list li::before,
+    .package-list li::before,
+    .offer-list li::before {
+      content: "✦";
+      color: var(--gold);
+      margin-top: 0.12rem;
+      flex: none;
+    }
+
+    .video-card {
+      padding: 1rem;
+      position: relative;
+      overflow: hidden;
+      min-height: 100%;
+    }
+
+    .video-shell {
+      position: relative;
+      min-height: 26rem;
+      border-radius: 1.4rem;
+      overflow: hidden;
+      background: #200a10;
+      border: 1px solid rgba(197, 160, 89, 0.2);
+    }
+
+    .reel-slide {
+      position: absolute;
+      inset: 0;
+      padding: 1.4rem;
+      display: grid;
+      align-content: end;
+      opacity: 0;
+      transition: opacity 0.9s ease;
+      color: var(--white);
+      background-size: cover;
+      background-position: center;
+    }
+
+    .reel-slide::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(28, 7, 11, 0.12), rgba(28, 7, 11, 0.82));
+    }
+
+    .reel-slide.active { opacity: 1; }
+
+    .reel-content {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 0.55rem;
+      max-width: 22rem;
+    }
+
+    .reel-content h3,
+    .reel-content p,
+    .film-caption h3,
+    .film-caption p { color: var(--white); }
+
+    .film-ui {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 1rem;
+      pointer-events: none;
+    }
+
+    .film-meta,
+    .film-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .film-pill,
+    .film-time {
+      pointer-events: auto;
+      padding: 0.45rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.13);
+      backdrop-filter: blur(8px);
+      font-size: 0.82rem;
+      color: var(--white);
+    }
+
+    .film-toggle {
+      pointer-events: auto;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      background: rgba(255, 255, 255, 0.14);
+      color: var(--white);
+      cursor: pointer;
+    }
+
+    .film-progress {
+      flex: 1;
+      height: 0.3rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.18);
+      overflow: hidden;
+      pointer-events: auto;
+    }
+
+    .film-progress span {
+      display: block;
+      height: 100%;
+      width: 33.333%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--gold), #f6ead1);
+      transition: transform 0.45s ease;
+      transform-origin: left center;
+    }
+
+    .stats-grid,
+    .offer-grid,
+    .gallery-grid,
+    .detail-grid,
+    .mini-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+    .stats-grid { margin-top: 1.4rem; }
+
+    .stat-card,
+    .story-card,
+    .detail-card,
+    .service-card,
+    .process-step,
+    .gallery-card,
+    .contact-panel {
       padding: 1.25rem;
-      box-shadow: var(--shadow);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
 
-    .card:hover { transform: translateY(-5px); box-shadow: 0 18px 34px rgba(25, 15, 10, 0.14); }
+    .stat-card strong {
+      display: block;
+      font-size: 2rem;
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--burgundy);
+    }
 
-    .card h3 { color: var(--burgundy); margin-bottom: 0.4rem; font-size: 1.55rem; }
-    .card p { color: var(--muted); font-size: 0.95rem; }
+    .section-card { padding: clamp(1.4rem, 2vw, 2rem); }
 
-    .packages-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .section-heading {
+      margin-bottom: 1.2rem;
+      display: grid;
+      gap: 0.35rem;
+    }
 
-    .package {
-      background: var(--white);
-      border-radius: var(--radius);
-      border: 1px solid rgba(122, 28, 40, 0.12);
-      box-shadow: var(--shadow);
+    .section-heading.center { text-align: center; }
+
+    .service-card h3,
+    .package-card h3,
+    .process-step h3,
+    .story-card h3,
+    .gallery-card h3,
+    .detail-card h3,
+    .contact-panel h3 { margin-bottom: 0.45rem; }
+
+    .package-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    .package-card {
+      padding: 0;
       overflow: hidden;
     }
 
-    .package.featured { border: 2px solid var(--gold); }
-
     .package-top {
-      padding: 1.3rem 1.3rem 1.15rem;
-      border-bottom: 1px solid rgba(122, 28, 40, 0.08);
-      background: linear-gradient(180deg, rgba(122, 28, 40, 0.98), #641722);
+      padding: 1.35rem;
+      background: linear-gradient(160deg, rgba(122, 28, 40, 0.98), rgba(89, 19, 29, 0.93));
       color: var(--white);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    .package-top h3 { font-size: 2rem; }
-    .price { font-size: 1.8rem; font-weight: 700; margin-top: 0.25rem; }
+    .package-top h3,
+    .package-top p,
+    .package-top .eyebrow { color: var(--white); }
 
-    .package ul {
-      list-style: none;
-      padding: 1.1rem 1.3rem;
+    .package-top strong {
+      display: block;
+      font-size: 2.15rem;
+      font-family: 'Cormorant Garamond', serif;
+      line-height: 1;
+      margin: 0.45rem 0;
+    }
+
+    .package-body {
+      padding: 1.35rem;
       display: grid;
-      gap: 0.65rem;
-      color: var(--muted);
-      font-size: 0.95rem;
+      gap: 1rem;
     }
 
-    .package li::before {
-      content: '✦';
-      color: var(--gold);
-      margin-right: 0.5rem;
-    }
+    .process-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 
-    .package .btn { margin: 0 1.3rem 1.3rem; width: calc(100% - 2.6rem); }
-
-    .timeline { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-
-    .step {
-      background: var(--white);
-      border-radius: var(--radius);
-      padding: 1.2rem;
-      border: 1px solid rgba(122, 28, 40, 0.1);
-      box-shadow: var(--shadow);
+    .process-step {
       position: relative;
+      padding-top: 3rem;
     }
 
-    .step-number {
+    .step-index {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
       width: 2rem;
       height: 2rem;
-      border-radius: 50%;
       display: grid;
       place-items: center;
+      border-radius: 50%;
       background: var(--burgundy);
       color: var(--white);
       font-weight: 700;
-      margin-bottom: 0.7rem;
-      font-size: 0.9rem;
     }
 
-    .step h3 { color: var(--burgundy); font-size: 1.42rem; margin-bottom: 0.3rem; }
-    .step p { color: var(--muted); font-size: 0.95rem; }
+    .story-layout { grid-template-columns: 1.2fr 0.8fr; align-items: start; }
 
-    .contact-grid { grid-template-columns: 1fr 1.2fr; align-items: start; }
-
-    .contact-info {
-      background: var(--white);
-      border: 1px solid rgba(122, 28, 40, 0.12);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 1.2rem;
+    .story-card.accent {
+      background: linear-gradient(180deg, rgba(122, 28, 40, 0.96), rgba(89, 19, 29, 0.94));
+      border-color: rgba(197, 160, 89, 0.36);
     }
 
-    .contact-info h3 { color: var(--burgundy); font-size: 1.8rem; margin-bottom: 0.7rem; }
-    .contact-info p, .contact-info a { color: var(--muted); text-decoration: none; }
+    .story-card.accent h3,
+    .story-card.accent p,
+    .story-card.accent li,
+    .story-card.accent .eyebrow { color: var(--white); }
+
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      justify-content: center;
+      margin-bottom: 1.2rem;
+    }
+
+    .filter-button {
+      border: 1px solid rgba(122, 28, 40, 0.14);
+      background: rgba(255, 255, 255, 0.88);
+      color: var(--burgundy);
+      border-radius: 999px;
+      padding: 0.75rem 1rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .filter-button.active,
+    .filter-button:hover,
+    .filter-button:focus-visible {
+      background: rgba(197, 160, 89, 0.16);
+      border-color: rgba(197, 160, 89, 0.6);
+      transform: translateY(-2px);
+    }
+
+    .gallery-card {
+      overflow: hidden;
+      padding: 0;
+      transition: transform 0.24s ease, box-shadow 0.24s ease;
+    }
+
+    .gallery-card:hover { transform: translateY(-4px); }
+
+    .gallery-card[hidden] { display: none; }
+
+    .gallery-card img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      background: #efe6dc;
+    }
+
+    .gallery-copy { padding: 1rem 1rem 1.1rem; }
+
+    .gallery-copy p { font-size: 0.92rem; }
+
+    .contact-layout { align-items: start; }
+
+    .contact-panel .contact-list + .contact-list { margin-top: 1rem; }
 
     .contact-form {
-      background: var(--white);
-      border: 1px solid rgba(122, 28, 40, 0.12);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 1.2rem;
       display: grid;
-      gap: 0.78rem;
+      gap: 0.95rem;
     }
 
-    .contact-form label {
-      font-size: 0.84rem;
-      color: var(--muted);
+    .field-grid {
+      display: grid;
+      gap: 0.95rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 0.35rem;
+      font-size: 0.85rem;
       font-weight: 600;
+      color: var(--muted);
     }
 
-    .contact-form input,
-    .contact-form select,
-    .contact-form textarea {
+    .field input,
+    .field select,
+    .field textarea {
       width: 100%;
-      border: 1px solid rgba(122, 28, 40, 0.2);
-      border-radius: 10px;
-      padding: 0.74rem 0.8rem;
-      font: inherit;
+      padding: 0.82rem 0.9rem;
+      border-radius: 1rem;
+      border: 1px solid rgba(122, 28, 40, 0.16);
+      background: #fffefc;
       color: var(--ink);
-      background: #fff;
     }
 
-    .contact-form input:focus,
-    .contact-form select:focus,
-    .contact-form textarea:focus {
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
       outline: 2px solid rgba(197, 160, 89, 0.35);
-      border-color: var(--gold);
+      border-color: rgba(197, 160, 89, 0.8);
     }
 
-    .contact-form textarea { min-height: 130px; resize: vertical; }
+    .field textarea {
+      min-height: 9.5rem;
+      resize: vertical;
+    }
+
+    .form-footer {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.8rem;
+    }
 
     .status {
       min-height: 1.4rem;
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       color: var(--burgundy);
     }
 
     .site-footer {
-      padding: 2.2rem 0;
-      background: #2a0f13;
-      color: #f2ece5;
+      padding: 2rem 0 2.6rem;
+      color: var(--muted);
       text-align: center;
-      font-size: 0.9rem;
+    }
+
+    .site-footer a {
+      color: var(--burgundy);
+      text-decoration: none;
+    }
+
+    @media (min-width: 900px) {
+      .page-kicker { display: inline-flex; }
     }
 
     @media (max-width: 980px) {
-      .hero-grid,
-      .packages-grid,
-      .contact-grid,
-      .services-grid,
-      .timeline { grid-template-columns: 1fr; }
-
-      .hero {
-        padding-top: 5.5rem;
-        text-align: center;
+      .hero-layout,
+      .services-layout,
+      .contact-layout,
+      .story-layout,
+      .package-grid,
+      .process-grid,
+      .stats-grid,
+      .offer-grid,
+      .gallery-grid,
+      .detail-grid,
+      .mini-grid,
+      .field-grid {
+        grid-template-columns: 1fr;
       }
 
-      .hero-copy p { margin-inline: auto; }
-      .hero-actions { justify-content: center; }
-      .nav-wrap { padding: 0.6rem 0; }
-      .nav-links { gap: 0.85rem; }
+      .video-shell { min-height: 23rem; }
+      .page-kicker { display: none; }
     }
 
-    @media (max-width: 640px) {
-      .brand img { width: 46px; }
-      .brand strong { font-size: 1.45rem; }
-      .brand span { font-size: 0.65rem; letter-spacing: 0.13em; }
-      .nav-links { font-size: 0.9rem; }
-      section { padding: 4.3rem 0; }
+    @media (max-width: 720px) {
+      .site-shell { width: min(100% - 1rem, 1200px); }
+      .main-stage { padding-top: 1rem; }
+      .menu-drawer {
+        inset: auto 0.5rem 0.5rem 0.5rem;
+        width: auto;
+        top: 0.5rem;
+        border-radius: 1.4rem;
+      }
+
+      .brand img {
+        width: 3rem;
+        height: 3rem;
+      }
+
+      .brand-mark strong { font-size: 1.45rem; }
+      .hero-actions,
+      .form-footer { align-items: stretch; }
+      .form-footer .btn { width: 100%; }
     }
   </style>
 </head>
 <body>
   <header class="site-header">
-    <div class="container nav-wrap">
-      <a class="brand" href="#home" aria-label="Yotode Event Planner home">
+    <div class="site-shell header-bar">
+      <a class="brand" href="#home" data-route="home" aria-label="Yotode Event Planner home">
         <img src="https://github.com/user-attachments/assets/dcff9725-c5b8-48ea-aedd-3794b2caf85b" alt="Yotode Event Planner floral logo">
-        <span>
+        <span class="brand-mark">
           <strong>Yotode</strong>
-          Event Planner
+          <span>Event Planner</span>
         </span>
       </a>
-      <nav aria-label="Primary">
-        <ul class="nav-links">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#packages">Packages</a></li>
-          <li><a href="#process">Process</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
+      <div class="header-actions">
+        <span class="page-kicker" id="page-indicator">Home</span>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-drawer" aria-label="Open navigation menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
     </div>
   </header>
 
-  <main>
-    <section id="home" class="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <h1>Elegant Planning for Sacred Celebrations</h1>
-          <p>Yotode Event Planner designs unforgettable Ethiopian celebrations with thoughtful coordination, refined styling, and graceful hospitality from first consultation to final blessing.</p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#contact">Plan Your Event</a>
-            <a class="btn btn-outline" href="#packages">Explore Packages</a>
+  <div class="menu-overlay" id="menu-overlay"></div>
+  <aside class="menu-drawer" id="menu-drawer" aria-label="Primary navigation" aria-hidden="true">
+    <div class="drawer-top">
+      <div>
+        <p class="eyebrow">Navigate</p>
+        <p class="drawer-title">Yotode Pages</p>
+      </div>
+      <button class="menu-toggle" id="drawer-close" type="button" aria-expanded="true" aria-label="Close navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <ul class="drawer-links">
+      <li>
+        <a href="#home" data-route="home">
+          <strong>Home</strong>
+          <span>Brand story, hero introduction, and the custom Yotode marketing reel.</span>
+        </a>
+      </li>
+      <li>
+        <a href="#services" data-route="services">
+          <strong>About Our Services</strong>
+          <span>Signature planning services, curated packages, and our event process.</span>
+        </a>
+      </li>
+      <li>
+        <a href="#inspiration" data-route="inspiration">
+          <strong>Visual Inspiration</strong>
+          <span>Believable gallery moments with venue, decor, ceremony, and cultural cues.</span>
+        </a>
+      </li>
+      <li>
+        <a href="#contact" data-route="contact">
+          <strong>Contact &amp; Inquiry</strong>
+          <span>Consultation details, inquiry form, and booking guidance.</span>
+        </a>
+      </li>
+    </ul>
+    <div class="drawer-note">
+      <p class="eyebrow">Signature aesthetic</p>
+      <p>Rooted in Ethiopian celebration traditions, finished with a refined burgundy-and-gold presentation for luxury events.</p>
+    </div>
+  </aside>
+
+  <main class="site-shell main-stage" id="main-stage">
+    <section class="page-panel active" id="page-home" data-page="home" aria-labelledby="home-title">
+      <div class="page-hero">
+        <div class="hero-layout">
+          <div class="hero-copy">
+            <p class="eyebrow">Elegant Ethiopian Event Planning</p>
+            <h1 id="home-title">Crafting unforgettable celebrations with culture, grace, and modern luxury.</h1>
+            <p>Yotode Event Planner creates polished wedding weekends, engagement celebrations, church ceremonies, and refined receptions with Ethiopian hospitality woven through every guest touchpoint.</p>
+            <ul class="hero-highlights">
+              <li>Custom planning for Ethiopian Orthodox weddings, family celebrations, and milestone gatherings.</li>
+              <li>Art-directed floral styling, venue layouts, and cultural ceremony coordination.</li>
+              <li>Refined client journey with a cinematic brand reel and clear page-by-page navigation.</li>
+            </ul>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#contact" data-route="contact">Book a Consultation</a>
+              <a class="btn btn-secondary" href="#inspiration" data-route="inspiration">See Visual Inspiration</a>
+            </div>
           </div>
+
+          <article class="video-card" aria-label="Custom Yotode marketing reel">
+            <div class="video-shell" id="brand-film">
+              <div class="reel-slide active" style="background-image: url('https://source.unsplash.com/1200x1400/?ethiopian,wedding,celebration');">
+                <div class="reel-content">
+                  <p class="eyebrow">Brand Film · 01</p>
+                  <h3>Welcome guests into a celebration that feels both sacred and beautifully styled.</h3>
+                  <p>From procession timing to candlelit reception details, the Yotode experience is designed like a tailored marketing reel for your event story.</p>
+                </div>
+              </div>
+              <div class="reel-slide" style="background-image: url('https://source.unsplash.com/1200x1400/?luxury,wedding,venue');">
+                <div class="reel-content">
+                  <p class="eyebrow">Brand Film · 02</p>
+                  <h3>Layered textures, warm gold accents, and elevated hospitality create a luxury atmosphere.</h3>
+                  <p>Venue styling, floral compositions, and guest flow are planned so the entire event feels cinematic from arrival to farewell.</p>
+                </div>
+              </div>
+              <div class="reel-slide" style="background-image: url('https://source.unsplash.com/1200x1400/?ethiopian,coffee,ceremony');">
+                <div class="reel-content">
+                  <p class="eyebrow">Brand Film · 03</p>
+                  <h3>Cultural rituals such as the bunna coffee ceremony are presented with elegance and authenticity.</h3>
+                  <p>Each chapter balances heritage, family presence, and contemporary event production for a believable Yotode signature.</p>
+                </div>
+              </div>
+              <div class="film-ui">
+                <div class="film-meta">
+                  <span class="film-pill">Custom Yotode Marketing Video</span>
+                  <span class="film-time" id="film-time">00:12</span>
+                </div>
+                <div class="film-controls">
+                  <button class="film-toggle" id="film-toggle" type="button" aria-label="Pause marketing reel">❚❚</button>
+                  <div class="film-progress" aria-hidden="true"><span id="film-progress"></span></div>
+                </div>
+              </div>
+            </div>
+          </article>
         </div>
-        <aside class="hero-card" aria-label="Yotode signature emblem">
-          <img src="https://github.com/user-attachments/assets/dcff9725-c5b8-48ea-aedd-3794b2caf85b" alt="Yotode Event Planner burgundy and gold floral emblem">
-        </aside>
+
+        <div class="stats-grid" aria-label="Yotode highlights">
+          <article class="stat-card">
+            <strong>4</strong>
+            <p>Dedicated destination-like pages for home, services, inspiration, and inquiry.</p>
+          </article>
+          <article class="stat-card">
+            <strong>360°</strong>
+            <p>Planning coverage from sacred ceremony flow to reception ambiance and vendor coordination.</p>
+          </article>
+          <article class="stat-card">
+            <strong>ደስታ</strong>
+            <p>Joy-centered design language inspired by Ethiopian celebrations, hospitality, and family traditions.</p>
+          </article>
+        </div>
       </div>
     </section>
 
-    <section id="services">
-      <div class="container">
-        <header class="section-header">
-          <h2>Signature Services</h2>
-          <p>Every detail is curated to honor tradition while delivering a polished guest experience.</p>
-        </header>
-        <div class="services-grid">
-          <article class="card">
-            <h3>Zemari &amp; Mezemran</h3>
-            <p>Live Ethiopian ceremonial music with coordinated rehearsal and event timing.</p>
-          </article>
-          <article class="card">
-            <h3>Photography</h3>
-            <p>Artful photo coverage that preserves intimate moments and grand celebrations.</p>
-          </article>
-          <article class="card">
-            <h3>Floral</h3>
-            <p>Luxury floral installations, table accents, and ceremony arrangements.</p>
-          </article>
-          <article class="card">
-            <h3>Catering</h3>
-            <p>Traditional and modern menus with attentive service for every guest.</p>
+    <section class="page-panel" id="page-services" data-page="services" aria-labelledby="services-title">
+      <div class="section-card">
+        <div class="section-heading center">
+          <p class="eyebrow">About Our Services</p>
+          <h2 id="services-title">Full-service planning created for meaningful celebrations.</h2>
+          <p>Explore what Yotode offers, how we package support, and the process that keeps your event calm, polished, and culturally grounded.</p>
+        </div>
+
+        <div class="services-layout">
+          <div class="offer-grid">
+            <article class="service-card">
+              <h3>Ceremony Design</h3>
+              <p>Planning for Ethiopian Orthodox church flow, family entrances, blessing moments, and formal reception transitions.</p>
+            </article>
+            <article class="service-card">
+              <h3>Decor &amp; Florals</h3>
+              <p>Luxury floral direction, candlelit tablescapes, sweetheart staging, and culturally inspired texture layering.</p>
+            </article>
+            <article class="service-card">
+              <h3>Hospitality &amp; Catering</h3>
+              <p>Guest seating, buffet styling, coffee ceremony areas, dessert presentation, and polished service management.</p>
+            </article>
+            <article class="service-card">
+              <h3>Photo &amp; Video Coordination</h3>
+              <p>Shot lists, procession timing, family portrait management, and vendor alignment for smooth visual coverage.</p>
+            </article>
+            <article class="service-card">
+              <h3>Zemari &amp; Cultural Programming</h3>
+              <p>Rehearsal planning, ceremonial musicians, cultural touchpoints, and respectful storytelling throughout the event day.</p>
+            </article>
+            <article class="service-card">
+              <h3>Venue Styling</h3>
+              <p>Spatial planning for head tables, lounge vignettes, welcome moments, and premium guest circulation.</p>
+            </article>
+          </div>
+
+          <article class="story-card accent">
+            <p class="eyebrow">What We Offer</p>
+            <h3>Luxury details that still feel personal to your family story.</h3>
+            <ul class="offer-list">
+              <li>Custom mood boards inspired by church architecture, textiles, and Ethiopian celebratory color symbolism.</li>
+              <li>Vendor curation for florals, catering, photography, entertainment, rentals, and cultural ceremony needs.</li>
+              <li>Guest-experience planning that keeps elders, family members, and out-of-town visitors fully cared for.</li>
+              <li>Design guidance for believable, elevated setups using real-event visuals and layered inspiration references.</li>
+            </ul>
           </article>
         </div>
       </div>
-    </section>
 
-    <section id="packages">
-      <div class="container">
-        <header class="section-header">
-          <h2>Curated Packages</h2>
-          <p>Choose the level of support that best fits your vision and guest count.</p>
-        </header>
-        <div class="packages-grid">
-          <article class="package">
+      <div class="section-card" style="margin-top: 1.4rem;">
+        <div class="section-heading center">
+          <p class="eyebrow">Packages</p>
+          <h2>Curated support levels for intimate and grand events.</h2>
+          <p>Each package includes planning leadership, design support, and on-site management tailored to guest count and event complexity.</p>
+        </div>
+        <div class="package-grid">
+          <article class="package-card">
             <div class="package-top">
+              <p class="eyebrow">Micro Celebration</p>
               <h3>Dirirsa</h3>
-              <p class="price">$8,500</p>
+              <strong>$8,500</strong>
+              <p>For 50–75 guests with focused planning and elegant execution.</p>
             </div>
-            <ul>
-              <li>Full planning and day-of coordination</li>
-              <li>Floral styling and ceremony setup</li>
-              <li>Catering management and guest flow</li>
-              <li>Professional photo coverage</li>
-            </ul>
-            <button class="btn btn-outline package-inquiry" type="button" data-package="Dirirsa">Inquire About Dirirsa</button>
+            <div class="package-body">
+              <ul class="package-list">
+                <li>Full planning and timeline creation</li>
+                <li>Venue layout, floral styling, and ceremony setup</li>
+                <li>Catering oversight and guest flow support</li>
+                <li>Professional photo coordination</li>
+                <li>Active on-site management for key event hours</li>
+              </ul>
+              <button class="btn btn-secondary package-inquiry" type="button" data-package="Dirirsa">Inquire About Dirirsa</button>
+            </div>
           </article>
-
-          <article class="package featured">
+          <article class="package-card">
             <div class="package-top">
+              <p class="eyebrow">Signature Celebration</p>
               <h3>Qidus</h3>
-              <p class="price">$18,000</p>
+              <strong>$18,000</strong>
+              <p>For 75–150 guests seeking immersive full-service planning.</p>
             </div>
-            <ul>
-              <li>Premium full-service planning</li>
-              <li>Expanded floral and design concept</li>
-              <li>Zemari &amp; Mezemran with rehearsal support</li>
-              <li>Photo + video production coordination</li>
-            </ul>
-            <button class="btn btn-primary package-inquiry" type="button" data-package="Qidus">Inquire About Qidus</button>
+            <div class="package-body">
+              <ul class="package-list">
+                <li>Premium concept design and full vendor management</li>
+                <li>Enhanced floral compositions and staging plan</li>
+                <li>Zemari, rehearsal, and cultural programming coordination</li>
+                <li>Photo and video production scheduling</li>
+                <li>All-day event supervision with guest experience direction</li>
+              </ul>
+              <button class="btn btn-primary package-inquiry" type="button" data-package="Qidus">Inquire About Qidus</button>
+            </div>
           </article>
         </div>
       </div>
-    </section>
 
-    <section id="process">
-      <div class="container">
-        <header class="section-header">
-          <h2>Our Four-Step Process</h2>
-          <p>A clear, supportive path from vision to celebration day.</p>
-        </header>
-        <div class="timeline">
-          <article class="step">
-            <div class="step-number">1</div>
-            <h3>Discover</h3>
-            <p>We begin with your story, style, and traditions to define your event priorities.</p>
+      <div class="section-card" style="margin-top: 1.4rem;">
+        <div class="section-heading center">
+          <p class="eyebrow">Our Process</p>
+          <h2>How Yotode brings your event to life.</h2>
+          <p>A clear four-step process keeps your planning journey organized, collaborative, and reassuring from start to finish.</p>
+        </div>
+        <div class="process-grid">
+          <article class="process-step">
+            <span class="step-index">1</span>
+            <h3>Consult</h3>
+            <p>We learn your vision, traditions, venue priorities, and the feeling you want guests to remember.</p>
           </article>
-          <article class="step">
-            <div class="step-number">2</div>
-            <h3>Design</h3>
-            <p>We develop your concept, vendor plan, and curated aesthetic details.</p>
+          <article class="process-step">
+            <span class="step-index">2</span>
+            <h3>Curate</h3>
+            <p>We build a cohesive design direction, recommend vendors, and shape the guest journey room by room.</p>
           </article>
-          <article class="step">
-            <div class="step-number">3</div>
+          <article class="process-step">
+            <span class="step-index">3</span>
             <h3>Coordinate</h3>
-            <p>We manage timelines, rehearsals, and logistics with all service partners.</p>
+            <p>We manage production details, ceremony sequencing, rehearsal notes, and hospitality logistics.</p>
           </article>
-          <article class="step">
-            <div class="step-number">4</div>
+          <article class="process-step">
+            <span class="step-index">4</span>
             <h3>Celebrate</h3>
-            <p>You enjoy a smooth, elegant celebration while we oversee execution.</p>
+            <p>On event day, our team oversees timing, presentation, and family comfort so you can be fully present.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="contact">
-      <div class="container">
-        <header class="section-header">
-          <h2>Begin Your Inquiry</h2>
-          <p>Tell us about your occasion and preferred package. We’ll be in touch promptly.</p>
-        </header>
-        <div class="contact-grid">
-          <aside class="contact-info">
-            <h3>Contact Yotode</h3>
-            <p><strong>Phone:</strong> <a href="tel:2065365389">206-536-5389</a></p>
-            <p><strong>Email:</strong> <a href="mailto:eyuab35@gmail.com">eyuab35@gmail.com</a></p>
-            <p><strong>Location:</strong> Seattle, Washington</p>
-          </aside>
-          <form id="contact-form" class="contact-form" action="https://formsubmit.co/ajax/eyuab35@gmail.com" method="POST" novalidate>
-            <div>
-              <label for="name">Full Name</label>
-              <input id="name" name="name" type="text" autocomplete="name" required>
+    <section class="page-panel" id="page-inspiration" data-page="inspiration" aria-labelledby="inspiration-title">
+      <div class="section-card">
+        <div class="section-heading center">
+          <p class="eyebrow">Visual Inspiration</p>
+          <h2 id="inspiration-title">Believable inspiration for venues, decor, and Ethiopian celebration details.</h2>
+          <p>Browse artistic references for ceremony moments, luxury reception styling, cultural rituals, and real-event ambiance. Use the filters to focus each inspiration set.</p>
+        </div>
+
+        <div class="filter-bar" aria-label="Gallery filters">
+          <button class="filter-button active" type="button" data-filter="all">All</button>
+          <button class="filter-button" type="button" data-filter="ceremony">Ceremony</button>
+          <button class="filter-button" type="button" data-filter="venue">Venue</button>
+          <button class="filter-button" type="button" data-filter="decor">Decor</button>
+          <button class="filter-button" type="button" data-filter="culture">Culture</button>
+        </div>
+
+        <div class="gallery-grid" id="gallery-grid">
+          <article class="gallery-card" data-category="ceremony culture">
+            <img loading="lazy" decoding="async" src="https://source.unsplash.com/900x1200/?ethiopian,wedding,couple" alt="Ethiopian wedding couple portrait inspiration">
+            <div class="gallery-copy">
+              <h3>Processional Portraits</h3>
+              <p>Editorial references for elegant couple portraits and ceremony arrivals with Ethiopian wedding styling cues.</p>
             </div>
-            <div>
-              <label for="email">Email Address</label>
-              <input id="email" name="email" type="email" autocomplete="email" required>
+          </article>
+          <article class="gallery-card" data-category="venue decor">
+            <img loading="lazy" decoding="async" src="https://source.unsplash.com/900x1200/?luxury,wedding,reception" alt="Luxury reception venue inspiration">
+            <div class="gallery-copy">
+              <h3>Reception Grandeur</h3>
+              <p>Venue inspiration for candlelit receptions, soft gold details, and guest tables that feel elevated yet warm.</p>
             </div>
-            <div>
-              <label for="phone">Phone Number</label>
-              <input id="phone" name="phone" type="tel" pattern="[0-9+()\-\s]{7,}" minlength="7" autocomplete="tel" required>
+          </article>
+          <article class="gallery-card" data-category="decor">
+            <img loading="lazy" decoding="async" src="https://source.unsplash.com/900x1200/?wedding,floral,decor" alt="Wedding floral and decor inspiration">
+            <div class="gallery-copy">
+              <h3>Floral Styling</h3>
+              <p>Layered florals, draped textures, and refined centerpieces that complement burgundy and gold palettes.</p>
             </div>
-            <div>
-              <label for="package">Preferred Package</label>
-              <select id="package" name="package" required>
-                <option value="">Select a package</option>
-                <option value="Dirirsa">Dirirsa — $8,500</option>
-                <option value="Qidus">Qidus — $18,000</option>
-                <option value="Custom">Custom consultation</option>
-              </select>
+          </article>
+          <article class="gallery-card" data-category="culture">
+            <img loading="lazy" decoding="async" src="https://source.unsplash.com/900x1200/?ethiopian,traditional,dress" alt="Traditional Ethiopian attire inspiration">
+            <div class="gallery-copy">
+              <h3>Traditional Attire</h3>
+              <p>Habesha-inspired looks, heritage silhouettes, and textile references that ground the event in Ethiopian identity.</p>
             </div>
-            <div>
-              <label for="message">Event Details</label>
-              <textarea id="message" name="message" minlength="10" required></textarea>
+          </article>
+          <article class="gallery-card" data-category="culture decor">
+            <img loading="lazy" decoding="async" src="https://source.unsplash.com/900x1200/?ethiopian,coffee,ceremony" alt="Ethiopian coffee ceremony inspiration">
+            <div class="gallery-copy">
+              <h3>Bunna Ceremony Corner</h3>
+              <p>Cultural setup ideas for coffee ceremony trays, woven accents, and meaningful guest interaction moments.</p>
             </div>
-            <input type="hidden" name="_subject" value="New Yotode Event Inquiry">
-            <button class="btn btn-primary" type="submit">Send Inquiry</button>
-            <p id="form-status" class="status" role="status" aria-live="polite"></p>
-          </form>
+          </article>
+          <article class="gallery-card" data-category="venue ceremony">
+            <img loading="lazy" decoding="async" src="https://source.unsplash.com/900x1200/?church,wedding,interior" alt="Ceremony venue inspiration">
+            <div class="gallery-copy">
+              <h3>Sacred Ceremony Setting</h3>
+              <p>Venue framing inspiration for reverent, polished ceremonies with clear aisle and family sightline planning.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="story-layout" style="margin-top: 1.4rem;">
+        <article class="story-card">
+          <p class="eyebrow">Inspiration Notes</p>
+          <h3>Style every room with visual continuity.</h3>
+          <p>Our inspiration process begins with authentic references, then translates them into coherent venue zones: welcome moments, ceremony spaces, photography backdrops, dessert displays, and cultural ritual corners.</p>
+          <ul class="detail-list" style="margin-top: 1rem;">
+            <li>Create separate styling plans for ceremony, reception, lounge, and cultural activation areas.</li>
+            <li>Use warm burgundy, soft gold, candlelight, and textured florals to keep the aesthetic luxurious throughout.</li>
+            <li>Pair real-photo inspiration with production drawings so each setup feels believable on event day.</li>
+          </ul>
+        </article>
+        <article class="story-card accent">
+          <p class="eyebrow">Cultural Elements</p>
+          <h3>Ethiopian touches that feel intentional, not decorative-only.</h3>
+          <ul class="offer-list">
+            <li>Traditional coffee service display with floral-framed trays and woven accents.</li>
+            <li>Reception details inspired by Ethiopian celebration fabrics, family seating customs, and ceremonial rhythm.</li>
+            <li>Photo opportunities that highlight attire, heirloom accessories, and intergenerational family storytelling.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="page-panel" id="page-contact" data-page="contact" aria-labelledby="contact-title">
+      <div class="section-card">
+        <div class="section-heading center">
+          <p class="eyebrow">Contact &amp; Inquiry</p>
+          <h2 id="contact-title">Start planning your celebration with clarity and confidence.</h2>
+          <p>Share your event type, guest count, and preferred planning support. We’ll guide you toward the right package and next steps.</p>
+        </div>
+
+        <div class="contact-layout">
+          <article class="contact-panel">
+            <h3>Inquiry Options</h3>
+            <ul class="contact-list">
+              <li><strong>Phone:</strong>&nbsp;<a href="tel:2065365389">206-536-5389</a></li>
+              <li><strong>Email:</strong>&nbsp;<a href="mailto:eyuab35@gmail.com">eyuab35@gmail.com</a></li>
+              <li><strong>Service Area:</strong>&nbsp;Seattle and destination celebrations by request</li>
+            </ul>
+            <ul class="contact-list">
+              <li>Best for couples and families seeking Ethiopian cultural authenticity with a luxury presentation.</li>
+              <li>Ideal booking timeline: 6–12 months for larger celebrations, 3–6 months for intimate events.</li>
+              <li>Consultations can cover venue styling, full-service planning, or inspiration-to-execution support.</li>
+            </ul>
+          </article>
+
+          <article class="contact-panel">
+            <h3>Send Your Inquiry</h3>
+            <form id="contact-form" class="contact-form" action="https://formsubmit.co/ajax/eyuab35@gmail.com" method="POST" novalidate>
+              <div class="field-grid">
+                <div class="field">
+                  <label for="name">Full Name</label>
+                  <input id="name" name="name" type="text" autocomplete="name" required>
+                </div>
+                <div class="field">
+                  <label for="email">Email Address</label>
+                  <input id="email" name="email" type="email" autocomplete="email" required>
+                </div>
+              </div>
+              <div class="field-grid">
+                <div class="field">
+                  <label for="phone">Phone Number</label>
+                  <input id="phone" name="phone" type="tel" autocomplete="tel" pattern="[0-9+()\-\s]{7,}" minlength="7" required>
+                </div>
+                <div class="field">
+                  <label for="package">Preferred Package</label>
+                  <select id="package" name="package" required>
+                    <option value="">Select a package</option>
+                    <option value="Dirirsa">Dirirsa — $8,500</option>
+                    <option value="Qidus">Qidus — $18,000</option>
+                    <option value="Custom">Custom consultation</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field">
+                <label for="message">Event Vision &amp; Date</label>
+                <textarea id="message" name="message" minlength="10" required placeholder="Tell us about your celebration, venue ideas, cultural details, and preferred event date."></textarea>
+              </div>
+              <input type="hidden" name="_subject" value="New Yotode Event Inquiry">
+              <div class="form-footer">
+                <button class="btn btn-primary" type="submit">Send Inquiry</button>
+                <p id="form-status" class="status" role="status" aria-live="polite"></p>
+              </div>
+            </form>
+          </article>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container">
-      <p>&copy; 2026 Yotode Event Planner. Crafted with elegance for unforgettable celebrations.</p>
+    <div class="site-shell">
+      <p>&copy; 2026 Yotode Event Planner. Home, Services, Inspiration, and Contact are always available from the artistic three-line navigation.</p>
     </div>
   </footer>
 
   <script>
-    const inquiryButtons = document.querySelectorAll('.package-inquiry');
+    const routes = ['home', 'services', 'inspiration', 'contact'];
+    const pageTitles = {
+      home: 'Home',
+      services: 'About Our Services',
+      inspiration: 'Visual Inspiration',
+      contact: 'Contact & Inquiry'
+    };
+
+    const menuToggle = document.getElementById('menu-toggle');
+    const drawerClose = document.getElementById('drawer-close');
+    const menuDrawer = document.getElementById('menu-drawer');
+    const menuOverlay = document.getElementById('menu-overlay');
+    const pageIndicator = document.getElementById('page-indicator');
+    const routeLinks = Array.from(document.querySelectorAll('[data-route]'));
+    const drawerLinks = Array.from(document.querySelectorAll('.drawer-links [data-route]'));
+    const pagePanels = Array.from(document.querySelectorAll('.page-panel'));
+    const filterButtons = Array.from(document.querySelectorAll('.filter-button'));
+    const galleryCards = Array.from(document.querySelectorAll('.gallery-card'));
+    const inquiryButtons = Array.from(document.querySelectorAll('.package-inquiry'));
     const packageSelect = document.getElementById('package');
-    const contactSection = document.getElementById('contact');
+    const filmSlides = Array.from(document.querySelectorAll('.reel-slide'));
+    const filmToggle = document.getElementById('film-toggle');
+    const filmProgress = document.getElementById('film-progress');
+    const filmTime = document.getElementById('film-time');
+
+    const setMenuState = (open) => {
+      menuDrawer.classList.toggle('open', open);
+      menuOverlay.classList.toggle('open', open);
+      document.body.classList.toggle('menu-open', open);
+      menuToggle.setAttribute('aria-expanded', String(open));
+      menuToggle.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+      menuDrawer.setAttribute('aria-hidden', String(!open));
+      if (!open) {
+        menuToggle.focus();
+      }
+    };
+
+    const getRoute = () => {
+      const raw = window.location.hash.replace('#', '').trim().toLowerCase();
+      return routes.includes(raw) ? raw : 'home';
+    };
+
+    const setActivePage = (page) => {
+      pagePanels.forEach((panel) => {
+        const isActive = panel.dataset.page === page;
+        panel.classList.toggle('active', isActive);
+        panel.toggleAttribute('hidden', !isActive);
+      });
+
+      drawerLinks.forEach((link) => {
+        const isActive = link.dataset.route === page;
+        link.classList.toggle('active', isActive);
+        if (isActive) {
+          link.setAttribute('aria-current', 'page');
+        } else {
+          link.removeAttribute('aria-current');
+        }
+      });
+
+      document.title = `Yotode Event Planner | ${pageTitles[page]}`;
+      if (pageIndicator) {
+        pageIndicator.textContent = pageTitles[page];
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    const navigate = (page) => {
+      const hash = `#${page}`;
+      if (window.location.hash !== hash) {
+        window.location.hash = hash;
+      } else {
+        setActivePage(page);
+      }
+      setMenuState(false);
+    };
+
+    menuToggle?.addEventListener('click', () => {
+      const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+      setMenuState(!isOpen);
+    });
+
+    drawerClose?.addEventListener('click', () => setMenuState(false));
+    menuOverlay?.addEventListener('click', () => setMenuState(false));
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        setMenuState(false);
+      }
+    });
+
+    routeLinks.forEach((link) => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        navigate(link.dataset.route || 'home');
+      });
+    });
+
+    window.addEventListener('hashchange', () => {
+      setActivePage(getRoute());
+    });
+
+    setActivePage(getRoute());
+
+    filterButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const filter = button.dataset.filter || 'all';
+        filterButtons.forEach((item) => item.classList.toggle('active', item === button));
+        galleryCards.forEach((card) => {
+          const categories = (card.dataset.category || '').split(/\s+/);
+          const show = filter === 'all' || categories.includes(filter);
+          card.hidden = !show;
+        });
+      });
+    });
 
     inquiryButtons.forEach((button) => {
       button.addEventListener('click', () => {
         if (packageSelect) {
           packageSelect.value = button.dataset.package || '';
         }
-        contactSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        navigate('contact');
       });
     });
+
+    let filmIndex = 0;
+    let filmTimer = null;
+    let filmPlaying = true;
+
+    const updateFilm = () => {
+      filmSlides.forEach((slide, index) => slide.classList.toggle('active', index === filmIndex));
+      if (filmProgress) {
+        filmProgress.style.transform = `scaleX(${(filmIndex + 1) / filmSlides.length})`;
+      }
+      if (filmTime) {
+        filmTime.textContent = `00:${String((filmIndex + 1) * 12).padStart(2, '0')}`;
+      }
+    };
+
+    const startFilm = () => {
+      if (!filmSlides.length) return;
+      clearInterval(filmTimer);
+      filmTimer = window.setInterval(() => {
+        filmIndex = (filmIndex + 1) % filmSlides.length;
+        updateFilm();
+      }, 3200);
+      filmPlaying = true;
+      if (filmToggle) {
+        filmToggle.textContent = '❚❚';
+        filmToggle.setAttribute('aria-label', 'Pause marketing reel');
+      }
+    };
+
+    const stopFilm = () => {
+      clearInterval(filmTimer);
+      filmPlaying = false;
+      if (filmToggle) {
+        filmToggle.textContent = '▶';
+        filmToggle.setAttribute('aria-label', 'Play marketing reel');
+      }
+    };
+
+    filmToggle?.addEventListener('click', () => {
+      if (filmPlaying) {
+        stopFilm();
+      } else {
+        startFilm();
+      }
+    });
+
+    updateFilm();
+    startFilm();
 
     const form = document.getElementById('contact-form');
     const status = document.getElementById('form-status');
 
-    if (form && status) {
+    if (form instanceof HTMLFormElement && status) {
       form.addEventListener('submit', async (event) => {
         event.preventDefault();
 
@@ -597,11 +1413,13 @@
         }
 
         const submitButton = form.querySelector('button[type="submit"]');
-        const originalText = submitButton.textContent;
+        const originalText = submitButton?.textContent || 'Send Inquiry';
 
         try {
-          submitButton.disabled = true;
-          submitButton.textContent = 'Sending...';
+          if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending...';
+          }
           status.textContent = 'Sending your inquiry...';
 
           const response = await fetch(form.action, {
@@ -619,8 +1437,10 @@
         } catch (error) {
           status.textContent = 'Unable to send right now. Please try again shortly.';
         } finally {
-          submitButton.disabled = false;
-          submitButton.textContent = originalText;
+          if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.textContent = originalText;
+          }
         }
       });
     }
