@@ -423,6 +423,18 @@
       flex: none;
     }
 
+    .package-list li {
+      padding: 0.25rem 0 0.95rem;
+      border-bottom: 1px solid rgba(122, 28, 40, 0.08);
+    }
+
+    .package-list li:last-child { border-bottom: 0; padding-bottom: 0; }
+
+    .package-list li::before {
+      content: "✓";
+      font-weight: 700;
+    }
+
     .video-card {
       padding: 1rem;
       position: relative;
@@ -603,11 +615,23 @@
     .detail-card h3,
     .contact-panel h3 { margin-bottom: 0.45rem; }
 
-    .package-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .package-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
     .package-card {
       padding: 0;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      border-color: rgba(197, 160, 89, 0.46);
+      box-shadow: 0 20px 34px rgba(122, 28, 40, 0.12);
+      transition: transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease;
+    }
+
+    .package-card:hover,
+    .package-card:focus-within {
+      transform: translateY(-6px);
+      box-shadow: 0 28px 42px rgba(122, 28, 40, 0.16);
+      border-color: rgba(197, 160, 89, 0.72);
     }
 
     .package-top {
@@ -615,11 +639,18 @@
       background: linear-gradient(160deg, rgba(122, 28, 40, 0.98), rgba(89, 19, 29, 0.93));
       color: var(--white);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      text-align: center;
+      position: relative;
     }
 
     .package-top h3,
     .package-top p,
     .package-top .eyebrow { color: var(--white); }
+
+    .package-top h3 {
+      font-size: clamp(2rem, 3vw, 2.5rem);
+      margin-bottom: 0.2rem;
+    }
 
     .package-top strong {
       display: block;
@@ -629,10 +660,60 @@
       margin: 0.45rem 0;
     }
 
+    .package-top strong span {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.84);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+    }
+
+    .package-ribbon {
+      position: absolute;
+      top: 1rem;
+      right: -3.8rem;
+      padding: 0.45rem 4rem;
+      transform: rotate(42deg);
+      background: linear-gradient(135deg, var(--gold-soft), var(--gold));
+      color: var(--burgundy-deep);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      box-shadow: 0 10px 20px rgba(89, 19, 29, 0.15);
+    }
+
+    .package-guests {
+      padding: 0.8rem 1rem;
+      background: rgba(197, 160, 89, 0.15);
+      color: var(--burgundy);
+      font-weight: 700;
+      text-align: center;
+      border-top: 1px solid rgba(197, 160, 89, 0.26);
+      border-bottom: 1px solid rgba(197, 160, 89, 0.26);
+    }
+
     .package-body {
       padding: 1.35rem;
       display: grid;
       gap: 1rem;
+      flex: 1;
+    }
+
+    .package-body .btn { margin-top: auto; }
+
+    .package-card .btn {
+      width: 100%;
+      min-height: 3.25rem;
+      font-weight: 700;
+    }
+
+    .package-card .btn-primary {
+      background: linear-gradient(135deg, var(--burgundy), #9f2434);
+    }
+
+    .package-card .btn-secondary {
+      background: linear-gradient(135deg, rgba(197, 160, 89, 0.18), rgba(197, 160, 89, 0.3));
+      border-color: rgba(197, 160, 89, 0.6);
     }
 
     .process-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
@@ -690,8 +771,10 @@
     .filter-button.active,
     .filter-button:hover,
     .filter-button:focus-visible {
-      background: rgba(197, 160, 89, 0.16);
-      border-color: rgba(197, 160, 89, 0.6);
+      background: linear-gradient(135deg, var(--burgundy), rgba(122, 28, 40, 0.9));
+      color: var(--white);
+      border-color: rgba(197, 160, 89, 0.92);
+      box-shadow: 0 12px 22px rgba(122, 28, 40, 0.18);
       transform: translateY(-2px);
     }
 
@@ -762,6 +845,11 @@
     .field textarea:focus {
       outline: 2px solid rgba(197, 160, 89, 0.35);
       border-color: rgba(197, 160, 89, 0.8);
+    }
+
+    .field input[type="date"]::-webkit-calendar-picker-indicator {
+      filter: sepia(1) saturate(4) hue-rotate(315deg);
+      cursor: pointer;
     }
 
     .field textarea {
@@ -885,7 +973,7 @@
       <li>
         <a href="#services" data-route="services">
           <strong>About Our Services</strong>
-          <span>Signature planning services, curated packages, and our event process.</span>
+          <span>Signature planning services, our three signature packages, and our event process.</span>
         </a>
       </li>
       <li>
@@ -1008,60 +1096,69 @@
       <div class="section-card" style="margin-top: 1.4rem;">
         <div class="section-heading center">
           <p class="eyebrow">Packages</p>
-          <h2>True all-inclusive support levels for intimate and grand events.</h2>
-          <p>Transparent pricing includes venue coordination, decoration, catering, and complete event management tailored to guest count and complexity.</p>
+          <h2>Our Three Signature Packages</h2>
+          <p>Comprehensive all-inclusive packages with venue coordination, catering, decoration, photography, cake, Zemari, and Mezemran with rehearsal.</p>
         </div>
         <div class="package-grid">
           <article class="package-card">
             <div class="package-top">
-              <p class="eyebrow">Micro Celebration</p>
+              <p class="eyebrow">Micro Event</p>
               <h3>Dirirsa</h3>
-              <strong>$8,500 – $12,000+</strong>
-              <p>Micro Event · 50–75 Guests</p>
+              <strong>$8,500 <span>– $12,000+</span></strong>
+              <p>True all-inclusive planning</p>
             </div>
+            <div class="package-guests">50–75 Guests</div>
             <div class="package-body">
               <ul class="package-list">
-                <li>Venue coordination and layout planning</li>
-                <li>Decoration and setup styling</li>
-                <li>Catering management and guest flow support</li>
-                <li>Full event coordination and timeline leadership</li>
+                <li>Full event coordination &amp; planning</li>
+                <li>Venue selection &amp; setup</li>
+                <li>Decoration team and floral styling</li>
+                <li>Catering team and full meal service</li>
+                <li>Professional photographer</li>
+                <li>Custom cake, desserts, and rehearsal coordination</li>
               </ul>
-              <button class="btn btn-secondary package-inquiry" type="button" data-package="Dirirsa">Inquire About Dirirsa</button>
+              <a class="btn btn-secondary package-inquiry" href="#contact" data-package="Dirirsa">Inquire for Dirirsa</a>
             </div>
           </article>
           <article class="package-card">
             <div class="package-top">
-              <p class="eyebrow">Signature Celebration</p>
+              <span class="package-ribbon">Most Popular</span>
+              <p class="eyebrow">Standard Event</p>
               <h3>Qidus</h3>
-              <strong>$18,000 – $28,000+</strong>
-              <p>Standard Event · 75–150 Guests</p>
+              <strong>$18,000 <span>– $28,000+</span></strong>
+              <p>True all-inclusive planning</p>
             </div>
+            <div class="package-guests">75–150 Guests</div>
             <div class="package-body">
               <ul class="package-list">
-                <li>Venue coordination, decoration, and production design</li>
-                <li>Full catering oversight and premium guest hospitality flow</li>
-                <li>Photography coordination plus Zemari planning support</li>
-                <li>Full planning and all-day on-site event management</li>
+                <li>Premium event coordination</li>
+                <li>Premium venue and elegant setup</li>
+                <li>Decoration team with elevated florals and centerpieces</li>
+                <li>Full catering team and hospitality flow</li>
+                <li>Professional photographer &amp; videographer</li>
+                <li>Custom premium cakes, desserts, and rehearsal support</li>
               </ul>
-              <button class="btn btn-primary package-inquiry" type="button" data-package="Qidus">Inquire About Qidus</button>
+              <a class="btn btn-primary package-inquiry" href="#contact" data-package="Qidus">Inquire for Qidus</a>
             </div>
           </article>
           <article class="package-card">
             <div class="package-top">
               <p class="eyebrow">Grand Celebration</p>
               <h3>Melkam</h3>
-              <strong>$35,000 – $60,000+</strong>
-              <p>Grand Celebration · 150–300+ Guests</p>
+              <strong>$35,000 <span>– $60,000+</span></strong>
+              <p>Luxury all-inclusive planning</p>
             </div>
+            <div class="package-guests">150–300+ Guests</div>
             <div class="package-body">
               <ul class="package-list">
-                <li>Premium venue coordination with concierge-level logistics</li>
-                <li>Extensive decoration and luxury setup execution</li>
-                <li>Luxury catering management for large guest counts</li>
-                <li>Photography, videography, Zemari &amp; Mezemran coordination</li>
-                <li>Full concierge service and end-to-end event leadership</li>
+                <li>Concierge-level event planning and leadership</li>
+                <li>Large-scale venue coordination and ceremony flow</li>
+                <li>Luxury décor production, florals, and guest experience styling</li>
+                <li>Full-service catering and premium hospitality management</li>
+                <li>Photo, video, Zemari, and Mezemran coordination</li>
+                <li>Custom cake, dessert installations, and rehearsal management</li>
               </ul>
-              <button class="btn btn-primary package-inquiry" type="button" data-package="Melkam">Inquire About Melkam</button>
+              <a class="btn btn-primary package-inquiry" href="#contact" data-package="Melkam">Inquire for Melkam</a>
             </div>
           </article>
         </div>
@@ -1109,55 +1206,55 @@
         <div class="filter-bar" aria-label="Gallery filters">
           <button class="filter-button active" type="button" data-filter="all">All</button>
           <button class="filter-button" type="button" data-filter="ceremony">Ceremony</button>
-          <button class="filter-button" type="button" data-filter="venue">Venue</button>
-          <button class="filter-button" type="button" data-filter="decor">Decor</button>
-          <button class="filter-button" type="button" data-filter="culture">Culture</button>
+          <button class="filter-button" type="button" data-filter="reception">Reception</button>
+          <button class="filter-button" type="button" data-filter="cultural">Cultural</button>
+          <button class="filter-button" type="button" data-filter="florals">Florals</button>
         </div>
 
         <div class="gallery-grid" id="gallery-grid">
-          <article class="gallery-card" data-category="ceremony culture">
+          <article class="gallery-card" data-category="ceremony cultural">
             <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=80" alt="Ethiopian wedding couple portrait inspiration">
             <div class="gallery-copy">
               <h3>Processional Portraits</h3>
               <p>Editorial references for elegant couple portraits and ceremony arrivals with Ethiopian wedding styling cues.</p>
             </div>
           </article>
-          <article class="gallery-card" data-category="venue decor">
+          <article class="gallery-card" data-category="reception florals">
             <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=900&q=80" alt="Luxury reception venue inspiration">
             <div class="gallery-copy">
               <h3>Reception Grandeur</h3>
               <p>Venue inspiration for candlelit receptions, soft gold details, and guest tables that feel elevated yet warm.</p>
             </div>
           </article>
-          <article class="gallery-card" data-category="decor">
+          <article class="gallery-card" data-category="reception florals">
             <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=900&q=80" alt="Wedding floral and decor inspiration">
             <div class="gallery-copy">
               <h3>Floral Styling</h3>
               <p>Layered florals, draped textures, and refined centerpieces that complement burgundy and gold palettes.</p>
             </div>
           </article>
-          <article class="gallery-card" data-category="culture">
+          <article class="gallery-card" data-category="cultural ceremony">
             <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=900&q=80" alt="Traditional Ethiopian attire inspiration">
             <div class="gallery-copy">
               <h3>Traditional Attire</h3>
               <p>Habesha-inspired looks, heritage silhouettes, and textile references that ground the event in Ethiopian identity.</p>
             </div>
           </article>
-          <article class="gallery-card" data-category="culture decor catering">
+          <article class="gallery-card" data-category="cultural reception">
             <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1478146896981-b80fe463b330?auto=format&fit=crop&w=900&q=80" alt="Ethiopian coffee ceremony inspiration">
             <div class="gallery-copy">
               <h3>Bunna Ceremony Corner</h3>
               <p>Cultural setup ideas for coffee ceremony trays, woven accents, and meaningful guest interaction moments.</p>
             </div>
           </article>
-          <article class="gallery-card" data-category="venue ceremony">
+          <article class="gallery-card" data-category="ceremony reception">
             <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=900&q=80" alt="Ceremony venue inspiration">
             <div class="gallery-copy">
               <h3>Sacred Ceremony Setting</h3>
               <p>Venue framing inspiration for reverent, polished ceremonies with clear aisle and family sightline planning.</p>
             </div>
           </article>
-          <article class="gallery-card" data-category="catering decor">
+          <article class="gallery-card" data-category="reception florals">
             <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=900&q=80" alt="Curated catering showcase table setup">
             <div class="gallery-copy">
               <h3>Catering Showcase</h3>
@@ -1220,14 +1317,14 @@
         <div class="section-heading center">
           <p class="eyebrow">Contact &amp; Inquiry</p>
           <h2 id="contact-title">Start planning your celebration with clarity and confidence.</h2>
-          <p>Share your event type, guest count, and preferred planning support. We’ll guide you toward the right package and next steps.</p>
+          <p>Share your event type, guest count, and preferred planning support. We’ll guide you toward Dirirsa, Qidus, Melkam, or a custom inquiry with clear next steps.</p>
         </div>
 
         <div class="contact-layout">
           <article class="contact-panel">
             <h3>Inquiry Options</h3>
             <ul class="contact-list">
-              <li><strong>Phone:</strong>&nbsp;<a href="tel:2065365389">206-536-5389</a></li>
+              <li><strong>Phone:</strong>&nbsp;<a href="tel:206-536-5389">206-536-5389</a></li>
               <li><strong>Email:</strong>&nbsp;<a href="mailto:eyuab35@gmail.com">eyuab35@gmail.com</a></li>
               <li><strong>Service Area:</strong>&nbsp;Seattle and destination celebrations by request</li>
             </ul>
@@ -1238,7 +1335,7 @@
             </ul>
           </article>
 
-          <article class="contact-panel">
+          <article class="contact-panel" id="contact-form-panel">
             <h3>Send Your Inquiry</h3>
             <form id="contact-form" class="contact-form" action="https://formsubmit.co/ajax/eyuab35@gmail.com" method="POST" novalidate>
               <div class="field-grid">
@@ -1253,9 +1350,15 @@
               </div>
               <div class="field-grid">
                 <div class="field">
-                  <label for="phone">Phone Number</label>
-                  <input id="phone" name="phone" type="tel" autocomplete="tel" pattern="[0-9+()\-\s]{7,}" minlength="7" required>
+                  <label for="event-date">Event Date</label>
+                  <input id="event-date" name="eventDate" type="date" required>
                 </div>
+                <div class="field">
+                  <label for="guest-count">Guest Count</label>
+                  <input id="guest-count" name="guestCount" type="number" min="1" inputmode="numeric" placeholder="Estimated guests" required>
+                </div>
+              </div>
+              <div class="field-grid">
                 <div class="field">
                   <label for="package">Preferred Package</label>
                   <select id="package" name="package" required>
@@ -1263,17 +1366,21 @@
                     <option value="Dirirsa">Dirirsa — $8,500 to $12,000+</option>
                     <option value="Qidus">Qidus — $18,000 to $28,000+</option>
                     <option value="Melkam">Melkam — $35,000 to $60,000+</option>
-                    <option value="Custom">Custom consultation</option>
+                    <option value="Custom Inquiry">Custom Inquiry</option>
                   </select>
+                </div>
+                <div class="field">
+                  <label for="phone">Phone Number</label>
+                  <input id="phone" name="phone" type="tel" autocomplete="tel" pattern="[0-9+()\-\s]{7,}" minlength="7" placeholder="Optional phone number">
                 </div>
               </div>
               <div class="field">
-                <label for="message">Event Vision &amp; Date</label>
-                <textarea id="message" name="message" minlength="10" required placeholder="Tell us about your celebration, venue ideas, cultural details, and preferred event date."></textarea>
+                <label for="message">Message</label>
+                <textarea id="message" name="message" minlength="10" required placeholder="Tell us about your celebration, venue ideas, cultural details, and any must-have services."></textarea>
               </div>
               <input type="hidden" name="_subject" value="New Yotode Event Inquiry">
               <div class="form-footer">
-                <button class="btn btn-primary" type="submit">Send Inquiry</button>
+                <button class="btn btn-primary" type="submit">Submit Inquiry</button>
                 <p id="form-status" class="status" role="status" aria-live="polite"></p>
               </div>
             </form>
@@ -1285,7 +1392,7 @@
 
   <footer class="site-footer">
     <div class="site-shell">
-      <p>&copy; 2026 Yotode Event Planner. Home, Services, Inspiration, and Contact are always available from the artistic three-line navigation.</p>
+      <p>&copy; 2026 Yotode Event Planner. Home, Services, Inspiration, and Contact guide you into our three signature packages through the artistic three-line navigation.</p>
     </div>
   </footer>
 
@@ -1310,6 +1417,7 @@
     const galleryCards = Array.from(document.querySelectorAll('.gallery-card'));
     const inquiryButtons = Array.from(document.querySelectorAll('.package-inquiry'));
     const packageSelect = document.getElementById('package');
+    const contactFormPanel = document.getElementById('contact-form-panel');
     const filmSlides = Array.from(document.querySelectorAll('.reel-slide'));
     const filmToggle = document.getElementById('film-toggle');
     const filmProgress = document.getElementById('film-progress');
@@ -1405,11 +1513,15 @@
     });
 
     inquiryButtons.forEach((button) => {
-      button.addEventListener('click', () => {
+      button.addEventListener('click', (event) => {
+        event.preventDefault();
         if (packageSelect) {
           packageSelect.value = button.dataset.package || '';
         }
         navigate('contact');
+        window.requestAnimationFrame(() => {
+          contactFormPanel?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
       });
     });
 
