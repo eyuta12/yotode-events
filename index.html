@@ -105,6 +105,8 @@
       color: var(--muted);
     }
 
+    .brand-mark span { color: var(--burgundy); }
+
     .header-actions {
       display: flex;
       align-items: center;
@@ -124,9 +126,9 @@
     .menu-toggle {
       width: 3.35rem;
       height: 3.35rem;
-      border: 1px solid rgba(122, 28, 40, 0.14);
+      border: 1px solid rgba(122, 28, 40, 0.34);
       border-radius: 50%;
-      background: var(--white);
+      background: linear-gradient(145deg, rgba(122, 28, 40, 0.08), var(--white));
       display: inline-grid;
       place-items: center;
       cursor: pointer;
@@ -437,6 +439,33 @@
       border: 1px solid rgba(197, 160, 89, 0.2);
     }
 
+    .video-shell video {
+      width: 100%;
+      height: 100%;
+      min-height: 26rem;
+      object-fit: cover;
+      display: block;
+      background: #18080d;
+    }
+
+    .video-caption {
+      position: absolute;
+      left: 1rem;
+      right: 1rem;
+      bottom: 1rem;
+      padding: 0.85rem 1rem;
+      border-radius: 0.9rem;
+      background: rgba(23, 9, 12, 0.66);
+      border: 1px solid rgba(197, 160, 89, 0.36);
+      color: var(--white);
+      backdrop-filter: blur(4px);
+    }
+
+    .video-caption p {
+      color: var(--white);
+      font-size: 0.9rem;
+    }
+
     .reel-slide {
       position: absolute;
       inset: 0;
@@ -687,6 +716,13 @@
 
     .gallery-copy p { font-size: 0.92rem; }
 
+    .video-gallery {
+      margin-top: 1.4rem;
+      display: grid;
+      gap: 1.2rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
     .contact-layout { align-items: start; }
 
     .contact-panel .contact-list + .contact-list { margin-top: 1rem; }
@@ -774,6 +810,7 @@
       .gallery-grid,
       .detail-grid,
       .mini-grid,
+      .video-gallery,
       .field-grid {
         grid-template-columns: 1fr;
       }
@@ -880,7 +917,7 @@
             <p>Yotode Event Planner creates polished wedding weekends, engagement celebrations, church ceremonies, and refined receptions with Ethiopian hospitality woven through every guest touchpoint.</p>
             <ul class="hero-highlights">
               <li>Custom planning for Ethiopian Orthodox weddings, family celebrations, and milestone gatherings.</li>
-              <li>Art-directed floral styling, venue layouts, and cultural ceremony coordination.</li>
+              <li>WE DO VENUE coordination, WE DO DECORATION, WE DO CATERING, and full event coordination.</li>
               <li>Refined client journey with a cinematic brand reel and clear page-by-page navigation.</li>
             </ul>
             <div class="hero-actions">
@@ -891,36 +928,12 @@
 
           <article class="video-card" aria-label="Custom Yotode marketing reel">
             <div class="video-shell" id="brand-film">
-              <div class="reel-slide active" style="background-image: url('https://source.unsplash.com/1200x1400/?ethiopian,wedding,celebration');">
-                <div class="reel-content">
-                  <p class="eyebrow">Brand Film · 01</p>
-                  <h3>Welcome guests into a celebration that feels both sacred and beautifully styled.</h3>
-                  <p>From procession timing to candlelit reception details, the Yotode experience is designed like a tailored marketing reel for your event story.</p>
-                </div>
-              </div>
-              <div class="reel-slide" style="background-image: url('https://source.unsplash.com/1200x1400/?luxury,wedding,venue');">
-                <div class="reel-content">
-                  <p class="eyebrow">Brand Film · 02</p>
-                  <h3>Layered textures, warm gold accents, and elevated hospitality create a luxury atmosphere.</h3>
-                  <p>Venue styling, floral compositions, and guest flow are planned so the entire event feels cinematic from arrival to farewell.</p>
-                </div>
-              </div>
-              <div class="reel-slide" style="background-image: url('https://source.unsplash.com/1200x1400/?ethiopian,coffee,ceremony');">
-                <div class="reel-content">
-                  <p class="eyebrow">Brand Film · 03</p>
-                  <h3>Cultural rituals such as the bunna coffee ceremony are presented with elegance and authenticity.</h3>
-                  <p>Each chapter balances heritage, family presence, and contemporary event production for a believable Yotode signature.</p>
-                </div>
-              </div>
-              <div class="film-ui">
-                <div class="film-meta">
-                  <span class="film-pill">Custom Yotode Marketing Video</span>
-                  <span class="film-time" id="film-time">00:12</span>
-                </div>
-                <div class="film-controls">
-                  <button class="film-toggle" id="film-toggle" type="button" aria-label="Pause marketing reel">❚❚</button>
-                  <div class="film-progress" aria-hidden="true"><span id="film-progress"></span></div>
-                </div>
+              <video controls autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1400&q=80">
+                <source src="https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4" type="video/mp4">
+              </video>
+              <div class="video-caption">
+                <p class="eyebrow">Custom Marketing Video</p>
+                <p>A Yotode brand showcase featuring elegant venue reveals, celebration moments, and polished guest experiences.</p>
               </div>
             </div>
           </article>
@@ -948,7 +961,7 @@
         <div class="section-heading center">
           <p class="eyebrow">About Our Services</p>
           <h2 id="services-title">Full-service planning created for meaningful celebrations.</h2>
-          <p>Explore what Yotode offers, how we package support, and the process that keeps your event calm, polished, and culturally grounded.</p>
+          <p>We provide complete event support: WE DO VENUE coordination, WE DO DECORATION, WE DO CATERING, and full event coordination from concept to celebration day.</p>
         </div>
 
         <div class="services-layout">
@@ -958,11 +971,11 @@
               <p>Planning for Ethiopian Orthodox church flow, family entrances, blessing moments, and formal reception transitions.</p>
             </article>
             <article class="service-card">
-              <h3>Decor &amp; Florals</h3>
+              <h3>DECORATION &amp; Florals</h3>
               <p>Luxury floral direction, candlelit tablescapes, sweetheart staging, and culturally inspired texture layering.</p>
             </article>
             <article class="service-card">
-              <h3>Hospitality &amp; Catering</h3>
+              <h3>CATERING &amp; Hospitality</h3>
               <p>Guest seating, buffet styling, coffee ceremony areas, dessert presentation, and polished service management.</p>
             </article>
             <article class="service-card">
@@ -974,7 +987,7 @@
               <p>Rehearsal planning, ceremonial musicians, cultural touchpoints, and respectful storytelling throughout the event day.</p>
             </article>
             <article class="service-card">
-              <h3>Venue Styling</h3>
+              <h3>VENUE Coordination &amp; Styling</h3>
               <p>Spatial planning for head tables, lounge vignettes, welcome moments, and premium guest circulation.</p>
             </article>
           </div>
@@ -995,24 +1008,23 @@
       <div class="section-card" style="margin-top: 1.4rem;">
         <div class="section-heading center">
           <p class="eyebrow">Packages</p>
-          <h2>Curated support levels for intimate and grand events.</h2>
-          <p>Each package includes planning leadership, design support, and on-site management tailored to guest count and event complexity.</p>
+          <h2>True all-inclusive support levels for intimate and grand events.</h2>
+          <p>Transparent pricing includes venue coordination, decoration, catering, and complete event management tailored to guest count and complexity.</p>
         </div>
         <div class="package-grid">
           <article class="package-card">
             <div class="package-top">
               <p class="eyebrow">Micro Celebration</p>
               <h3>Dirirsa</h3>
-              <strong>$8,500</strong>
-              <p>For 50–75 guests with focused planning and elegant execution.</p>
+              <strong>$8,500 – $12,000+</strong>
+              <p>Micro Event · 50–75 Guests</p>
             </div>
             <div class="package-body">
               <ul class="package-list">
-                <li>Full planning and timeline creation</li>
-                <li>Venue layout, floral styling, and ceremony setup</li>
-                <li>Catering oversight and guest flow support</li>
-                <li>Professional photo coordination</li>
-                <li>Active on-site management for key event hours</li>
+                <li>Venue coordination and layout planning</li>
+                <li>Decoration and setup styling</li>
+                <li>Catering management and guest flow support</li>
+                <li>Full event coordination and timeline leadership</li>
               </ul>
               <button class="btn btn-secondary package-inquiry" type="button" data-package="Dirirsa">Inquire About Dirirsa</button>
             </div>
@@ -1021,18 +1033,35 @@
             <div class="package-top">
               <p class="eyebrow">Signature Celebration</p>
               <h3>Qidus</h3>
-              <strong>$18,000</strong>
-              <p>For 75–150 guests seeking immersive full-service planning.</p>
+              <strong>$18,000 – $28,000+</strong>
+              <p>Standard Event · 75–150 Guests</p>
             </div>
             <div class="package-body">
               <ul class="package-list">
-                <li>Premium concept design and full vendor management</li>
-                <li>Enhanced floral compositions and staging plan</li>
-                <li>Zemari, rehearsal, and cultural programming coordination</li>
-                <li>Photo and video production scheduling</li>
-                <li>All-day event supervision with guest experience direction</li>
+                <li>Venue coordination, decoration, and production design</li>
+                <li>Full catering oversight and premium guest hospitality flow</li>
+                <li>Photography coordination plus Zemari planning support</li>
+                <li>Full planning and all-day on-site event management</li>
               </ul>
               <button class="btn btn-primary package-inquiry" type="button" data-package="Qidus">Inquire About Qidus</button>
+            </div>
+          </article>
+          <article class="package-card">
+            <div class="package-top">
+              <p class="eyebrow">Grand Celebration</p>
+              <h3>Melkam</h3>
+              <strong>$35,000 – $60,000+</strong>
+              <p>Grand Celebration · 150–300+ Guests</p>
+            </div>
+            <div class="package-body">
+              <ul class="package-list">
+                <li>Premium venue coordination with concierge-level logistics</li>
+                <li>Extensive decoration and luxury setup execution</li>
+                <li>Luxury catering management for large guest counts</li>
+                <li>Photography, videography, Zemari &amp; Mezemran coordination</li>
+                <li>Full concierge service and end-to-end event leadership</li>
+              </ul>
+              <button class="btn btn-primary package-inquiry" type="button" data-package="Melkam">Inquire About Melkam</button>
             </div>
           </article>
         </div>
@@ -1087,48 +1116,80 @@
 
         <div class="gallery-grid" id="gallery-grid">
           <article class="gallery-card" data-category="ceremony culture">
-            <img loading="lazy" decoding="async" src="https://source.unsplash.com/900x1200/?ethiopian,wedding,couple" alt="Ethiopian wedding couple portrait inspiration">
+            <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=80" alt="Ethiopian wedding couple portrait inspiration">
             <div class="gallery-copy">
               <h3>Processional Portraits</h3>
               <p>Editorial references for elegant couple portraits and ceremony arrivals with Ethiopian wedding styling cues.</p>
             </div>
           </article>
           <article class="gallery-card" data-category="venue decor">
-            <img loading="lazy" decoding="async" src="https://source.unsplash.com/900x1200/?luxury,wedding,reception" alt="Luxury reception venue inspiration">
+            <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=900&q=80" alt="Luxury reception venue inspiration">
             <div class="gallery-copy">
               <h3>Reception Grandeur</h3>
               <p>Venue inspiration for candlelit receptions, soft gold details, and guest tables that feel elevated yet warm.</p>
             </div>
           </article>
           <article class="gallery-card" data-category="decor">
-            <img loading="lazy" decoding="async" src="https://source.unsplash.com/900x1200/?wedding,floral,decor" alt="Wedding floral and decor inspiration">
+            <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=900&q=80" alt="Wedding floral and decor inspiration">
             <div class="gallery-copy">
               <h3>Floral Styling</h3>
               <p>Layered florals, draped textures, and refined centerpieces that complement burgundy and gold palettes.</p>
             </div>
           </article>
           <article class="gallery-card" data-category="culture">
-            <img loading="lazy" decoding="async" src="https://source.unsplash.com/900x1200/?ethiopian,traditional,dress" alt="Traditional Ethiopian attire inspiration">
+            <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=900&q=80" alt="Traditional Ethiopian attire inspiration">
             <div class="gallery-copy">
               <h3>Traditional Attire</h3>
               <p>Habesha-inspired looks, heritage silhouettes, and textile references that ground the event in Ethiopian identity.</p>
             </div>
           </article>
-          <article class="gallery-card" data-category="culture decor">
-            <img loading="lazy" decoding="async" src="https://source.unsplash.com/900x1200/?ethiopian,coffee,ceremony" alt="Ethiopian coffee ceremony inspiration">
+          <article class="gallery-card" data-category="culture decor catering">
+            <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1478146896981-b80fe463b330?auto=format&fit=crop&w=900&q=80" alt="Ethiopian coffee ceremony inspiration">
             <div class="gallery-copy">
               <h3>Bunna Ceremony Corner</h3>
               <p>Cultural setup ideas for coffee ceremony trays, woven accents, and meaningful guest interaction moments.</p>
             </div>
           </article>
           <article class="gallery-card" data-category="venue ceremony">
-            <img loading="lazy" decoding="async" src="https://source.unsplash.com/900x1200/?church,wedding,interior" alt="Ceremony venue inspiration">
+            <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=900&q=80" alt="Ceremony venue inspiration">
             <div class="gallery-copy">
               <h3>Sacred Ceremony Setting</h3>
               <p>Venue framing inspiration for reverent, polished ceremonies with clear aisle and family sightline planning.</p>
             </div>
           </article>
+          <article class="gallery-card" data-category="catering decor">
+            <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=900&q=80" alt="Curated catering showcase table setup">
+            <div class="gallery-copy">
+              <h3>Catering Showcase</h3>
+              <p>Service-ready culinary presentation inspiration with elevated plating, buffet styling, and guest-focused hospitality flow.</p>
+            </div>
+          </article>
         </div>
+      </div>
+
+      <div class="video-gallery" aria-label="Celebration video inspiration">
+        <article class="video-card">
+          <div class="video-shell">
+            <video controls muted loop playsinline poster="https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=1400&q=80">
+              <source src="https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" type="video/mp4">
+            </video>
+            <div class="video-caption">
+              <p class="eyebrow">Venue Video</p>
+              <p>Reception and venue walkthrough style inspiration for planning room-by-room guest experiences.</p>
+            </div>
+          </div>
+        </article>
+        <article class="video-card">
+          <div class="video-shell">
+            <video controls muted loop playsinline poster="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=1400&q=80">
+              <source src="https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4" type="video/mp4">
+            </video>
+            <div class="video-caption">
+              <p class="eyebrow">Celebration Video</p>
+              <p>Live event movement references for ceremony transitions, family entrances, and celebratory atmosphere.</p>
+            </div>
+          </div>
+        </article>
       </div>
 
       <div class="story-layout" style="margin-top: 1.4rem;">
@@ -1199,8 +1260,9 @@
                   <label for="package">Preferred Package</label>
                   <select id="package" name="package" required>
                     <option value="">Select a package</option>
-                    <option value="Dirirsa">Dirirsa — $8,500</option>
-                    <option value="Qidus">Qidus — $18,000</option>
+                    <option value="Dirirsa">Dirirsa — $8,500 to $12,000+</option>
+                    <option value="Qidus">Qidus — $18,000 to $28,000+</option>
+                    <option value="Melkam">Melkam — $35,000 to $60,000+</option>
                     <option value="Custom">Custom consultation</option>
                   </select>
                 </div>
