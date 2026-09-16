@@ -1,450 +1,629 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yotode Events - Ethiopian Event Planner</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yotode Event Planner | Elegant Ethiopian Celebrations</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --burgundy: #7A1C28;
+      --gold: #C5A059;
+      --cream: #FAF8F5;
+      --ink: #1f1a16;
+      --muted: #5a5148;
+      --white: #ffffff;
+      --shadow: 0 14px 30px rgba(25, 15, 10, 0.08);
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--ink);
+      background: var(--cream);
+      line-height: 1.6;
+    }
+
+    h1, h2, h3 { font-family: 'Cormorant Garamond', serif; line-height: 1.2; }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
+
+    section { padding: 5.5rem 0; scroll-margin-top: 6rem; }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 2.25rem;
+    }
+
+    .section-header h2 {
+      font-size: clamp(2rem, 4vw, 2.9rem);
+      color: var(--burgundy);
+      margin-bottom: 0.6rem;
+    }
+
+    .section-header p { color: var(--muted); max-width: 700px; margin: 0 auto; }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250, 248, 245, 0.95);
+      border-bottom: 1px solid rgba(122, 28, 40, 0.15);
+      backdrop-filter: blur(8px);
+    }
+
+    .nav-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      min-height: 82px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.9rem;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .brand img { width: 56px; height: auto; display: block; }
+
+    .brand strong {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      color: var(--burgundy);
+    }
+
+    .brand span {
+      display: block;
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.3rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--ink);
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: color 0.25s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible { color: var(--burgundy); }
+
+    .hero {
+      padding-top: 6.5rem;
+      padding-bottom: 5rem;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(197, 160, 89, 0.18), transparent 45%),
+        radial-gradient(circle at 88% 85%, rgba(122, 28, 40, 0.1), transparent 42%),
+        var(--cream);
+    }
+
+    .hero-grid {
+      display: grid;
+      gap: 2.4rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: center;
+    }
+
+    .hero-copy h1 {
+      font-size: clamp(2.2rem, 4.8vw, 3.9rem);
+      color: var(--burgundy);
+      margin-bottom: 0.9rem;
+    }
+
+    .hero-copy p {
+      color: var(--muted);
+      max-width: 54ch;
+      margin-bottom: 1.4rem;
+      font-size: 1.02rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: 1px solid transparent;
+      border-radius: 999px;
+      padding: 0.8rem 1.4rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--burgundy);
+      color: var(--white);
+      box-shadow: 0 10px 20px rgba(122, 28, 40, 0.22);
+    }
+
+    .btn-primary:hover,
+    .btn-primary:focus-visible {
+      transform: translateY(-2px);
+      background: #651621;
+    }
+
+    .btn-outline {
+      border-color: var(--gold);
+      color: var(--burgundy);
+      background: transparent;
+    }
+
+    .btn-outline:hover,
+    .btn-outline:focus-visible {
+      background: rgba(197, 160, 89, 0.14);
+      transform: translateY(-2px);
+    }
+
+    .hero-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.4rem;
+      border: 1px solid rgba(122, 28, 40, 0.1);
+    }
+
+    .hero-card img {
+      width: min(330px, 100%);
+      margin-inline: auto;
+      display: block;
+      height: auto;
+    }
+
+    .services-grid,
+    .packages-grid,
+    .timeline,
+    .contact-grid {
+      display: grid;
+      gap: 1.15rem;
+    }
+
+    .services-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+    .card {
+      background: var(--white);
+      border: 1px solid rgba(122, 28, 40, 0.1);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      box-shadow: var(--shadow);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .card:hover { transform: translateY(-5px); box-shadow: 0 18px 34px rgba(25, 15, 10, 0.14); }
+
+    .card h3 { color: var(--burgundy); margin-bottom: 0.4rem; font-size: 1.55rem; }
+    .card p { color: var(--muted); font-size: 0.95rem; }
+
+    .packages-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    .package {
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1px solid rgba(122, 28, 40, 0.12);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .package.featured { border: 2px solid var(--gold); }
+
+    .package-top {
+      padding: 1.3rem 1.3rem 1.15rem;
+      border-bottom: 1px solid rgba(122, 28, 40, 0.08);
+      background: linear-gradient(180deg, rgba(122, 28, 40, 0.98), #641722);
+      color: var(--white);
+    }
+
+    .package-top h3 { font-size: 2rem; }
+    .price { font-size: 1.8rem; font-weight: 700; margin-top: 0.25rem; }
+
+    .package ul {
+      list-style: none;
+      padding: 1.1rem 1.3rem;
+      display: grid;
+      gap: 0.65rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .package li::before {
+      content: '✦';
+      color: var(--gold);
+      margin-right: 0.5rem;
+    }
+
+    .package .btn { margin: 0 1.3rem 1.3rem; width: calc(100% - 2.6rem); }
+
+    .timeline { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+    .step {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 1.2rem;
+      border: 1px solid rgba(122, 28, 40, 0.1);
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    .step-number {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--burgundy);
+      color: var(--white);
+      font-weight: 700;
+      margin-bottom: 0.7rem;
+      font-size: 0.9rem;
+    }
+
+    .step h3 { color: var(--burgundy); font-size: 1.42rem; margin-bottom: 0.3rem; }
+    .step p { color: var(--muted); font-size: 0.95rem; }
+
+    .contact-grid { grid-template-columns: 1fr 1.2fr; align-items: start; }
+
+    .contact-info {
+      background: var(--white);
+      border: 1px solid rgba(122, 28, 40, 0.12);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.2rem;
+    }
+
+    .contact-info h3 { color: var(--burgundy); font-size: 1.8rem; margin-bottom: 0.7rem; }
+    .contact-info p, .contact-info a { color: var(--muted); text-decoration: none; }
+
+    .contact-form {
+      background: var(--white);
+      border: 1px solid rgba(122, 28, 40, 0.12);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.2rem;
+      display: grid;
+      gap: 0.78rem;
+    }
+
+    .contact-form label {
+      font-size: 0.84rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .contact-form input,
+    .contact-form select,
+    .contact-form textarea {
+      width: 100%;
+      border: 1px solid rgba(122, 28, 40, 0.2);
+      border-radius: 10px;
+      padding: 0.74rem 0.8rem;
+      font: inherit;
+      color: var(--ink);
+      background: #fff;
+    }
+
+    .contact-form input:focus,
+    .contact-form select:focus,
+    .contact-form textarea:focus {
+      outline: 2px solid rgba(197, 160, 89, 0.35);
+      border-color: var(--gold);
+    }
+
+    .contact-form textarea { min-height: 130px; resize: vertical; }
+
+    .status {
+      min-height: 1.4rem;
+      font-size: 0.88rem;
+      color: var(--burgundy);
+    }
+
+    .site-footer {
+      padding: 2.2rem 0;
+      background: #2a0f13;
+      color: #f2ece5;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .packages-grid,
+      .contact-grid,
+      .services-grid,
+      .timeline { grid-template-columns: 1fr; }
+
+      .hero {
+        padding-top: 5.5rem;
+        text-align: center;
+      }
+
+      .hero-copy p { margin-inline: auto; }
+      .hero-actions { justify-content: center; }
+      .nav-wrap { padding: 0.6rem 0; }
+      .nav-links { gap: 0.85rem; }
+    }
+
+    @media (max-width: 640px) {
+      .brand img { width: 46px; }
+      .brand strong { font-size: 1.45rem; }
+      .brand span { font-size: 0.65rem; letter-spacing: 0.13em; }
+      .nav-links { font-size: 0.9rem; }
+      section { padding: 4.3rem 0; }
+    }
+  </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-wrapper">
-                <div class="logo">
-                    <a href="#home" aria-label="Yotode Events home">
-                        <img src="https://github.com/user-attachments/assets/dcff9725-c5b8-48ea-aedd-3794b2caf85b" alt="Yotode Events Event Planner logo">
-                    </a>
-                    <p>Event Planner</p>
-                </div>
-                <ul class="nav-menu">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#events">Events</a></li>
-                    <li><a href="#packages">Packages</a></li>
-                    <li><a href="#gallery">Gallery</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-                <div class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-        </div>
-    </nav>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#home" aria-label="Yotode Event Planner home">
+        <img src="https://github.com/user-attachments/assets/dcff9725-c5b8-48ea-aedd-3794b2caf85b" alt="Yotode Event Planner floral logo">
+        <span>
+          <strong>Yotode</strong>
+          Event Planner
+        </span>
+      </a>
+      <nav aria-label="Primary">
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#packages">Packages</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-    <!-- Hero Section with Flowers -->
+  <main>
     <section id="home" class="hero">
-        <div class="flowers-decoration">
-            <div class="flower flower-1">🌹</div>
-            <div class="flower flower-2">🌺</div>
-            <div class="flower flower-3">🌸</div>
-            <div class="flower flower-4">🌷</div>
-            <div class="flower flower-5">🌹</div>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <h1>Elegant Planning for Sacred Celebrations</h1>
+          <p>Yotode Event Planner designs unforgettable Ethiopian celebrations with thoughtful coordination, refined styling, and graceful hospitality from first consultation to final blessing.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contact">Plan Your Event</a>
+            <a class="btn btn-outline" href="#packages">Explore Packages</a>
+          </div>
         </div>
-        <div class="hero-content">
-            <h2>Celebrate Every Moment of Your Life</h2>
-            <p>Professional Event Planning for All Your Special Occasions</p>
-            <button class="cta-btn scroll-to-contact" type="button">Plan Your Event</button>
-        </div>
+        <aside class="hero-card" aria-label="Yotode signature emblem">
+          <img src="https://github.com/user-attachments/assets/dcff9725-c5b8-48ea-aedd-3794b2caf85b" alt="Yotode Event Planner burgundy and gold floral emblem">
+        </aside>
+      </div>
     </section>
 
-    <!-- About Section -->
-    <section class="about">
-        <div class="container">
-            <div class="about-header">
-                <h2>✨ Welcome to Yotode Events ✨</h2>
-            </div>
-            <p>At Yotode Events, we believe every celebration deserves to be extraordinary. Whether it's an Ethiopian Orthodox wedding, engagement ceremony, birthday, graduation, baby shower, or Shimglna, we bring your vision to life with elegance, professionalism, and attention to every detail. Our passionate team is dedicated to making your event unforgettable while honoring Ethiopian traditions.</p>
-            <div class="about-features">
-                <div class="feature">
-                    <i class="fas fa-handshake"></i>
-                    <h3>Professional Service</h3>
-                    <p>Experienced team dedicated to your success</p>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-heart"></i>
-                    <h3>Cultural Respect</h3>
-                    <p>Deep understanding of Ethiopian traditions</p>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-star"></i>
-                    <h3>Quality Focus</h3>
-                    <p>Excellence in every detail of your event</p>
-                </div>
-            </div>
+    <section id="services">
+      <div class="container">
+        <header class="section-header">
+          <h2>Signature Services</h2>
+          <p>Every detail is curated to honor tradition while delivering a polished guest experience.</p>
+        </header>
+        <div class="services-grid">
+          <article class="card">
+            <h3>Zemari &amp; Mezemran</h3>
+            <p>Live Ethiopian ceremonial music with coordinated rehearsal and event timing.</p>
+          </article>
+          <article class="card">
+            <h3>Photography</h3>
+            <p>Artful photo coverage that preserves intimate moments and grand celebrations.</p>
+          </article>
+          <article class="card">
+            <h3>Floral</h3>
+            <p>Luxury floral installations, table accents, and ceremony arrangements.</p>
+          </article>
+          <article class="card">
+            <h3>Catering</h3>
+            <p>Traditional and modern menus with attentive service for every guest.</p>
+          </article>
         </div>
+      </div>
     </section>
 
-    <!-- Event Types Section -->
-    <section id="events" class="events">
-        <div class="container">
-            <h2>🎊 Events We Plan</h2>
-            <div class="events-grid">
-                <div class="event-card">
-                    <div class="event-icon">💍</div>
-                    <h3>Weddings</h3>
-                    <p>From traditional Ethiopian Orthodox ceremonies to modern receptions. We handle every aspect of your wedding day.</p>
-                </div>
-                <div class="event-card">
-                    <div class="event-icon">💕</div>
-                    <h3>Engagements</h3>
-                    <p>Celebrate your love with an elegant engagement ceremony that brings families together.</p>
-                </div>
-                <div class="event-card">
-                    <div class="event-icon">🎂</div>
-                    <h3>Birthdays</h3>
-                    <p>Make milestone birthdays memorable with customized celebrations.</p>
-                </div>
-                <div class="event-card">
-                    <div class="event-icon">🎓</div>
-                    <h3>Graduations</h3>
-                    <p>Honor academic achievements with a special graduation celebration.</p>
-                </div>
-                <div class="event-card">
-                    <div class="event-icon">👶</div>
-                    <h3>Baby Showers</h3>
-                    <p>Welcome new arrivals with joy and celebration surrounded by loved ones.</p>
-                </div>
-                <div class="event-card">
-                    <div class="event-icon">🎉</div>
-                    <h3>Shimglna</h3>
-                    <p>Traditional Ethiopian celebration ceremonies planned with authentic elegance.</p>
-                </div>
+    <section id="packages">
+      <div class="container">
+        <header class="section-header">
+          <h2>Curated Packages</h2>
+          <p>Choose the level of support that best fits your vision and guest count.</p>
+        </header>
+        <div class="packages-grid">
+          <article class="package">
+            <div class="package-top">
+              <h3>Dirirsa</h3>
+              <p class="price">$8,500</p>
             </div>
+            <ul>
+              <li>Full planning and day-of coordination</li>
+              <li>Floral styling and ceremony setup</li>
+              <li>Catering management and guest flow</li>
+              <li>Professional photo coverage</li>
+            </ul>
+            <button class="btn btn-outline package-inquiry" type="button" data-package="Dirirsa">Inquire About Dirirsa</button>
+          </article>
+
+          <article class="package featured">
+            <div class="package-top">
+              <h3>Qidus</h3>
+              <p class="price">$18,000</p>
+            </div>
+            <ul>
+              <li>Premium full-service planning</li>
+              <li>Expanded floral and design concept</li>
+              <li>Zemari &amp; Mezemran with rehearsal support</li>
+              <li>Photo + video production coordination</li>
+            </ul>
+            <button class="btn btn-primary package-inquiry" type="button" data-package="Qidus">Inquire About Qidus</button>
+          </article>
         </div>
+      </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="services">
-        <div class="container">
-            <h2>🌟 Our Services</h2>
-            <div class="services-grid">
-                <div class="service-item">
-                    <i class="fas fa-clipboard-list"></i>
-                    <h3>Event Planning & Coordination</h3>
-                    <p>Complete planning and management from concept to execution.</p>
-                </div>
-                <div class="service-item">
-                    <i class="fas fa-utensils"></i>
-                    <h3>Catering & Menu Design</h3>
-                    <p>Authentic Ethiopian and international cuisine tailored to your preferences.</p>
-                </div>
-                <div class="service-item">
-                    <i class="fas fa-music"></i>
-                    <h3>Zemari & Mezemran</h3>
-                    <p>Traditional Ethiopian musicians and entertainment for authentic cultural celebration.</p>
-                </div>
-                <div class="service-item">
-                    <i class="fas fa-camera"></i>
-                    <h3>Photography & Videography</h3>
-                    <p>Professional documentation of your special moments.</p>
-                </div>
-                <div class="service-item">
-                    <i class="fas fa-flower"></i>
-                    <h3>Floral Decoration</h3>
-                    <p>Beautiful and elegant flower arrangements and decorations that transform any space.</p>
-                </div>
-                <div class="service-item">
-                    <i class="fas fa-birthday-cake"></i>
-                    <h3>Cake & Desserts</h3>
-                    <p>Custom cakes and delicious desserts prepared by professional bakers.</p>
-                </div>
-            </div>
+    <section id="process">
+      <div class="container">
+        <header class="section-header">
+          <h2>Our Four-Step Process</h2>
+          <p>A clear, supportive path from vision to celebration day.</p>
+        </header>
+        <div class="timeline">
+          <article class="step">
+            <div class="step-number">1</div>
+            <h3>Discover</h3>
+            <p>We begin with your story, style, and traditions to define your event priorities.</p>
+          </article>
+          <article class="step">
+            <div class="step-number">2</div>
+            <h3>Design</h3>
+            <p>We develop your concept, vendor plan, and curated aesthetic details.</p>
+          </article>
+          <article class="step">
+            <div class="step-number">3</div>
+            <h3>Coordinate</h3>
+            <p>We manage timelines, rehearsals, and logistics with all service partners.</p>
+          </article>
+          <article class="step">
+            <div class="step-number">4</div>
+            <h3>Celebrate</h3>
+            <p>You enjoy a smooth, elegant celebration while we oversee execution.</p>
+          </article>
         </div>
+      </div>
     </section>
 
-    <!-- Pricing Packages Section -->
-    <section id="packages" class="packages">
-        <div class="container">
-            <h2>💎 Our Packages</h2>
-            <p class="packages-intro">Comprehensive all-inclusive packages including full coordination, catering, decoration, photography, cake, Zemari & Mezemran with rehearsal.</p>
-            <div class="packages-grid">
-                <!-- Dirirsa Package (Basic) -->
-                <div class="package-card">
-                    <div class="package-header">
-                        <h3>Dirirsa</h3>
-                        <p class="package-subtitle">Micro Event</p>
-                    </div>
-                    <div class="package-price">
-                        <span class="currency">$</span>
-                        <span class="amount">8,500</span>
-                        <span class="period">- $12,000</span>
-                    </div>
-                    <p class="package-guest-count">50-75 Guests</p>
-                    <ul class="package-features">
-                        <li><i class="fas fa-check"></i> Full event coordination & planning</li>
-                        <li><i class="fas fa-check"></i> Venue selection & setup</li>
-                        <li><i class="fas fa-check"></i> Decoration team (2-3 people)</li>
-                        <li><i class="fas fa-check"></i> Beautiful flower arrangements</li>
-                        <li><i class="fas fa-check"></i> Catering team & full meal service</li>
-                        <li><i class="fas fa-check"></i> Professional photographer</li>
-                        <li><i class="fas fa-check"></i> Custom cake & desserts</li>
-                        <li><i class="fas fa-check"></i> Zemari & Mezemran with rehearsal</li>
-                        <li><i class="fas fa-check"></i> 4-6 hours event management</li>
-                    </ul>
-                    <button class="package-btn scroll-to-contact" type="button">Inquire Now</button>
-                </div>
-
-                <!-- Qidus Package (Premium) -->
-                <div class="package-card premium">
-                    <div class="package-badge">⭐ MOST POPULAR</div>
-                    <div class="package-header">
-                        <h3>Qidus</h3>
-                        <p class="package-subtitle">Standard Event</p>
-                    </div>
-                    <div class="package-price">
-                        <span class="currency">$</span>
-                        <span class="amount">18,000</span>
-                        <span class="period">- $28,000</span>
-                    </div>
-                    <p class="package-guest-count">75-150 Guests</p>
-                    <ul class="package-features">
-                        <li><i class="fas fa-check"></i> Premium event coordination</li>
-                        <li><i class="fas fa-check"></i> Premium venue & elegant setup</li>
-                        <li><i class="fas fa-check"></i> Decoration team (3-4 people)</li>
-                        <li><i class="fas fa-check"></i> Premium flower arrangements & centerpieces</li>
-                        <li><i class="fas fa-check"></i> Full catering team & service</li>
-                        <li><i class="fas fa-check"></i> Professional photographer & videographer</li>
-                        <li><i class="fas fa-check"></i> Custom premium cakes & desserts</li>
-                        <li><i class="fas fa-check"></i> Zemari & Mezemran with rehearsal</li>
-                        <li><i class="fas fa-check"></i> 8+ hours event management</li>
-                        <li><i class="fas fa-check"></i> Guest coordination & seating</li>
-                    </ul>
-                    <button class="package-btn premium-btn scroll-to-contact" type="button">Inquire Now</button>
-                </div>
-
-                <!-- Melkam Package (Deluxe) -->
-                <div class="package-card">
-                    <div class="package-header">
-                        <h3>Melkam</h3>
-                        <p class="package-subtitle">Grand Celebration</p>
-                    </div>
-                    <div class="package-price">
-                        <span class="currency">$</span>
-                        <span class="amount">35,000</span>
-                        <span class="period">- $60,000</span>
-                    </div>
-                    <p class="package-guest-count">150-300+ Guests</p>
-                    <ul class="package-features">
-                        <li><i class="fas fa-check"></i> Complete luxury coordination</li>
-                        <li><i class="fas fa-check"></i> Premium venue & elite decoration</li>
-                        <li><i class="fas fa-check"></i> Full decoration team (4-5 people)</li>
-                        <li><i class="fas fa-check"></i> Luxury floral designs & premium centerpieces</li>
-                        <li><i class="fas fa-check"></i> Gourmet catering team & full service</li>
-                        <li><i class="fas fa-check"></i> Professional photography & videography</li>
-                        <li><i class="fas fa-check"></i> Custom luxury cakes & gourmet desserts</li>
-                        <li><i class="fas fa-check"></i> Zemari & Mezemran with full rehearsal</li>
-                        <li><i class="fas fa-check"></i> 12+ hours event management</li>
-                        <li><i class="fas fa-check"></i> VIP guest services & premium coordination</li>
-                    </ul>
-                    <button class="package-btn scroll-to-contact" type="button">Inquire Now</button>
-                </div>
+    <section id="contact">
+      <div class="container">
+        <header class="section-header">
+          <h2>Begin Your Inquiry</h2>
+          <p>Tell us about your occasion and preferred package. We’ll be in touch promptly.</p>
+        </header>
+        <div class="contact-grid">
+          <aside class="contact-info">
+            <h3>Contact Yotode</h3>
+            <p><strong>Phone:</strong> <a href="tel:2065365389">206-536-5389</a></p>
+            <p><strong>Email:</strong> <a href="mailto:eyuab35@gmail.com">eyuab35@gmail.com</a></p>
+            <p><strong>Location:</strong> Seattle, Washington</p>
+          </aside>
+          <form id="contact-form" class="contact-form" action="https://formsubmit.co/ajax/eyuab35@gmail.com" method="POST" novalidate>
+            <div>
+              <label for="name">Full Name</label>
+              <input id="name" name="name" type="text" autocomplete="name" required>
             </div>
-        </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section id="gallery" class="gallery">
-        <div class="container">
-            <h2>🖼️ Venue Inspiration & Event Setup</h2>
-            <p class="gallery-intro">Explore beautiful venues and elegant decorations we work with for unforgettable celebrations.</p>
-            <div class="gallery-grid">
-                <!-- Orthodox Wedding -->
-                <div class="gallery-item">
-                    <div class="gallery-card">
-                        <img class="gallery-image" loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80" alt="Orthodox wedding ceremony setup">
-                        <div class="gallery-overlay">
-                            <i class="fas fa-church"></i>
-                        </div>
-                        <div class="gallery-content">
-                            <h3>Orthodox Wedding Ceremony</h3>
-                            <p>Traditional Ethiopian Orthodox church ceremonies with elegant setups</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Reception Setup -->
-                <div class="gallery-item">
-                    <div class="gallery-card">
-                        <img class="gallery-image" loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1200&q=80" alt="Reception and dining event setup">
-                        <div class="gallery-overlay">
-                            <i class="fas fa-wine-glass-alt"></i>
-                        </div>
-                        <div class="gallery-content">
-                            <h3>Reception & Dining Setup</h3>
-                            <p>Elegant reception venues with beautiful table arrangements and lighting</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Floral Decoration -->
-                <div class="gallery-item">
-                    <div class="gallery-card">
-                        <img class="gallery-image" loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?auto=format&fit=crop&w=1200&q=80" alt="Elegant floral event arrangement">
-                        <div class="gallery-overlay">
-                            <i class="fas fa-flower"></i>
-                        </div>
-                        <div class="gallery-content">
-                            <h3>Floral Arrangements</h3>
-                            <p>Beautiful flower centerpieces and floral decorations for all occasions</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Bride & Groom Setup -->
-                <div class="gallery-item">
-                    <div class="gallery-card">
-                        <img class="gallery-image" loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1200&q=80" alt="Bride and groom display stage">
-                        <div class="gallery-overlay">
-                            <i class="fas fa-heart"></i>
-                        </div>
-                        <div class="gallery-content">
-                            <h3>Bride & Groom Display</h3>
-                            <p>Elegant throne setup and ceremonial displays for the couple</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Outdoor Garden Events -->
-                <div class="gallery-item">
-                    <div class="gallery-card">
-                        <img class="gallery-image" loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1478146896981-b80fe463b330?auto=format&fit=crop&w=1200&q=80" alt="Outdoor garden celebration decor">
-                        <div class="gallery-overlay">
-                            <i class="fas fa-leaf"></i>
-                        </div>
-                        <div class="gallery-content">
-                            <h3>Garden Celebration</h3>
-                            <p>Outdoor garden venues with natural beauty and elegant decorations</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Evening Events -->
-                <div class="gallery-item">
-                    <div class="gallery-card">
-                        <img class="gallery-image" loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1200&q=80" alt="Evening event lighting design">
-                        <div class="gallery-overlay">
-                            <i class="fas fa-lightbulb"></i>
-                        </div>
-                        <div class="gallery-content">
-                            <h3>Evening Events</h3>
-                            <p>Evening celebrations with stunning lighting and ambiance</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Cake & Dessert Display -->
-                <div class="gallery-item">
-                    <div class="gallery-card">
-                        <img class="gallery-image" loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=1200&q=80" alt="Cake and dessert event table">
-                        <div class="gallery-overlay">
-                            <i class="fas fa-birthday-cake"></i>
-                        </div>
-                        <div class="gallery-content">
-                            <h3>Cake & Dessert Table</h3>
-                            <p>Beautiful custom cakes and dessert displays</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Catering Setup -->
-                <div class="gallery-item">
-                    <div class="gallery-card">
-                        <img class="gallery-image" loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=1200&q=80" alt="Professional catering service buffet">
-                        <div class="gallery-overlay">
-                            <i class="fas fa-utensils"></i>
-                        </div>
-                        <div class="gallery-content">
-                            <h3>Catering Service</h3>
-                            <p>Professional Ethiopian cuisine and international food service</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Entertainment Setup -->
-                <div class="gallery-item">
-                    <div class="gallery-card">
-                        <img class="gallery-image" loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=80" alt="Traditional live music entertainment stage">
-                        <div class="gallery-overlay">
-                            <i class="fas fa-music"></i>
-                        </div>
-                        <div class="gallery-content">
-                            <h3>Zemari & Mezemran</h3>
-                            <p>Traditional Ethiopian musicians and entertainment stage setup</p>
-                        </div>
-                    </div>
-                </div>
+            <div>
+              <label for="email">Email Address</label>
+              <input id="email" name="email" type="email" autocomplete="email" required>
             </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2>📞 Ready to Plan Your Event?</h2>
-            <div class="contact-wrapper">
-                <div class="contact-info">
-                    <div class="info-item">
-                        <i class="fas fa-phone"></i>
-                        <div>
-                            <h4>Phone</h4>
-                            <p><a href="tel:206-536-5389">206-536-5389</a></p>
-                            <p><a href="tel:206-376-5246">206-376-5246</a></p>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <h4>Email</h4>
-                            <p><a href="mailto:eyuab35@gmail.com">eyuab35@gmail.com</a></p>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <h4>Location</h4>
-                            <p>Seattle, Washington</p>
-                        </div>
-                    </div>
-                    <div class="social-links">
-                        <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://wa.me/2065365389" title="WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                        <a href="#" title="Telegram"><i class="fab fa-telegram"></i></a>
-                    </div>
-                </div>
-                <form id="contact-form" class="contact-form" action="https://formsubmit.co/ajax/eyuab35@gmail.com" method="POST">
-                    <input type="text" name="name" placeholder="Your Name" required>
-                    <input type="email" name="email" placeholder="Your Email" required>
-                    <input type="tel" name="phone" placeholder="Your Phone" pattern="[0-9+()\-\s]{7,}" minlength="7" required>
-                    <select name="eventType" required>
-                        <option value="">Select Event Type</option>
-                        <option value="wedding">Wedding</option>
-                        <option value="engagement">Engagement</option>
-                        <option value="birthday">Birthday</option>
-                        <option value="graduation">Graduation</option>
-                        <option value="baby_shower">Baby Shower</option>
-                        <option value="shimglna">Shimglna</option>
-                        <option value="other">Other</option>
-                    </select>
-                    <textarea name="message" placeholder="Tell us about your event..." rows="5" minlength="10" required></textarea>
-                    <input type="hidden" name="_subject" value="New Yotode Events Inquiry">
-                    <button type="submit" class="submit-btn">Send Inquiry</button>
-                    <p class="form-status" role="status" aria-live="polite"></p>
-                </form>
+            <div>
+              <label for="phone">Phone Number</label>
+              <input id="phone" name="phone" type="tel" pattern="[0-9+()\-\s]{7,}" minlength="7" autocomplete="tel" required>
             </div>
+            <div>
+              <label for="package">Preferred Package</label>
+              <select id="package" name="package" required>
+                <option value="">Select a package</option>
+                <option value="Dirirsa">Dirirsa — $8,500</option>
+                <option value="Qidus">Qidus — $18,000</option>
+                <option value="Custom">Custom consultation</option>
+              </select>
+            </div>
+            <div>
+              <label for="message">Event Details</label>
+              <textarea id="message" name="message" minlength="10" required></textarea>
+            </div>
+            <input type="hidden" name="_subject" value="New Yotode Event Inquiry">
+            <button class="btn btn-primary" type="submit">Send Inquiry</button>
+            <p id="form-status" class="status" role="status" aria-live="polite"></p>
+          </form>
         </div>
+      </div>
     </section>
+  </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 Yotode Events. All rights reserved. | Professional Event Planning for All Occasions</p>
-        </div>
-    </footer>
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 Yotode Event Planner. Crafted with elegance for unforgettable celebrations.</p>
+    </div>
+  </footer>
 
-    <script src="script.js"></script>
+  <script>
+    const inquiryButtons = document.querySelectorAll('.package-inquiry');
+    const packageSelect = document.getElementById('package');
+    const contactSection = document.getElementById('contact');
+
+    inquiryButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        if (packageSelect) {
+          packageSelect.value = button.dataset.package || '';
+        }
+        contactSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    const form = document.getElementById('contact-form');
+    const status = document.getElementById('form-status');
+
+    if (form && status) {
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          status.textContent = 'Please complete all required fields before submitting.';
+          return;
+        }
+
+        const submitButton = form.querySelector('button[type="submit"]');
+        const originalText = submitButton.textContent;
+
+        try {
+          submitButton.disabled = true;
+          submitButton.textContent = 'Sending...';
+          status.textContent = 'Sending your inquiry...';
+
+          const response = await fetch(form.action, {
+            method: 'POST',
+            headers: { Accept: 'application/json' },
+            body: new FormData(form)
+          });
+
+          if (!response.ok) {
+            throw new Error('Submission failed. Please try again.');
+          }
+
+          form.reset();
+          status.textContent = 'Thank you. Your inquiry has been sent successfully.';
+        } catch (error) {
+          status.textContent = 'Unable to send right now. Please try again shortly.';
+        } finally {
+          submitButton.disabled = false;
+          submitButton.textContent = originalText;
+        }
+      });
+    }
+  </script>
 </body>
 </html>
