@@ -1519,7 +1519,8 @@
           packageSelect.value = button.dataset.package || '';
         }
         navigate('contact');
-        window.requestAnimationFrame(() => {
+        const scheduleScroll = window.requestAnimationFrame || ((callback) => window.setTimeout(callback, 0));
+        scheduleScroll(() => {
           contactFormPanel?.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
       });
