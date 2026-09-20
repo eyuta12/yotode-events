@@ -1309,7 +1309,7 @@
               <p id="gallery-card-1-body">Authentic Ethiopian Orthodox wedding inspiration with ceremonial decor, family-centered flow, and cultural detail.</p>
             </div>
           </article>
-          <article class="gallery-card" data-category="reception cultural">
+          <article class="gallery-card" data-category="reception cultural florals">
             <img id="gallery-image-2" loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/1/18/Traditional_Habesha_Dress.jpg" alt="Habesha celebration attire for formal receptions and wedding portraits">
             <div class="gallery-copy">
               <h3 id="gallery-card-2-title">Reception Heritage Styling</h3>
@@ -1482,7 +1482,7 @@
               </div>
               <input type="hidden" name="_subject" value="New Yotode Event Inquiry">
               <div class="form-footer">
-                <button class="btn btn-primary" type="submit">Submit Inquiry</button>
+                <button class="btn btn-primary" id="submit-button" type="submit">Submit Inquiry</button>
                 <p id="form-status" class="status" role="status" aria-live="polite"></p>
               </div>
             </form>
@@ -1583,6 +1583,7 @@
         contactTitle: 'Start planning your celebration with clarity and confidence.',
         contactBody: 'Share your event type, guest count, and preferred planning support. We\'ll guide you toward the right package and next steps.',
         footer: '© 2026 Yotode Event Planner. Home, Services & Packages, Inspiration, and Contact remain available from the focused four-section navigation.',
+        submitButtonLabel: 'Submit Inquiry',
         statusRequired: 'Please complete all required fields before submitting.',
         statusSending: 'Sending your inquiry...',
         statusSuccess: 'Thank you. Your inquiry has been sent successfully.',
@@ -1656,6 +1657,7 @@
         contactTitle: 'ክብረ በዓልዎን በግልጽነት እና በእምነት ለመጀመር ያነጋግሩን።',
         contactBody: 'የዝግጅት አይነትዎን፣ የእንግዶች ቁጥር እና የሚፈልጉትን የእቅድ ድጋፍ ያጋሩ። ተገቢውን ፓኬጅ እና ቀጣይ እርምጃ እንመራዎታለን።',
         footer: '© 2026 Yotode Event Planner። መነሻ፣ አገልግሎቶች እና ፓኬጆች፣ ምስክር ሐሳቦች እና አግኙን ክፍሎች በቀላሉ ይገኛሉ።',
+        submitButtonLabel: 'ጥያቄ ይላኩ',
         statusRequired: 'እባክዎ ከመላክዎ በፊት የሚፈለጉትን መስኮች ሁሉ ይሙሉ።',
         statusSending: 'ጥያቄዎን እየላክን ነው...',
         statusSuccess: 'እናመሰግናለን። ጥያቄዎ በተሳካ ሁኔታ ተልኳል።',
@@ -1701,8 +1703,9 @@
     };
 
     const applyLanguage = (lang) => {
-      const locale = i18n[lang] || i18n.en;
-      currentLanguage = lang;
+      const normalizedLang = lang === 'am' ? 'am' : 'en';
+      const locale = i18n[normalizedLang] || i18n.en;
+      currentLanguage = normalizedLang;
       try {
         window.localStorage.setItem('yotode-language', currentLanguage);
       } catch (error) {
@@ -1764,6 +1767,7 @@
       setText('video-card-1-body', locale.videoCard1Body);
       setText('video-card-2-title', locale.videoCard2Title);
       setText('video-card-2-body', locale.videoCard2Body);
+      setText('submit-button', locale.submitButtonLabel);
       setText('lang-btn-en', locale.languageButtonTextEn);
       setText('lang-btn-am', locale.languageButtonTextAm);
       setAttr('hero-feature-image', 'alt', locale.heroFeatureAlt);
@@ -1780,7 +1784,7 @@
       setText('contact-body', locale.contactBody);
       setText('footer-copy', locale.footer);
 
-      const navMap = pageTitles[lang] || pageTitles.en;
+      const navMap = pageTitles[normalizedLang] || pageTitles.en;
       document.querySelectorAll('[data-route="home"]').forEach((el) => { if (el.childElementCount === 0) el.textContent = navMap.home; });
       document.querySelectorAll('[data-route="services"]').forEach((el) => { if (el.childElementCount === 0) el.textContent = navMap.services; });
       document.querySelectorAll('[data-route="inspiration"]').forEach((el) => { if (el.childElementCount === 0) el.textContent = navMap.inspiration; });
@@ -1793,8 +1797,8 @@
       }
 
       languageButtons.forEach((button) => {
-        button.classList.toggle('active', button.dataset.lang === lang);
-        button.setAttribute('aria-pressed', String(button.dataset.lang === lang));
+        button.classList.toggle('active', button.dataset.lang === normalizedLang);
+        button.setAttribute('aria-pressed', String(button.dataset.lang === normalizedLang));
         if (button.dataset.lang === 'en') {
           button.setAttribute('aria-label', locale.languageButtonEn);
         } else if (button.dataset.lang === 'am') {
@@ -1936,7 +1940,6 @@
         }
 
         const submitButton = form.querySelector('button[type="submit"]');
-        const originalText = submitButton?.textContent || 'Submit Inquiry';
 
         try {
           if (submitButton) {
@@ -1962,7 +1965,7 @@
         } finally {
           if (submitButton) {
             submitButton.disabled = false;
-            submitButton.textContent = originalText;
+            submitButton.textContent = (i18n[currentLanguage] || i18n.en).submitButtonLabel;
           }
         }
       });
