@@ -1015,8 +1015,8 @@
       </nav>
       <div class="header-actions">
         <div class="language-toggle" role="group" aria-label="Language selector">
-          <button class="lang-btn active" type="button" data-lang="en">EN</button>
-          <button class="lang-btn" type="button" data-lang="am">አማ</button>
+          <button class="lang-btn active" type="button" data-lang="en" aria-pressed="true">EN</button>
+          <button class="lang-btn" type="button" data-lang="am" aria-pressed="false">አማ</button>
         </div>
         <span class="page-kicker" id="page-indicator">Home</span>
         <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-drawer" aria-label="Open navigation menu">
@@ -1045,25 +1045,25 @@
       <li>
         <a href="#home" data-route="home">
           <strong id="drawer-home">Home</strong>
-          <span>Brand story, featured event imagery, and a polished planning introduction.</span>
+          <span id="drawer-home-desc">Brand story, featured event imagery, and a polished planning introduction.</span>
         </a>
       </li>
       <li>
         <a href="#services" data-route="services">
           <strong id="drawer-services">Services &amp; Packages</strong>
-          <span>Planning support, three signature packages, and the event process.</span>
+          <span id="drawer-services-desc">Planning support, three signature packages, and the event process.</span>
         </a>
       </li>
       <li>
         <a href="#inspiration" data-route="inspiration">
           <strong id="drawer-inspiration">Inspiration</strong>
-          <span>Authentic decor, reception, floral, and cultural reference moments.</span>
+          <span id="drawer-inspiration-desc">Authentic decor, reception, floral, and cultural reference moments.</span>
         </a>
       </li>
       <li>
         <a href="#contact" data-route="contact">
           <strong id="drawer-contact">Contact</strong>
-          <span>Booking lines, department contacts, and the inquiry form.</span>
+          <span id="drawer-contact-desc">Booking lines, department contacts, and the inquiry form.</span>
         </a>
       </li>
     </ul>
@@ -1087,8 +1087,8 @@
               <li id="hero-highlight-3">Refined client journey with authentic visuals, signature packages, and clear four-section navigation.</li>
             </ul>
             <div class="hero-actions">
-              <a class="btn btn-primary" id="cta-book" href="#contact" data-route="contact">Book a Consultation</a>
-              <a class="btn btn-secondary" id="cta-inspiration" href="#inspiration" data-route="inspiration">See Visual Inspiration</a>
+              <a class="btn btn-primary" id="cta-book" href="#contact" data-route="contact"><span id="cta-book-text">Book a Consultation</span></a>
+              <a class="btn btn-secondary" id="cta-inspiration" href="#inspiration" data-route="inspiration"><span id="cta-inspiration-text">See Visual Inspiration</span></a>
             </div>
           </div>
 
@@ -1125,7 +1125,7 @@
         <div class="section-heading center">
           <p class="eyebrow">Services &amp; Packages</p>
           <h2 id="services-title">Full-service planning created for meaningful celebrations.</h2>
-          <p>We provide complete event support through three signature all-inclusive packages covering venue coordination, decoration, catering, and celebration-day leadership for every culture and tradition.</p>
+          <p id="services-intro">We provide complete event support through three signature all-inclusive packages covering venue coordination, decoration, catering, and celebration-day leadership for every culture and tradition.</p>
         </div>
 
         <div class="services-layout">
@@ -1305,50 +1305,50 @@
           <article class="gallery-card" data-category="ceremony cultural">
             <img loading="lazy" decoding="async" src="https://github.com/user-attachments/assets/05580323-19cd-4a40-8131-8bbb89b929a1" alt="Ethiopian Orthodox wedding ceremony styling with authentic decor">
             <div class="gallery-copy">
-              <h3>Orthodox Wedding Ceremony</h3>
-              <p>Authentic Ethiopian Orthodox wedding inspiration with ceremonial decor, family-centered flow, and cultural detail.</p>
+              <h3 id="gallery-card-1-title">Orthodox Wedding Ceremony</h3>
+              <p id="gallery-card-1-body">Authentic Ethiopian Orthodox wedding inspiration with ceremonial decor, family-centered flow, and cultural detail.</p>
             </div>
           </article>
           <article class="gallery-card" data-category="reception cultural">
             <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/1/18/Traditional_Habesha_Dress.jpg" alt="Habesha celebration attire for formal receptions and wedding portraits">
             <div class="gallery-copy">
-              <h3>Reception Heritage Styling</h3>
-              <p>Reception inspiration grounded in Habesha elegance, family seating traditions, and polished hospitality.</p>
+              <h3 id="gallery-card-2-title">Reception Heritage Styling</h3>
+              <p id="gallery-card-2-body">Reception inspiration grounded in Habesha elegance, family seating traditions, and polished hospitality.</p>
             </div>
           </article>
           <article class="gallery-card" data-category="ceremony cultural">
             <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Timkat_Ceremony_in_Ethiopia.jpg" alt="Ethiopian baptism celebration with ceremonial procession and cultural dress">
             <div class="gallery-copy">
-              <h3>Baptism Celebration</h3>
-              <p>Real baptism inspiration with ceremonial processions, spiritual traditions, and respectful family-centered presentation.</p>
+              <h3 id="gallery-card-3-title">Baptism Celebration</h3>
+              <p id="gallery-card-3-body">Real baptism inspiration with ceremonial processions, spiritual traditions, and respectful family-centered presentation.</p>
             </div>
           </article>
           <article class="gallery-card" data-category="cultural ceremony">
             <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Traditional_Habesha_clothing.jpg" alt="Traditional Habesha attire with embroidered Ethiopian textile details">
             <div class="gallery-copy">
-              <h3>Traditional Attire</h3>
-              <p>Habesha-inspired looks, heritage silhouettes, and textile references that ground the event in Ethiopian identity.</p>
+              <h3 id="gallery-card-4-title">Traditional Attire</h3>
+              <p id="gallery-card-4-body">Habesha-inspired looks, heritage silhouettes, and textile references that ground the event in Ethiopian identity.</p>
             </div>
           </article>
           <article class="gallery-card" data-category="cultural florals">
             <img loading="lazy" decoding="async" src="https://github.com/user-attachments/assets/5b11cc3e-a0bf-4ee1-bd6c-630449e0cbc0" alt="Authentic Ethiopian Bunna coffee ceremony setup with jebena and cups">
             <div class="gallery-copy">
-              <h3>Bunna Ceremony Corner</h3>
-              <p>Cultural setup ideas for coffee ceremony trays, woven accents, and meaningful guest interaction moments.</p>
+              <h3 id="gallery-card-5-title">Bunna Ceremony Corner</h3>
+              <p id="gallery-card-5-body">Cultural setup ideas for coffee ceremony trays, woven accents, and meaningful guest interaction moments.</p>
             </div>
           </article>
           <article class="gallery-card" data-category="cultural reception">
             <img loading="lazy" decoding="async" src="https://github.com/user-attachments/assets/05580323-19cd-4a40-8131-8bbb89b929a1" alt="Orthodox wedding venue styling with authentic ceremonial setup">
             <div class="gallery-copy">
-              <h3>Ceremonial Venue Display</h3>
-              <p>Stage and family-zone reference for Ethiopian Orthodox and multicultural celebrations with clear guest sightlines.</p>
+              <h3 id="gallery-card-6-title">Ceremonial Venue Display</h3>
+              <p id="gallery-card-6-body">Stage and family-zone reference for Ethiopian Orthodox and multicultural celebrations with clear guest sightlines.</p>
             </div>
           </article>
           <article class="gallery-card" data-category="cultural florals">
             <img loading="lazy" decoding="async" src="https://github.com/user-attachments/assets/5b11cc3e-a0bf-4ee1-bd6c-630449e0cbc0" alt="Coffee ceremony host serving guests in traditional Ethiopian setting">
             <div class="gallery-copy">
-              <h3>Coffee Ceremony Experience</h3>
-              <p>Live Bunna ceremony inspiration that brings community warmth, storytelling, and hospitality into your celebration.</p>
+              <h3 id="gallery-card-7-title">Coffee Ceremony Experience</h3>
+              <p id="gallery-card-7-body">Live Bunna ceremony inspiration that brings community warmth, storytelling, and hospitality into your celebration.</p>
             </div>
           </article>
         </div>
@@ -1359,8 +1359,8 @@
           <div class="video-shell">
             <img loading="lazy" decoding="async" src="https://github.com/user-attachments/assets/05580323-19cd-4a40-8131-8bbb89b929a1" alt="Orthodox wedding reception styling and ceremonial layout">
             <div class="video-caption">
-              <p class="eyebrow">Orthodox Wedding Styling</p>
-              <p>Authentic ceremony-to-reception inspiration with cultural elegance and polished guest experience.</p>
+              <p class="eyebrow" id="video-card-1-title">Orthodox Wedding Styling</p>
+              <p id="video-card-1-body">Authentic ceremony-to-reception inspiration with cultural elegance and polished guest experience.</p>
             </div>
           </div>
         </article>
@@ -1368,8 +1368,8 @@
           <div class="video-shell">
             <img loading="lazy" decoding="async" src="https://github.com/user-attachments/assets/5b11cc3e-a0bf-4ee1-bd6c-630449e0cbc0" alt="Traditional Ethiopian coffee ceremony host and setup">
             <div class="video-caption">
-              <p class="eyebrow">Bunna Ceremony Styling</p>
-              <p>Real coffee-ceremony visuals for cultural activation corners, family hospitality, and immersive event moments.</p>
+              <p class="eyebrow" id="video-card-2-title">Bunna Ceremony Styling</p>
+              <p id="video-card-2-body">Real coffee-ceremony visuals for cultural activation corners, family hospitality, and immersive event moments.</p>
             </div>
           </div>
         </article>
@@ -1517,6 +1517,7 @@
 
     const i18n = {
       en: {
+        titlePrefix: 'Yotode Event Planner',
         title: 'Yotode Event Planner | Ethiopian Luxury Celebrations',
         heroEyebrow: 'Elegant Ethiopian Event Planning',
         heroTitle: 'Crafting unforgettable celebrations with culture, grace, and modern luxury.',
@@ -1526,6 +1527,7 @@
         heroHighlight3: 'Refined client journey with authentic visuals, signature packages, and clear four-section navigation.',
         ctaBook: 'Book a Consultation',
         ctaInspiration: 'See Visual Inspiration',
+        servicesIntro: 'We provide complete event support through three signature all-inclusive packages covering venue coordination, decoration, catering, and celebration-day leadership for every culture and tradition.',
         stat1Title: 'All Cultures',
         stat1Body: 'Inclusive planning for Ethiopian, East African, American, and global celebration traditions.',
         stat2Title: 'Orthodox + Beyond',
@@ -1541,6 +1543,28 @@
         filterFlorals: 'Florals',
         drawerNavigate: 'Navigate',
         drawerTitle: 'Yotode Pages',
+        drawerHomeDesc: 'Brand story, featured event imagery, and a polished planning introduction.',
+        drawerServicesDesc: 'Planning support, three signature packages, and the event process.',
+        drawerInspirationDesc: 'Authentic decor, reception, floral, and cultural reference moments.',
+        drawerContactDesc: 'Booking lines, department contacts, and the inquiry form.',
+        galleryCard1Title: 'Orthodox Wedding Ceremony',
+        galleryCard1Body: 'Authentic Ethiopian Orthodox wedding inspiration with ceremonial decor, family-centered flow, and cultural detail.',
+        galleryCard2Title: 'Reception Heritage Styling',
+        galleryCard2Body: 'Reception inspiration grounded in Habesha elegance, family seating traditions, and polished hospitality.',
+        galleryCard3Title: 'Baptism Celebration',
+        galleryCard3Body: 'Real baptism inspiration with ceremonial processions, spiritual traditions, and respectful family-centered presentation.',
+        galleryCard4Title: 'Traditional Attire',
+        galleryCard4Body: 'Habesha-inspired looks, heritage silhouettes, and textile references that ground the event in Ethiopian identity.',
+        galleryCard5Title: 'Bunna Ceremony Corner',
+        galleryCard5Body: 'Cultural setup ideas for coffee ceremony trays, woven accents, and meaningful guest interaction moments.',
+        galleryCard6Title: 'Ceremonial Venue Display',
+        galleryCard6Body: 'Stage and family-zone reference for Ethiopian Orthodox and multicultural celebrations with clear guest sightlines.',
+        galleryCard7Title: 'Coffee Ceremony Experience',
+        galleryCard7Body: 'Live Bunna ceremony inspiration that brings community warmth, storytelling, and hospitality into your celebration.',
+        videoCard1Title: 'Orthodox Wedding Styling',
+        videoCard1Body: 'Authentic ceremony-to-reception inspiration with cultural elegance and polished guest experience.',
+        videoCard2Title: 'Bunna Ceremony Styling',
+        videoCard2Body: 'Real coffee-ceremony visuals for cultural activation corners, family hospitality, and immersive event moments.',
         contactTitle: 'Start planning your celebration with clarity and confidence.',
         contactBody: 'Share your event type, guest count, and preferred planning support. We\'ll guide you toward the right package and next steps.',
         footer: '© 2026 Yotode Event Planner. Home, Services & Packages, Inspiration, and Contact remain available from the focused four-section navigation.',
@@ -1551,6 +1575,7 @@
         sendingButton: 'Sending...'
       },
       am: {
+        titlePrefix: 'Yotode Event Planner',
         title: 'Yotode Event Planner | የኢትዮጵያ ዘመናዊ ክብረ በዓል እቅድ',
         heroEyebrow: 'ውብ የኢትዮጵያ ክብረ በዓል እቅድ',
         heroTitle: 'የማይረሱ ክብረ በዓላትን በባህል፣ በውበት እና በዘመናዊ ግርማ እንፈጥራለን።',
@@ -1560,6 +1585,7 @@
         heroHighlight3: 'በእውነተኛ ምስሎች፣ በፓኬጆች እና በግልጽ 4-ክፍል ናቪጌሽን የተጠናከረ የደንበኛ ጉዞ።',
         ctaBook: 'ምክክር ያስይዙ',
         ctaInspiration: 'የምስል አስተሳሰብ ይመልከቱ',
+        servicesIntro: 'ለቦታ አስተባባሪነት፣ ለዲኮሬሽን፣ ለካተሪንግ እና ለየክብረ በዓል ቀን መሪነት ለሁሉም ባህል የሚስማማ ሙሉ የእቅድ ድጋፍ እናቀርባለን።',
         stat1Title: 'ሁሉንም ባህል',
         stat1Body: 'ለኢትዮጵያ፣ ለምሥራቅ አፍሪካ፣ ለአሜሪካ እና ለዓለም አቀፍ የክብረ በዓል ባህሎች የሚስማማ እቅድ።',
         stat2Title: 'ኦርቶዶክስ እና ከዚያ በላይ',
@@ -1575,6 +1601,28 @@
         filterFlorals: 'አበባ',
         drawerNavigate: 'ያስሱ',
         drawerTitle: 'የYotode ገጾች',
+        drawerHomeDesc: 'የብራንድ ታሪክ፣ የተመረጡ የዝግጅት ምስሎች እና የተጣራ መግቢያ መረጃ።',
+        drawerServicesDesc: 'የእቅድ ድጋፍ፣ 3 ዋና ፓኬጆች እና የዝግጅት ሂደት።',
+        drawerInspirationDesc: 'እውነተኛ ዲኮር፣ ግብዣ፣ አበባ እና ባህላዊ አስተሳሰብ ምሳሌዎች።',
+        drawerContactDesc: 'የቦኪንግ ስልኮች፣ የክፍል ግንኙነት መረጃ እና የጥያቄ ፎርም።',
+        galleryCard1Title: 'የኦርቶዶክስ ጋብቻ ስነ-ሥርዓት',
+        galleryCard1Body: 'በሥነ-ሥርዓት ዲኮር፣ በቤተሰብ የተመሰረተ እቅድ እና ባህላዊ ዝርዝር የተገነባ እውነተኛ አስተሳሰብ።',
+        galleryCard2Title: 'የግብዣ ባህላዊ ስታይል',
+        galleryCard2Body: 'በሀበሻ ውበት፣ በቤተሰብ መቀመጫ ልማዶች እና በተጣራ እንግዳነት የተመሠረተ ግብዣ አስተሳሰብ።',
+        galleryCard3Title: 'የጥምቀት ክብረ በዓል',
+        galleryCard3Body: 'በመንፈሳዊ ባህል እና በቤተሰብ ማዕከላዊ አቀራረብ የተዘጋጀ እውነተኛ የጥምቀት አስተሳሰብ።',
+        galleryCard4Title: 'ባህላዊ አልባሳት',
+        galleryCard4Body: 'የሀበሻ ስታይል፣ የቅርስ ቅርፀቶች እና የጨርቅ ማጣቀሻዎች የኢትዮጵያ መለያን ያበራሉ።',
+        galleryCard5Title: 'የቡና ሥነ-ሥርዓት ኮርነር',
+        galleryCard5Body: 'ለቡና ሥነ-ሥርዓት ትሪዎች፣ ለተጠለፉ አካላት እና ለእንግዶች ተሳትፎ ተግባራዊ አስተሳሰብ።',
+        galleryCard6Title: 'የስነ-ሥርዓት ቦታ አቀራረብ',
+        galleryCard6Body: 'ለኢትዮጵያ ኦርቶዶክስ እና ለብዙ ባህል ዝግጅቶች የቤተሰብ ክፍል ያለው የመድረክ አቀራረብ።',
+        galleryCard7Title: 'የቡና ሥነ-ሥርዓት ተሞክሮ',
+        galleryCard7Body: 'በሙቀት እና በማህበራዊ እንግዳነት የተሞላ የቡና ሥነ-ሥርዓት አስተሳሰብ።',
+        videoCard1Title: 'የኦርቶዶክስ ጋብቻ ስታይል',
+        videoCard1Body: 'ከሥነ-ሥርዓት እስከ ግብዣ ድረስ የባህላዊ ውበት እና የተጣራ እንግዳ ተሞክሮ አስተሳሰብ።',
+        videoCard2Title: 'የቡና ሥነ-ሥርዓት ስታይል',
+        videoCard2Body: 'ለባህላዊ ኮርነር፣ ለቤተሰብ እንግዳነት እና ለተሳታፊ ሞመንቶች እውነተኛ የቡና ምስሎች።',
         contactTitle: 'ክብረ በዓልዎን በግልጽነት እና በእምነት ለመጀመር ያነጋግሩን።',
         contactBody: 'የዝግጅት አይነትዎን፣ የእንግዶች ቁጥር እና የሚፈልጉትን የእቅድ ድጋፍ ያጋሩ። ተገቢውን ፓኬጅ እና ቀጣይ እርምጃ እንመራዎታለን።',
         footer: '© 2026 Yotode Event Planner። መነሻ፣ አገልግሎቶች እና ፓኬጆች፣ ምስክር ሐሳቦች እና አግኙን ክፍሎች በቀላሉ ይገኛሉ።',
@@ -1620,8 +1668,9 @@
       setText('hero-highlight-1', locale.heroHighlight1);
       setText('hero-highlight-2', locale.heroHighlight2);
       setText('hero-highlight-3', locale.heroHighlight3);
-      setText('cta-book', locale.ctaBook);
-      setText('cta-inspiration', locale.ctaInspiration);
+      setText('cta-book-text', locale.ctaBook);
+      setText('cta-inspiration-text', locale.ctaInspiration);
+      setText('services-intro', locale.servicesIntro);
       setText('stat-1-title', locale.stat1Title);
       setText('stat-1-body', locale.stat1Body);
       setText('stat-2-title', locale.stat2Title);
@@ -1641,6 +1690,28 @@
       setText('drawer-services', (pageTitles[lang] || pageTitles.en).services);
       setText('drawer-inspiration', (pageTitles[lang] || pageTitles.en).inspiration);
       setText('drawer-contact', (pageTitles[lang] || pageTitles.en).contact);
+      setText('drawer-home-desc', locale.drawerHomeDesc);
+      setText('drawer-services-desc', locale.drawerServicesDesc);
+      setText('drawer-inspiration-desc', locale.drawerInspirationDesc);
+      setText('drawer-contact-desc', locale.drawerContactDesc);
+      setText('gallery-card-1-title', locale.galleryCard1Title);
+      setText('gallery-card-1-body', locale.galleryCard1Body);
+      setText('gallery-card-2-title', locale.galleryCard2Title);
+      setText('gallery-card-2-body', locale.galleryCard2Body);
+      setText('gallery-card-3-title', locale.galleryCard3Title);
+      setText('gallery-card-3-body', locale.galleryCard3Body);
+      setText('gallery-card-4-title', locale.galleryCard4Title);
+      setText('gallery-card-4-body', locale.galleryCard4Body);
+      setText('gallery-card-5-title', locale.galleryCard5Title);
+      setText('gallery-card-5-body', locale.galleryCard5Body);
+      setText('gallery-card-6-title', locale.galleryCard6Title);
+      setText('gallery-card-6-body', locale.galleryCard6Body);
+      setText('gallery-card-7-title', locale.galleryCard7Title);
+      setText('gallery-card-7-body', locale.galleryCard7Body);
+      setText('video-card-1-title', locale.videoCard1Title);
+      setText('video-card-1-body', locale.videoCard1Body);
+      setText('video-card-2-title', locale.videoCard2Title);
+      setText('video-card-2-body', locale.videoCard2Body);
       setText('contact-title', locale.contactTitle);
       setText('contact-body', locale.contactBody);
       setText('footer-copy', locale.footer);
@@ -1658,6 +1729,7 @@
 
       languageButtons.forEach((button) => {
         button.classList.toggle('active', button.dataset.lang === lang);
+        button.setAttribute('aria-pressed', String(button.dataset.lang === lang));
       });
     };
 
@@ -1708,7 +1780,8 @@
       });
 
       const navMap = pageTitles[currentLanguage] || pageTitles.en;
-      document.title = `Yotode Event Planner | ${navMap[page]}`;
+      const locale = i18n[currentLanguage] || i18n.en;
+      document.title = `${locale.titlePrefix} | ${navMap[page]}`;
       if (pageIndicator) {
         pageIndicator.textContent = navMap[page];
       }
