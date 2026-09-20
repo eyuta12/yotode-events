@@ -1014,9 +1014,9 @@
         <a href="#contact" data-route="contact">Contact</a>
       </nav>
       <div class="header-actions">
-        <div class="language-toggle" role="group" aria-label="Language selector">
-          <button class="lang-btn active" type="button" data-lang="en" aria-pressed="true">EN</button>
-          <button class="lang-btn" type="button" data-lang="am" aria-pressed="false">አማ</button>
+        <div class="language-toggle" id="language-toggle" role="group" aria-label="Language selector">
+          <button class="lang-btn active" type="button" data-lang="en" aria-label="English" aria-pressed="true">EN</button>
+          <button class="lang-btn" type="button" data-lang="am" aria-label="Amharic" aria-pressed="false">አማ</button>
         </div>
         <span class="page-kicker" id="page-indicator">Home</span>
         <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-drawer" aria-label="Open navigation menu">
@@ -1519,6 +1519,9 @@
       en: {
         titlePrefix: 'Yotode Event Planner',
         title: 'Yotode Event Planner | Ethiopian Luxury Celebrations',
+        languageSelector: 'Language selector',
+        languageButtonEn: 'English',
+        languageButtonAm: 'Amharic',
         heroEyebrow: 'Elegant Ethiopian Event Planning',
         heroTitle: 'Crafting unforgettable celebrations with culture, grace, and modern luxury.',
         heroBody: 'Yotode Event Planner creates polished wedding weekends, engagement celebrations, church ceremonies, and refined receptions with Ethiopian hospitality and multicultural planning for every tradition.',
@@ -1577,6 +1580,9 @@
       am: {
         titlePrefix: 'Yotode Event Planner',
         title: 'Yotode Event Planner | የኢትዮጵያ ዘመናዊ ክብረ በዓል እቅድ',
+        languageSelector: 'የቋንቋ ምርጫ',
+        languageButtonEn: 'እንግሊዝኛ',
+        languageButtonAm: 'አማርኛ',
         heroEyebrow: 'ውብ የኢትዮጵያ ክብረ በዓል እቅድ',
         heroTitle: 'የማይረሱ ክብረ በዓላትን በባህል፣ በውበት እና በዘመናዊ ግርማ እንፈጥራለን።',
         heroBody: 'Yotode Event Planner የጋብቻ፣ የእጮኝነት፣ የቤተክርስቲያን ስነ-ሥርዓት እና የምግብ ግብዣ ዝግጅቶችን በኢትዮጵያዊ እንግዳነት እና ለሁሉም ባህል ተስማሚ እቅድ ያቀርባል።',
@@ -1661,6 +1667,10 @@
       currentLanguage = lang;
       document.documentElement.lang = lang === 'am' ? 'am' : 'en';
       document.title = locale.title;
+      const languageToggle = document.getElementById('language-toggle');
+      if (languageToggle) {
+        languageToggle.setAttribute('aria-label', locale.languageSelector);
+      }
 
       setText('hero-eyebrow', locale.heroEyebrow);
       setText('home-title', locale.heroTitle);
@@ -1730,6 +1740,11 @@
       languageButtons.forEach((button) => {
         button.classList.toggle('active', button.dataset.lang === lang);
         button.setAttribute('aria-pressed', String(button.dataset.lang === lang));
+        if (button.dataset.lang === 'en') {
+          button.setAttribute('aria-label', locale.languageButtonEn);
+        } else if (button.dataset.lang === 'am') {
+          button.setAttribute('aria-label', locale.languageButtonAm);
+        }
       });
     };
 
@@ -1781,7 +1796,7 @@
 
       const navMap = pageTitles[currentLanguage] || pageTitles.en;
       const locale = i18n[currentLanguage] || i18n.en;
-      document.title = `${locale.titlePrefix} | ${navMap[page]}`;
+      document.title = page === 'home' ? locale.title : `${locale.titlePrefix} | ${navMap[page]}`;
       if (pageIndicator) {
         pageIndicator.textContent = navMap[page];
       }
