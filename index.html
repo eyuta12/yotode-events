@@ -1940,13 +1940,14 @@
         }
 
         const submitButton = form.querySelector('button[type="submit"]');
+        const submitLocale = i18n[currentLanguage] || i18n.en;
 
         try {
           if (submitButton) {
             submitButton.disabled = true;
-            submitButton.textContent = (i18n[currentLanguage] || i18n.en).sendingButton;
+            submitButton.textContent = submitLocale.sendingButton;
           }
-          status.textContent = (i18n[currentLanguage] || i18n.en).statusSending;
+          status.textContent = submitLocale.statusSending;
 
           const response = await fetch(form.action, {
             method: 'POST',
@@ -1959,13 +1960,13 @@
           }
 
           form.reset();
-          status.textContent = (i18n[currentLanguage] || i18n.en).statusSuccess;
+          status.textContent = submitLocale.statusSuccess;
         } catch (error) {
-          status.textContent = (i18n[currentLanguage] || i18n.en).statusError;
+          status.textContent = submitLocale.statusError;
         } finally {
           if (submitButton) {
             submitButton.disabled = false;
-            submitButton.textContent = (i18n[currentLanguage] || i18n.en).submitButtonLabel;
+            submitButton.textContent = submitLocale.submitButtonLabel;
           }
         }
       });
