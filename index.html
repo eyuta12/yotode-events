@@ -1711,7 +1711,7 @@
       } catch (error) {
         // Ignore storage failures in restricted environments
       }
-      document.documentElement.lang = lang === 'am' ? 'am' : 'en';
+      document.documentElement.lang = normalizedLang;
       const languageToggle = document.getElementById('language-toggle');
       if (languageToggle) {
         languageToggle.setAttribute('aria-label', locale.languageSelector);
@@ -1940,14 +1940,14 @@
         }
 
         const submitButton = form.querySelector('button[type="submit"]');
-        const submitLocale = i18n[currentLanguage] || i18n.en;
+        const getLocale = () => i18n[currentLanguage] || i18n.en;
 
         try {
           if (submitButton) {
             submitButton.disabled = true;
-            submitButton.textContent = submitLocale.sendingButton;
+            submitButton.textContent = getLocale().sendingButton;
           }
-          status.textContent = submitLocale.statusSending;
+          status.textContent = getLocale().statusSending;
 
           const response = await fetch(form.action, {
             method: 'POST',
@@ -1960,13 +1960,13 @@
           }
 
           form.reset();
-          status.textContent = submitLocale.statusSuccess;
+          status.textContent = getLocale().statusSuccess;
         } catch (error) {
-          status.textContent = submitLocale.statusError;
+          status.textContent = getLocale().statusError;
         } finally {
           if (submitButton) {
             submitButton.disabled = false;
-            submitButton.textContent = submitLocale.submitButtonLabel;
+            submitButton.textContent = getLocale().submitButtonLabel;
           }
         }
       });
