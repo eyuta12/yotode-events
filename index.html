@@ -6,7 +6,7 @@
   <title>Yotode Event Planner | Ethiopian Luxury Celebrations</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700&family=Noto+Sans+Ethiopic:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --burgundy: #7A1C28;
@@ -24,6 +24,7 @@
       --nav-width: min(24rem, calc(100vw - 2rem));
       --font-sans: 'Montserrat', 'Avenir Next', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       --font-serif: 'Cormorant Garamond', 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
+      --font-ethiopic: 'Noto Sans Ethiopic', var(--font-sans);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -44,6 +45,18 @@
     }
 
     body.menu-open { overflow: hidden; }
+
+    html[lang="am"] body { font-family: var(--font-ethiopic); }
+
+    html[lang="am"] h1,
+    html[lang="am"] h2,
+    html[lang="am"] h3,
+    html[lang="am"] h4,
+    html[lang="am"] .drawer-links strong,
+    html[lang="am"] .brand-mark strong {
+      font-family: var(--font-ethiopic);
+      line-height: 1.2;
+    }
 
     img { max-width: 100%; display: block; }
 
@@ -116,6 +129,32 @@
       display: flex;
       align-items: center;
       gap: 0.75rem;
+    }
+
+    .language-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.15rem;
+      padding: 0.2rem;
+      border-radius: 999px;
+      border: 1px solid rgba(122, 28, 40, 0.2);
+      background: rgba(255, 255, 255, 0.75);
+    }
+
+    .language-button {
+      border: 0;
+      background: transparent;
+      color: var(--burgundy);
+      font-weight: 700;
+      border-radius: 999px;
+      padding: 0.35rem 0.65rem;
+      font-size: 0.78rem;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .language-button.active {
+      background: rgba(122, 28, 40, 0.12);
     }
 
     .desktop-nav {
@@ -986,6 +1025,10 @@
         <a href="#contact" data-route="contact">Contact</a>
       </nav>
       <div class="header-actions">
+        <div class="language-toggle" role="group" aria-label="Language selector">
+          <button class="language-button active" id="lang-en" type="button" data-lang="en" aria-pressed="true">EN</button>
+          <button class="language-button" id="lang-am" type="button" data-lang="am" aria-pressed="false">አማ</button>
+        </div>
         <span class="page-kicker" id="page-indicator">Home</span>
         <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-drawer" aria-label="Open navigation menu">
           <span></span>
@@ -1046,13 +1089,14 @@
       <div class="page-hero">
         <div class="hero-layout">
           <div class="hero-copy">
-            <p class="eyebrow">Elegant Ethiopian Event Planning</p>
-            <h1 id="home-title">Crafting unforgettable celebrations with culture, grace, and modern luxury.</h1>
-            <p>Yotode Event Planner creates polished wedding weekends, engagement celebrations, church ceremonies, and refined receptions with Ethiopian hospitality woven through every guest touchpoint.</p>
+            <p class="eyebrow">Multicultural Event Planning Excellence</p>
+            <h1 id="home-title">Your celebration, your culture, your way.</h1>
+            <p>Yotode Event Planner creates polished celebrations for Ethiopian, International, and Multicultural Events with thoughtful planning and elevated hospitality.</p>
             <ul class="hero-highlights">
-              <li>Custom planning for Ethiopian Orthodox weddings, family celebrations, and milestone gatherings.</li>
+              <li>We celebrate all cultures and traditions with personalized planning.</li>
+              <li>Ethiopian Orthodox weddings and ceremonies, international weddings, and interfaith celebrations.</li>
               <li>WE DO VENUE coordination, WE DO DECORATION, WE DO CATERING, and full event coordination.</li>
-              <li>Refined client journey with authentic visuals, signature packages, and clear four-section navigation.</li>
+              <li>Services available for any cultural celebration with professional coordination from concept to event day.</li>
             </ul>
             <div class="hero-actions">
               <a class="btn btn-primary" href="#contact" data-route="contact">Book a Consultation</a>
@@ -1062,27 +1106,12 @@
 
           <article class="video-card" aria-label="Featured Yotode event portfolio image">
             <div class="video-shell" id="brand-film">
-              <img src="https://images.pexels.com/photos/2306281/pexels-photo-2306281.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Elegant reception decor with candlelit tables, floral centerpieces, and venue styling" loading="eager" decoding="async" fetchpriority="high">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Wedding_ceremony%2C_Ethiopian_Orthodox_Church%2C_Addis_Ababa.jpg" alt="Ethiopian Orthodox wedding ceremony in Addis Ababa church" loading="eager" decoding="async" fetchpriority="high">
               <div class="video-caption">
                 <p class="eyebrow">Featured Portfolio</p>
-                <p>Reception styling, floral layering, and premium guest-table presentation aligned with Yotode’s burgundy-and-gold brand direction.</p>
+                <p>Reception styling, ceremony direction, and premium guest presentation designed for Ethiopian, international, and multicultural celebrations.</p>
               </div>
             </div>
-          </article>
-        </div>
-
-        <div class="stats-grid" aria-label="Yotode highlights">
-          <article class="stat-card">
-            <strong>4</strong>
-            <p>Dedicated destination-like pages for home, services, inspiration, and inquiry.</p>
-          </article>
-          <article class="stat-card">
-            <strong>360°</strong>
-            <p>Planning coverage from sacred ceremony flow to reception ambiance and vendor coordination.</p>
-          </article>
-          <article class="stat-card">
-            <strong>ደስታ</strong>
-            <p>Joy-centered design language inspired by Ethiopian celebrations, hospitality, and family traditions.</p>
           </article>
         </div>
       </div>
@@ -1093,14 +1122,14 @@
         <div class="section-heading center">
           <p class="eyebrow">Services &amp; Packages</p>
           <h2 id="services-title">Full-service planning created for meaningful celebrations.</h2>
-          <p>We provide complete event support through three signature all-inclusive packages covering venue coordination, decoration, catering, and celebration-day leadership.</p>
+          <p>We celebrate all cultures and traditions with complete event support through three signature all-inclusive packages.</p>
         </div>
 
         <div class="services-layout">
           <div class="offer-grid">
             <article class="service-card">
               <h3>Ceremony Design</h3>
-              <p>Planning for Ethiopian Orthodox church flow, family entrances, blessing moments, and formal reception transitions.</p>
+              <p>Planning for Ethiopian Orthodox church flow, international ceremonies, and interfaith transitions with cultural respect.</p>
             </article>
             <article class="service-card">
               <h3>DECORATION &amp; Florals</h3>
@@ -1116,7 +1145,7 @@
             </article>
             <article class="service-card">
               <h3>Zemari &amp; Cultural Programming</h3>
-              <p>Rehearsal planning, ceremonial musicians, cultural touchpoints, and respectful storytelling throughout the event day.</p>
+              <p>Rehearsal planning, ceremonial musicians, and cultural programming tailored for Ethiopian, international, and multicultural events.</p>
             </article>
             <article class="service-card">
               <h3>VENUE Coordination &amp; Styling</h3>
@@ -1126,12 +1155,12 @@
 
           <article class="story-card accent">
             <p class="eyebrow">What We Offer</p>
-            <h3>Luxury details that still feel personal to your family story.</h3>
+            <h3>Luxury details that honor every family story and cultural identity.</h3>
             <ul class="offer-list">
-              <li>Custom mood boards inspired by church architecture, textiles, and Ethiopian celebratory color symbolism.</li>
-              <li>Vendor curation for florals, catering, photography, entertainment, rentals, and cultural ceremony needs.</li>
+              <li>Custom mood boards inspired by Ethiopian, international, and multicultural celebration aesthetics.</li>
+              <li>Vendor curation for florals, catering, photography, entertainment, rentals, and any cultural ceremony needs.</li>
               <li>Guest-experience planning that keeps elders, family members, and out-of-town visitors fully cared for.</li>
-              <li>Design guidance for believable, elevated setups using real-event visuals and layered inspiration references.</li>
+              <li>Design guidance for believable, elevated setups using authentic real-event visuals.</li>
             </ul>
           </article>
         </div>
@@ -1257,66 +1286,59 @@
       <div class="section-card">
         <div class="section-heading center">
           <p class="eyebrow">Inspiration</p>
-          <h2 id="inspiration-title">Authentic inspiration for ceremonies, receptions, florals, and Ethiopian celebration details.</h2>
-          <p>Browse real-event style references for ceremony moments, reception styling, cultural rituals, and floral details. Use the filters to focus each inspiration set.</p>
+          <h2 id="inspiration-title">Authentic Ethiopian Orthodox, baptism, coffee ceremony, and multicultural event inspiration.</h2>
+          <p>Browse real cultural celebration references for Orthodox weddings, baptism ceremonies, coffee service setups, and inclusive multicultural event styling.</p>
         </div>
 
         <div class="filter-bar" aria-label="Gallery filters">
           <button class="filter-button active" type="button" data-filter="all">All</button>
-          <button class="filter-button" type="button" data-filter="ceremony">Ceremony</button>
-          <button class="filter-button" type="button" data-filter="reception">Reception</button>
-          <button class="filter-button" type="button" data-filter="cultural">Cultural</button>
-          <button class="filter-button" type="button" data-filter="florals">Florals</button>
+          <button class="filter-button" type="button" data-filter="wedding">Orthodox Wedding</button>
+          <button class="filter-button" type="button" data-filter="baptism">Baptism</button>
+          <button class="filter-button" type="button" data-filter="coffee">Coffee Ceremony</button>
+          <button class="filter-button" type="button" data-filter="multicultural">Multicultural</button>
         </div>
 
         <div class="gallery-grid" id="gallery-grid">
-          <article class="gallery-card" data-category="ceremony cultural">
-            <img loading="lazy" decoding="async" src="https://images.pexels.com/photos/169189/pexels-photo-169189.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Ceremony aisle setup with chairs, floral decor, and event styling">
+          <article class="gallery-card" data-category="wedding multicultural">
+            <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Ethiopian_Orthodox_church_wedding_%2821563620010%29.jpg" alt="Ethiopian Orthodox church wedding ceremony with traditional attire and formal procession">
             <div class="gallery-copy">
-              <h3>Ceremony Arrival</h3>
-              <p>Processional styling reference with a polished aisle, guest seating flow, and decor framing suited to meaningful ceremony moments.</p>
+              <h3>Ethiopian Orthodox Wedding Ceremony</h3>
+              <p>Real Orthodox ceremony inspiration featuring sacred processional moments, traditional attire, and culturally grounded celebration flow.</p>
             </div>
           </article>
-          <article class="gallery-card" data-category="reception florals">
-            <img loading="lazy" decoding="async" src="https://images.pexels.com/photos/2306281/pexels-photo-2306281.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Reception venue with candlelight, florals, and formal table styling">
+          <article class="gallery-card" data-category="wedding multicultural">
+            <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Oromo_Wedding_in_Christian_church%2C_Addis_Ababa%2C_Ethiopia_-_Justin_Copley.jpg" alt="Wedding ceremony in Addis Ababa church reflecting Ethiopian cultural traditions">
             <div class="gallery-copy">
-              <h3>Reception Grandeur</h3>
-              <p>Reception inspiration with candlelit tables, layered linens, and guest-table styling that feels elevated yet warm.</p>
+              <h3>Orthodox Wedding Celebration</h3>
+              <p>Authentic Ethiopian wedding references with family-centered ceremony sequencing and respectful church tradition.</p>
             </div>
           </article>
-          <article class="gallery-card" data-category="florals reception">
-            <img loading="lazy" decoding="async" src="https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Wedding floral centerpiece arrangement with layered blooms">
+          <article class="gallery-card" data-category="baptism multicultural">
+            <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/3/38/Timket_Ceremony_Gondar_Ethio.jpg" alt="Timkat baptism celebration in Ethiopia with ceremonial gathering">
             <div class="gallery-copy">
-              <h3>Floral Styling</h3>
-              <p>Layered florals, draped textures, and refined centerpieces that complement burgundy and gold palettes.</p>
+              <h3>Baptism Ceremony Celebration</h3>
+              <p>Authentic Ethiopian baptism celebration inspiration highlighting ceremonial gathering, faith traditions, and joyful community participation.</p>
             </div>
           </article>
-          <article class="gallery-card" data-category="cultural ceremony">
-            <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/1/18/Traditional_Habesha_Dress.jpg" alt="Traditional Habesha attire with embroidered Ethiopian dress details">
+          <article class="gallery-card" data-category="baptism multicultural">
+            <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/e/ee/Priests_carring_Tabots_for_Timkat_%2825549852544%29.jpg" alt="Ethiopian Timkat procession with priests carrying tabots during baptism celebration">
             <div class="gallery-copy">
-              <h3>Traditional Attire</h3>
-              <p>Habesha-inspired looks, heritage silhouettes, and textile references that ground the event in Ethiopian identity.</p>
+              <h3>Timkat Processional Traditions</h3>
+              <p>Processional details and ceremonial movement inspiration from Ethiopian baptism celebrations and faith-centered event traditions.</p>
             </div>
           </article>
-          <article class="gallery-card" data-category="cultural florals">
-            <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Ethiopian_coffee_ceremony_02.jpg" alt="Authentic Ethiopian coffee ceremony setup with traditional service elements">
+          <article class="gallery-card" data-category="coffee cultural">
+            <img loading="lazy" decoding="async" src="https://github.com/user-attachments/assets/5b11cc3e-a0bf-4ee1-bd6c-630449e0cbc0" alt="Coffee ceremony setup with traditional Ethiopian service and cultural decor">
             <div class="gallery-copy">
-              <h3>Bunna Ceremony Corner</h3>
-              <p>Cultural setup ideas for coffee ceremony trays, woven accents, and meaningful guest interaction moments.</p>
+              <h3>Coffee Ceremony Setup I</h3>
+              <p>Provided authentic bunna setup showcasing traditional presentation, hospitality flow, and cultural storytelling through service.</p>
             </div>
           </article>
-          <article class="gallery-card" data-category="reception ceremony">
-            <img loading="lazy" decoding="async" src="https://images.pexels.com/photos/256737/pexels-photo-256737.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Venue display with head-table styling and event setup">
+          <article class="gallery-card" data-category="coffee multicultural">
+            <img loading="lazy" decoding="async" src="https://github.com/user-attachments/assets/05580323-19cd-4a40-8131-8bbb89b929a1" alt="Second coffee ceremony setup image with Ethiopian cultural event styling">
             <div class="gallery-copy">
-              <h3>Venue Display</h3>
-              <p>Stage and head-table reference for framing the room with symmetry, florals, and clear sightlines for family seating.</p>
-            </div>
-          </article>
-          <article class="gallery-card" data-category="reception cultural">
-            <img loading="lazy" decoding="async" src="https://images.pexels.com/photos/713149/pexels-photo-713149.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Celebration crowd dancing at an event reception">
-            <div class="gallery-copy">
-              <h3>Celebration Energy</h3>
-              <p>Live celebration atmosphere for entrance timing, guest movement, and a reception experience that feels full of joy.</p>
+              <h3>Coffee Ceremony Setup II</h3>
+              <p>Additional provided coffee-ceremony imagery for authentic cultural corners and warm guest-experience moments.</p>
             </div>
           </article>
         </div>
@@ -1325,19 +1347,19 @@
       <div class="video-gallery" aria-label="Celebration photo highlights">
         <article class="video-card">
           <div class="video-shell">
-            <img loading="lazy" decoding="async" src="https://images.pexels.com/photos/1679825/pexels-photo-1679825.jpeg?auto=compress&cs=tinysrgb&w=1400" alt="Decorated reception table with authentic celebration styling">
+            <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/1/18/Traditional_Habesha_Dress.jpg" alt="Traditional Ethiopian attire reference for ceremony styling">
             <div class="video-caption">
-              <p class="eyebrow">Reception Styling</p>
-              <p>Decor-forward reception inspiration for layered tables, premium seating layouts, and guest-ready ambiance.</p>
+              <p class="eyebrow">Cultural Attire</p>
+              <p>Traditional attire references for Ethiopian and multicultural celebrations where heritage and elegance meet.</p>
             </div>
           </div>
         </article>
         <article class="video-card">
           <div class="video-shell">
-            <img loading="lazy" decoding="async" src="https://images.pexels.com/photos/2306281/pexels-photo-2306281.jpeg?auto=compress&cs=tinysrgb&w=1400" alt="Reception decor with candles and floral arrangements">
+            <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Ethiopian_coffee_ceremony_02.jpg" alt="Traditional Ethiopian coffee ceremony service setup">
             <div class="video-caption">
-              <p class="eyebrow">Venue Styling</p>
-              <p>Room-by-room inspiration for balancing luxury decor, family comfort, and coordinated vendor presentation.</p>
+              <p class="eyebrow">Coffee Hospitality</p>
+              <p>Authentic bunna hospitality inspiration with ritual service details that enrich all types of celebrations.</p>
             </div>
           </div>
         </article>
@@ -1346,21 +1368,21 @@
       <div class="story-layout" style="margin-top: 1.4rem;">
         <article class="story-card">
           <p class="eyebrow">Inspiration Notes</p>
-          <h3>Style every room with visual continuity.</h3>
-          <p>Our inspiration process begins with authentic references, then translates them into coherent venue zones: welcome moments, ceremony spaces, photography backdrops, dessert displays, and cultural ritual corners.</p>
+          <h3>Style every room with cultural continuity.</h3>
+          <p>Our inspiration process begins with authentic references, then translates them into coherent venue zones for Ethiopian, international, and multicultural celebrations.</p>
           <ul class="detail-list" style="margin-top: 1rem;">
-            <li>Create separate styling plans for ceremony, reception, lounge, and cultural activation areas.</li>
-            <li>Use warm burgundy, soft gold, candlelight, and textured florals to keep the aesthetic luxurious throughout.</li>
-            <li>Pair real-photo inspiration with production drawings so each setup feels believable on event day.</li>
+            <li>Create separate styling plans for Orthodox ceremonies, baptisms, receptions, and multicultural celebration spaces.</li>
+            <li>Use intentional color, light, and cultural textures to keep each event elegant and welcoming.</li>
+            <li>Pair real-photo inspiration with production planning so each setup feels authentic on event day.</li>
           </ul>
         </article>
         <article class="story-card accent">
           <p class="eyebrow">Cultural Elements</p>
-          <h3>Ethiopian touches that feel intentional, not decorative-only.</h3>
+          <h3>Cultural touches that feel intentional, inclusive, and respectful.</h3>
           <ul class="offer-list">
-            <li>Traditional coffee service display with floral-framed trays and woven accents.</li>
-            <li>Reception details inspired by Ethiopian celebration fabrics, family seating customs, and ceremonial rhythm.</li>
-            <li>Photo opportunities that highlight attire, heirloom accessories, and intergenerational family storytelling.</li>
+            <li>Ethiopian Orthodox wedding and baptism coordination with respectful ceremonial flow.</li>
+            <li>International weddings, interfaith ceremonies, and multicultural event styling support.</li>
+            <li>Photo opportunities that highlight attire, heirloom accessories, and family storytelling from any culture.</li>
           </ul>
         </article>
       </div>
@@ -1371,7 +1393,7 @@
         <div class="section-heading center">
           <p class="eyebrow">Contact</p>
           <h2 id="contact-title">Start planning your celebration with clarity and confidence.</h2>
-          <p>Share your event type, guest count, and preferred planning support. We’ll guide you toward the right package and next steps.</p>
+          <p>Share your event type, guest count, and preferred planning support. We guide Ethiopian, international, and multicultural celebrations with equal care.</p>
         </div>
 
         <div class="contact-layout">
@@ -1403,9 +1425,10 @@
               <li><strong>Service Area:</strong>&nbsp;Seattle and destination celebrations by request</li>
             </ul>
             <ul class="contact-list">
-              <li>Best for couples and families seeking Ethiopian cultural authenticity with a luxury presentation.</li>
+              <li>Best for couples and families seeking authentic cultural celebrations with a luxury presentation.</li>
+              <li>Your celebration, your culture, your way—services are available for any cultural celebration.</li>
               <li>Ideal booking timeline: 6–12 months for larger celebrations, 3–6 months for intimate events.</li>
-              <li>Consultations can cover venue styling, full-service planning, or inspiration-to-execution support.</li>
+              <li>Consultations can cover Ethiopian Orthodox ceremonies, international weddings, interfaith events, and full-service planning.</li>
             </ul>
           </article>
 
@@ -1468,12 +1491,7 @@
 
   <script>
     const routes = ['home', 'services', 'inspiration', 'contact'];
-    const pageTitles = {
-      home: 'Home',
-      services: 'Services & Packages',
-      inspiration: 'Inspiration',
-      contact: 'Contact'
-    };
+    let currentLanguage = 'en';
 
     const menuToggle = document.getElementById('menu-toggle');
     const drawerClose = document.getElementById('drawer-close');
@@ -1487,13 +1505,267 @@
     const galleryCards = Array.from(document.querySelectorAll('.gallery-card'));
     const inquiryButtons = Array.from(document.querySelectorAll('.package-inquiry'));
     const packageSelect = document.getElementById('package');
+    const languageButtons = Array.from(document.querySelectorAll('.language-button'));
+    const form = document.getElementById('contact-form');
+    const status = document.getElementById('form-status');
+
+    const localizedText = [
+      { selector: '.desktop-nav a[data-route="home"]', en: 'Home', am: 'መነሻ' },
+      { selector: '.desktop-nav a[data-route="services"]', en: 'Services & Packages', am: 'አገልግሎቶች እና ፓኬጆች' },
+      { selector: '.desktop-nav a[data-route="inspiration"]', en: 'Inspiration', am: 'መነሳሳት' },
+      { selector: '.desktop-nav a[data-route="contact"]', en: 'Contact', am: 'አግኙን' },
+      { selector: '.drawer-top .eyebrow', en: 'Navigate', am: 'አሰሳ' },
+      { selector: '.drawer-title', en: 'Yotode Pages', am: 'የYotode ገጾች' },
+      { selector: '.drawer-links li:nth-child(1) strong', en: 'Home', am: 'መነሻ' },
+      { selector: '.drawer-links li:nth-child(1) span', en: 'Brand story, featured event imagery, and a polished planning introduction.', am: 'የብራንድ ታሪክ፣ የተመረጡ የክስተት ምስሎች፣ እና የተዋበ የእቅድ መግቢያ።' },
+      { selector: '.drawer-links li:nth-child(2) strong', en: 'Services & Packages', am: 'አገልግሎቶች እና ፓኬጆች' },
+      { selector: '.drawer-links li:nth-child(2) span', en: 'Planning support, three signature packages, and the event process.', am: 'የእቅድ ድጋፍ፣ 3 ፈርማ ፓኬጆች፣ እና የክስተት ሂደት።' },
+      { selector: '.drawer-links li:nth-child(3) strong', en: 'Inspiration', am: 'መነሳሳት' },
+      { selector: '.drawer-links li:nth-child(3) span', en: 'Orthodox wedding, baptism, coffee ceremony, and multicultural event references.', am: 'የኦርቶዶክስ ሰርግ፣ ጥምቀት፣ የቡና ሥነ ሥርዓት እና ብዙ ባህላዊ ክስተቶች ማጣቀሻዎች።' },
+      { selector: '.drawer-links li:nth-child(4) strong', en: 'Contact', am: 'አግኙን' },
+      { selector: '.drawer-links li:nth-child(4) span', en: 'Booking lines, department contacts, and the inquiry form.', am: 'የቦታ ማስያዣ መስመሮች፣ የክፍል አገናኞች እና የጥያቄ ቅጽ።' },
+      { selector: '.drawer-note .eyebrow', en: 'Signature aesthetic', am: 'ልዩ ውበት' },
+      { selector: '.drawer-note p', en: 'We celebrate all cultures and traditions with inclusive planning for Ethiopian, international, interfaith, and multicultural events.', am: 'ለኢትዮጵያዊ፣ አለም አቀፍ፣ እምነት-ተሻጋሪ እና ባህል ብዙ ክስተቶች በአካታች እቅድ ሁሉንም ባህሎች እና ልማዶች እናከብራለን።' },
+      { selector: '#page-home .hero-copy .eyebrow', en: 'Multicultural Event Planning Excellence', am: 'ባህል ብዙ የክስተት እቅድ ልቀት' },
+      { selector: '#home-title', en: 'Your celebration, your culture, your way.', am: 'ክብረ በዓልዎ፣ ባህልዎ፣ በመንገድዎ።' },
+      { selector: '#page-home .hero-copy > p:nth-of-type(2)', en: 'Yotode Event Planner creates polished celebrations for Ethiopian, International, and Multicultural Events with thoughtful planning and elevated hospitality.', am: 'Yotode Event Planner ለኢትዮጵያዊ፣ አለም አቀፍ እና ባህል ብዙ ክስተቶች በተዘጋጀ እቅድ እና ከፍ ባለ እንግዳ አቀባበል የተዋቡ ክብረ በዓላትን ያዘጋጃል።' },
+      { selector: '#page-home .hero-highlights li:nth-child(1)', en: 'We celebrate all cultures and traditions with personalized planning.', am: 'በተለየ እቅድ ሁሉንም ባህሎች እና ልማዶች እናከብራለን።' },
+      { selector: '#page-home .hero-highlights li:nth-child(2)', en: 'Ethiopian Orthodox weddings and ceremonies, international weddings, and interfaith celebrations.', am: 'የኢትዮጵያ ኦርቶዶክስ ሰርጎች እና ሥነ ሥርዓቶች፣ አለም አቀፍ ሰርጎች እና እምነት-ተሻጋሪ ክብረ በዓላት።' },
+      { selector: '#page-home .hero-highlights li:nth-child(3)', en: 'WE DO VENUE coordination, WE DO DECORATION, WE DO CATERING, and full event coordination.', am: 'WE DO VENUE ኮርዲኔሽን፣ WE DO DECORATION፣ WE DO CATERING እና ሙሉ የክስተት ኮርዲኔሽን እናደርጋለን።' },
+      { selector: '#page-home .hero-highlights li:nth-child(4)', en: 'Services available for any cultural celebration with professional coordination from concept to event day.', am: 'ከሃሳብ እስከ የክስተት ቀን ድረስ በሙያዊ ኮርዲኔሽን ለማንኛውም ባህላዊ ክብረ በዓል አገልግሎት አለ።' },
+      { selector: '#page-home .hero-actions a:nth-child(1)', en: 'Book a Consultation', am: 'ምክክር ያስያዙ' },
+      { selector: '#page-home .hero-actions a:nth-child(2)', en: 'See Visual Inspiration', am: 'የምስል መነሳሳት ይመልከቱ' },
+      { selector: '#page-home .video-caption .eyebrow', en: 'Featured Portfolio', am: 'የተመረጠ ፖርትፎሊዮ' },
+      { selector: '#page-home .video-caption p:nth-of-type(2)', en: 'Reception styling, ceremony direction, and premium guest presentation designed for Ethiopian, international, and multicultural celebrations.', am: 'ለኢትዮጵያዊ፣ አለም አቀፍ እና ባህል ብዙ ክብረ በዓላት የተነደፈ የሬሰፕሽን ስታይል፣ የሥነ ሥርዓት አቅጣጫ እና ከፍ ያለ የእንግዳ ቅርጸ ቀረብ።' },
+      { selector: '#page-services .section-card:nth-of-type(1) .section-heading .eyebrow', en: 'Services & Packages', am: 'አገልግሎቶች እና ፓኬጆች' },
+      { selector: '#services-title', en: 'Full-service planning created for meaningful celebrations.', am: 'ለትርጉም ያላቸው ክብረ በዓላት የተዘጋጀ ሙሉ-አገልግሎት እቅድ።' },
+      { selector: '#page-services .section-card:nth-of-type(1) .section-heading p:nth-of-type(2)', en: 'We celebrate all cultures and traditions with complete event support through three signature all-inclusive packages.', am: 'በ3 ፈርማ ሙሉ-አካታች ፓኬጆች ሙሉ የክስተት ድጋፍ እየሰጠን ሁሉንም ባህሎች እና ልማዶች እናከብራለን።' },
+      { selector: '#page-services .service-card:nth-child(1) h3', en: 'Ceremony Design', am: 'የሥነ ሥርዓት ዲዛይን' },
+      { selector: '#page-services .service-card:nth-child(1) p', en: 'Planning for Ethiopian Orthodox church flow, international ceremonies, and interfaith transitions with cultural respect.', am: 'በባህል ክብር ለኢትዮጵያ ኦርቶዶክስ ቤተክርስቲያን ሂደት፣ ለአለም አቀፍ ሥነ ሥርዓቶች እና ለእምነት-ተሻጋሪ ሽግግሮች እቅድ።' },
+      { selector: '#page-services .service-card:nth-child(2) h3', en: 'DECORATION & Florals', am: 'ዲኮሬሽን እና አበባዎች' },
+      { selector: '#page-services .service-card:nth-child(2) p', en: 'Luxury floral direction, candlelit tablescapes, sweetheart staging, and culturally inspired texture layering.', am: 'የቅንጦት የአበባ አቅጣጫ፣ የሻማ ብርሃን ጠረጴዛ ማቀናበር፣ የጥንዶች መድረክ እና በባህል የተነሳ የገጽታ ቅርፀ-ንብርብር።' },
+      { selector: '#page-services .service-card:nth-child(3) h3', en: 'CATERING & Hospitality', am: 'ካተሪንግ እና እንግዳ አቀባበል' },
+      { selector: '#page-services .service-card:nth-child(3) p', en: 'Guest seating, buffet styling, coffee ceremony areas, dessert presentation, and polished service management.', am: 'የእንግዳ መቀመጫ፣ የቡፌ ስታይሊንግ፣ የቡና ሥነ ሥርዓት አካባቢዎች፣ የጣፋጭ ቅርጸ ቀረብ እና የተስተካከለ የአገልግሎት አስተዳደር።' },
+      { selector: '#page-services .service-card:nth-child(4) h3', en: 'Photo & Video Coordination', am: 'የፎቶ እና ቪዲዮ ኮርዲኔሽን' },
+      { selector: '#page-services .service-card:nth-child(4) p', en: 'Shot lists, procession timing, family portrait management, and vendor alignment for smooth visual coverage.', am: 'የሾት ዝርዝሮች፣ የሰልፍ ጊዜ አሰጣጥ፣ የቤተሰብ ፎቶ አስተዳደር እና ለተስተካከለ የምስል ሽፋን የአጋሮች ማስተካከያ።' },
+      { selector: '#page-services .service-card:nth-child(5) h3', en: 'Zemari & Cultural Programming', am: 'ዘማሪ እና ባህላዊ ፕሮግራሞች' },
+      { selector: '#page-services .service-card:nth-child(5) p', en: 'Rehearsal planning, ceremonial musicians, and cultural programming tailored for Ethiopian, international, and multicultural events.', am: 'ለኢትዮጵያዊ፣ ለአለም አቀፍ እና ለባህል ብዙ ክስተቶች የተስማማ የልምምድ እቅድ፣ የሥነ ሥርዓት ሙዚቀኞች እና ባህላዊ ፕሮግራሞች።' },
+      { selector: '#page-services .service-card:nth-child(6) h3', en: 'VENUE Coordination & Styling', am: 'VENUE ኮርዲኔሽን እና ስታይሊንግ' },
+      { selector: '#page-services .service-card:nth-child(6) p', en: 'Spatial planning for head tables, lounge vignettes, welcome moments, and premium guest circulation.', am: 'ለዋና ጠረጴዛዎች፣ ላውንጅ አቀማመጦች፣ የእንኳን ደህና መጡ ክፍሎች እና ከፍተኛ የእንግዳ እንቅስቃሴ የቦታ እቅድ።' },
+      { selector: '#page-services .story-card.accent .eyebrow', en: 'What We Offer', am: 'የምናቀርበው' },
+      { selector: '#page-services .story-card.accent h3', en: 'Luxury details that honor every family story and cultural identity.', am: 'የእያንዳንዱን ቤተሰብ ታሪክ እና ባህላዊ ማንነት የሚያከብሩ የቅንጦት ዝርዝሮች።' },
+      { selector: '#page-services .story-card.accent li:nth-child(1)', en: 'Custom mood boards inspired by Ethiopian, international, and multicultural celebration aesthetics.', am: 'ከኢትዮጵያዊ፣ ከአለም አቀፍ እና ከባህል ብዙ ክብረ በዓላት ውበት የተነሳ ብጁ ሙድ ቦርዶች።' },
+      { selector: '#page-services .story-card.accent li:nth-child(2)', en: 'Vendor curation for florals, catering, photography, entertainment, rentals, and any cultural ceremony needs.', am: 'ለአበባ፣ ካተሪንግ፣ ፎቶግራፊ፣ መዝናኛ፣ ኪራይ እና ለማንኛውም ባህላዊ ሥነ ሥርዓት ፍላጎት የአጋሮች ምርጫ።' },
+      { selector: '#page-services .story-card.accent li:nth-child(3)', en: 'Guest-experience planning that keeps elders, family members, and out-of-town visitors fully cared for.', am: 'ሽማግሌዎች፣ ቤተሰቦች እና ከሩቅ የሚመጡ እንግዶች ሙሉ እንክብካቤ የሚያገኙበት የእንግዳ ልምድ እቅድ።' },
+      { selector: '#page-services .story-card.accent li:nth-child(4)', en: 'Design guidance for believable, elevated setups using authentic real-event visuals.', am: 'እውነተኛ የክስተት ምስሎችን ተጠቅመው እምነታማ እና ከፍ ያሉ አቀማመጦች ለማድረግ የዲዛይን መመሪያ።' },
+      { selector: '#page-services .section-card:nth-of-type(2) .section-heading .eyebrow', en: 'Packages', am: 'ፓኬጆች' },
+      { selector: '#page-services .section-card:nth-of-type(2) .section-heading h2', en: '💎 Our Packages', am: '💎 የእኛ ፓኬጆች' },
+      { selector: '#page-services .section-card:nth-of-type(2) .section-heading p', en: 'Comprehensive all-inclusive packages including full coordination, catering, decoration, photography, cake, Zemari, and Mezemran with rehearsal.', am: 'ሙሉ ኮርዲኔሽን፣ ካተሪንግ፣ ዲኮሬሽን፣ ፎቶግራፊ፣ ኬክ፣ ዘማሪ እና መዘምራን ከልምምድ ጋር የሚያካትቱ ሙሉ አካታች ፓኬጆች።' },
+      { selector: '.package-card:nth-child(1) .package-top .eyebrow', en: 'Micro Celebration', am: 'አነስተኛ ክብረ በዓል' },
+      { selector: '.package-card:nth-child(1) .package-top h3', en: 'Dirirsa', am: 'ድሪርሳ (Dirirsa)' },
+      { selector: '.package-card:nth-child(1) .package-top p', en: 'Micro Event', am: 'አነስተኛ ክስተት' },
+      { selector: '.package-card:nth-child(1) .package-guests', en: '50–75 Guests', am: '50–75 እንግዶች' },
+      { selector: '.package-card:nth-child(1) .package-list li:nth-child(1)', en: 'Full event coordination and planning', am: 'ሙሉ የክስተት ኮርዲኔሽን እና እቅድ' },
+      { selector: '.package-card:nth-child(1) .package-list li:nth-child(2)', en: 'Venue selection, layout planning, and setup', am: 'የቦታ ምርጫ፣ የአቀማመጥ እቅድ እና ማሰናዳት' },
+      { selector: '.package-card:nth-child(1) .package-list li:nth-child(3)', en: 'Decoration team support and floral arrangements', am: 'የዲኮሬሽን ቡድን ድጋፍ እና የአበባ አቀማመጦች' },
+      { selector: '.package-card:nth-child(1) .package-list li:nth-child(4)', en: 'Catering team oversight and full meal service', am: 'የካተሪንግ ቡድን ክትትል እና ሙሉ የምግብ አገልግሎት' },
+      { selector: '.package-card:nth-child(1) .package-list li:nth-child(5)', en: 'Professional photographer coordination', am: 'የሙያ ፎቶግራፈር ኮርዲኔሽን' },
+      { selector: '.package-card:nth-child(1) .package-list li:nth-child(6)', en: 'Custom cake, desserts, Zemari, and Mezemran with rehearsal', am: 'ብጁ ኬክ፣ ጣፋጮች፣ ዘማሪ እና መዘምራን ከልምምድ ጋር' },
+      { selector: '.package-card:nth-child(1) .package-list li:nth-child(7)', en: '4–6 hours of event management and family support', am: '4–6 ሰዓት የክስተት አስተዳደር እና የቤተሰብ ድጋፍ' },
+      { selector: '.package-card:nth-child(1) .package-inquiry', en: 'Inquire for Dirirsa', am: 'ስለ ድሪርሳ ይጠይቁ' },
+      { selector: '.package-card:nth-child(2) .package-badge', en: 'Most Popular', am: 'በጣም ታዋቂ' },
+      { selector: '.package-card:nth-child(2) .package-top .eyebrow', en: 'Signature Celebration', am: 'ፈርማ ክብረ በዓል' },
+      { selector: '.package-card:nth-child(2) .package-top h3', en: 'Qidus', am: 'ቅዱስ (Qidus)' },
+      { selector: '.package-card:nth-child(2) .package-top p', en: 'Standard Event', am: 'መደበኛ ክስተት' },
+      { selector: '.package-card:nth-child(2) .package-guests', en: '75–150 Guests', am: '75–150 እንግዶች' },
+      { selector: '.package-card:nth-child(2) .package-list li:nth-child(1)', en: 'Premium event coordination with upgraded planning support', am: 'ከፍተኛ የክስተት ኮርዲኔሽን ከተሻሻለ የእቅድ ድጋፍ ጋር' },
+      { selector: '.package-card:nth-child(2) .package-list li:nth-child(2)', en: 'Premium venue styling, elegant setup, and reception flow', am: 'ከፍተኛ የቦታ ስታይሊንግ፣ የተዋበ ማሰናዳት እና የሬሰፕሽን ሂደት' },
+      { selector: '.package-card:nth-child(2) .package-list li:nth-child(3)', en: 'Decoration team leadership with floral centerpieces', am: 'በአበባ ማዕከላዊ አቀማመጦች የዲኮሬሽን ቡድን መሪነት' },
+      { selector: '.package-card:nth-child(2) .package-list li:nth-child(4)', en: 'Full catering team and hospitality management', am: 'ሙሉ የካተሪንግ ቡድን እና የእንግዳ አስተዳደር' },
+      { selector: '.package-card:nth-child(2) .package-list li:nth-child(5)', en: 'Professional photographer and videographer coordination', am: 'የሙያ ፎቶግራፈር እና ቪዲዮግራፈር ኮርዲኔሽን' },
+      { selector: '.package-card:nth-child(2) .package-list li:nth-child(6)', en: 'Custom premium cakes, desserts, Zemari, and Mezemran rehearsal', am: 'ብጁ ከፍተኛ ኬኮች፣ ጣፋጮች፣ ዘማሪ እና የመዘምራን ልምምድ' },
+      { selector: '.package-card:nth-child(2) .package-list li:nth-child(7)', en: '8+ hours of event management with vendor coordination', am: '8+ ሰዓት የክስተት አስተዳደር ከአጋሮች ኮርዲኔሽን ጋር' },
+      { selector: '.package-card:nth-child(2) .package-inquiry', en: 'Inquire for Qidus', am: 'ስለ ቅዱስ ይጠይቁ' },
+      { selector: '.package-card:nth-child(3) .package-top .eyebrow', en: 'Grand Celebration', am: 'ታላቅ ክብረ በዓል' },
+      { selector: '.package-card:nth-child(3) .package-top h3', en: 'Melkam', am: 'መልካም (Melkam)' },
+      { selector: '.package-card:nth-child(3) .package-top p', en: 'Grand Celebration', am: 'ታላቅ ክብረ በዓል' },
+      { selector: '.package-card:nth-child(3) .package-guests', en: '150–300+ Guests', am: '150–300+ እንግዶች' },
+      { selector: '.package-card:nth-child(3) .package-list li:nth-child(1)', en: 'Large-scale planning with concierge-level venue coordination', am: 'በከፍተኛ የቦታ ኮርዲኔሽን ትልቅ-መጠን እቅድ' },
+      { selector: '.package-card:nth-child(3) .package-list li:nth-child(2)', en: 'Luxury decoration installs, stage builds, and premium florals', am: 'የቅንጦት ዲኮሬሽን አቀማመጦች፣ የመድረክ ግንባታ እና ከፍተኛ አበባዎች' },
+      { selector: '.package-card:nth-child(3) .package-list li:nth-child(3)', en: 'Expanded catering service for major family celebrations', am: 'ለትልልቅ የቤተሰብ ክብረ በዓላት የተስፋፋ የካተሪንግ አገልግሎት' },
+      { selector: '.package-card:nth-child(3) .package-list li:nth-child(4)', en: 'Dedicated photo, video, Zemari, and Mezemran coordination', am: 'የተመደበ የፎቶ፣ ቪዲዮ፣ ዘማሪ እና መዘምራን ኮርዲኔሽን' },
+      { selector: '.package-card:nth-child(3) .package-list li:nth-child(5)', en: 'Multiple ceremony and reception zones with guest-experience oversight', am: 'ብዙ የሥነ ሥርዓት እና ሬሰፕሽን ዞኖች ከየእንግዳ ልምድ ክትትል ጋር' },
+      { selector: '.package-card:nth-child(3) .package-list li:nth-child(6)', en: 'Rehearsal management, timeline production, and all-day event leadership', am: 'የልምምድ አስተዳደር፣ የሰዓት ሰሌዳ አዘጋጅት እና ቀኑን ሙሉ የክስተት መሪነት' },
+      { selector: '.package-card:nth-child(3) .package-inquiry', en: 'Inquire for Melkam', am: 'ስለ መልካም ይጠይቁ' },
+      { selector: '#page-services .section-card:nth-of-type(3) .section-heading .eyebrow', en: 'Our Process', am: 'የእኛ ሂደት' },
+      { selector: '#page-services .section-card:nth-of-type(3) .section-heading h2', en: 'How Yotode brings your event to life.', am: 'Yotode ክስተትዎን እንዴት ወደ ሕይወት እንደሚያመጣው።' },
+      { selector: '#page-services .section-card:nth-of-type(3) .section-heading p', en: 'A clear four-step process keeps your planning journey organized, collaborative, and reassuring from start to finish.', am: 'ግልጽ 4-ደረጃ ሂደት የእቅድ ጉዞዎን ከመጀመሪያ እስከ መጨረሻ ድረስ የተደራጀ፣ የትብብር እና የማረጋጋት ያደርገዋል።' },
+      { selector: '#page-services .process-step:nth-child(1) h3', en: 'Consult', am: 'ምክክር' },
+      { selector: '#page-services .process-step:nth-child(1) p', en: 'We learn your vision, traditions, venue priorities, and the feeling you want guests to remember.', am: 'ራዕይዎን፣ ልማዶችዎን፣ የቦታ ቅድሚያዎችን እና እንግዶች እንዲያስታውሱ የሚፈልጉትን ስሜት እንማራለን።' },
+      { selector: '#page-services .process-step:nth-child(2) h3', en: 'Curate', am: 'እንመርጣለን' },
+      { selector: '#page-services .process-step:nth-child(2) p', en: 'We build a cohesive design direction, recommend vendors, and shape the guest journey room by room.', am: 'የተቀናጀ የዲዛይን አቅጣጫ እንገነባለን፣ አጋሮችን እንመክራለን፣ እና የእንግዳ ጉዞን ክፍል በክፍል እንቀርፃለን።' },
+      { selector: '#page-services .process-step:nth-child(3) h3', en: 'Coordinate', am: 'እናስተናግዳለን' },
+      { selector: '#page-services .process-step:nth-child(3) p', en: 'We manage production details, ceremony sequencing, rehearsal notes, and hospitality logistics.', am: 'የምርት ዝርዝሮችን፣ የሥነ ሥርዓት ተከታታይነትን፣ የልምምድ ማስታወሻዎችን እና የእንግዳ ሎጂስቲክስን እናስተዳድራለን።' },
+      { selector: '#page-services .process-step:nth-child(4) h3', en: 'Celebrate', am: 'እናከብራለን' },
+      { selector: '#page-services .process-step:nth-child(4) p', en: 'On event day, our team oversees timing, presentation, and family comfort so you can be fully present.', am: 'በክስተት ቀን ቡድናችን ጊዜን፣ አቀራረብን እና የቤተሰብ ምቾትን ይቆጣጠራል እርስዎም ሙሉ ተሳትፎ እንዲኖርዎ።' },
+      { selector: '#page-inspiration .section-heading .eyebrow', en: 'Inspiration', am: 'መነሳሳት' },
+      { selector: '#inspiration-title', en: 'Authentic Ethiopian Orthodox, baptism, coffee ceremony, and multicultural event inspiration.', am: 'እውነተኛ የኢትዮጵያ ኦርቶዶክስ፣ የጥምቀት፣ የቡና ሥነ ሥርዓት እና ባህል ብዙ ክስተት መነሳሳት።' },
+      { selector: '#page-inspiration .section-heading p:nth-of-type(2)', en: 'Browse real cultural celebration references for Orthodox weddings, baptism ceremonies, coffee service setups, and inclusive multicultural event styling.', am: 'ለኦርቶዶክስ ሰርጎች፣ ለጥምቀት ሥነ ሥርዓቶች፣ ለቡና አገልግሎት ማሰናዳት እና አካታች ባህል ብዙ ክስተት ስታይሊንግ እውነተኛ ማጣቀሻዎችን ይመልከቱ።' },
+      { selector: '.filter-bar .filter-button:nth-child(1)', en: 'All', am: 'ሁሉም' },
+      { selector: '.filter-bar .filter-button:nth-child(2)', en: 'Orthodox Wedding', am: 'ኦርቶዶክስ ሰርግ' },
+      { selector: '.filter-bar .filter-button:nth-child(3)', en: 'Baptism', am: 'ጥምቀት' },
+      { selector: '.filter-bar .filter-button:nth-child(4)', en: 'Coffee Ceremony', am: 'የቡና ሥነ ሥርዓት' },
+      { selector: '.filter-bar .filter-button:nth-child(5)', en: 'Multicultural', am: 'ባህል ብዙ' },
+      { selector: '#gallery-grid .gallery-card:nth-child(1) h3', en: 'Ethiopian Orthodox Wedding Ceremony', am: 'የኢትዮጵያ ኦርቶዶክስ የሰርግ ሥነ ሥርዓት' },
+      { selector: '#gallery-grid .gallery-card:nth-child(1) p', en: 'Real Orthodox ceremony inspiration featuring sacred processional moments, traditional attire, and culturally grounded celebration flow.', am: 'ቅዱስ የሥነ ሥርዓት እንቅስቃሴዎች፣ ባህላዊ አለባበስ እና በባህል የተመሠረተ የክብረ በዓል ሂደት የሚያሳይ እውነተኛ መነሳሳት።' },
+      { selector: '#gallery-grid .gallery-card:nth-child(2) h3', en: 'Orthodox Wedding Celebration', am: 'የኦርቶዶክስ የሰርግ ክብረ በዓል' },
+      { selector: '#gallery-grid .gallery-card:nth-child(2) p', en: 'Authentic Ethiopian wedding references with family-centered ceremony sequencing and respectful church tradition.', am: 'በቤተሰብ ማዕከላዊ የሥነ ሥርዓት ተከታታይነት እና በተከበረ የቤተክርስቲያን ልማድ የተሞላ እውነተኛ የኢትዮጵያ ሰርግ ማጣቀሻ።' },
+      { selector: '#gallery-grid .gallery-card:nth-child(3) h3', en: 'Baptism Ceremony Celebration', am: 'የጥምቀት ሥነ ሥርዓት ክብረ በዓል' },
+      { selector: '#gallery-grid .gallery-card:nth-child(3) p', en: 'Authentic Ethiopian baptism celebration inspiration highlighting ceremonial gathering, faith traditions, and joyful community participation.', am: 'የሥነ ሥርዓታዊ ስብሰባ፣ የእምነት ልማዶች እና የደስታ ማህበረሰብ ተሳትፎ የሚያሳይ እውነተኛ የኢትዮጵያ የጥምቀት መነሳሳት።' },
+      { selector: '#gallery-grid .gallery-card:nth-child(4) h3', en: 'Timkat Processional Traditions', am: 'የጥምቀት ሰልፍ ልማዶች' },
+      { selector: '#gallery-grid .gallery-card:nth-child(4) p', en: 'Processional details and ceremonial movement inspiration from Ethiopian baptism celebrations and faith-centered event traditions.', am: 'ከኢትዮጵያ የጥምቀት ክብረ በዓላት እና በእምነት ማዕከላዊ የክስተት ልማዶች የተወሰዱ የሰልፍ ዝርዝሮች እና የሥነ ሥርዓት እንቅስቃሴ መነሳሳት።' },
+      { selector: '#gallery-grid .gallery-card:nth-child(5) h3', en: 'Coffee Ceremony Setup I', am: 'የቡና ሥነ ሥርዓት አቀማመጥ 1' },
+      { selector: '#gallery-grid .gallery-card:nth-child(5) p', en: 'Provided authentic bunna setup showcasing traditional presentation, hospitality flow, and cultural storytelling through service.', am: 'በአገልግሎት የሚታይ ባህላዊ ቅርጸ ቀረብ፣ የእንግዳ አቀባበል ሂደት እና የባህል ታሪክ የሚያሳይ የቀረበ እውነተኛ የቡና አቀማመጥ።' },
+      { selector: '#gallery-grid .gallery-card:nth-child(6) h3', en: 'Coffee Ceremony Setup II', am: 'የቡና ሥነ ሥርዓት አቀማመጥ 2' },
+      { selector: '#gallery-grid .gallery-card:nth-child(6) p', en: 'Additional provided coffee-ceremony imagery for authentic cultural corners and warm guest-experience moments.', am: 'ለእውነተኛ ባህላዊ ኮርነሮች እና ለሞቅ ያለ የእንግዳ ልምድ አጨማሪ የቀረበ የቡና ሥነ ሥርዓት ምስል።' },
+      { selector: '#page-inspiration .video-gallery .video-card:nth-child(1) .eyebrow', en: 'Cultural Attire', am: 'ባህላዊ አለባበስ' },
+      { selector: '#page-inspiration .video-gallery .video-card:nth-child(1) p:nth-of-type(2)', en: 'Traditional attire references for Ethiopian and multicultural celebrations where heritage and elegance meet.', am: 'ቅርስ እና ውበት የሚገናኙባቸው ለኢትዮጵያዊ እና ባህል ብዙ ክብረ በዓላት የባህላዊ አለባበስ ማጣቀሻዎች።' },
+      { selector: '#page-inspiration .video-gallery .video-card:nth-child(2) .eyebrow', en: 'Coffee Hospitality', am: 'የቡና እንግዳ አቀባበል' },
+      { selector: '#page-inspiration .video-gallery .video-card:nth-child(2) p:nth-of-type(2)', en: 'Authentic bunna hospitality inspiration with ritual service details that enrich all types of celebrations.', am: 'ሁሉንም አይነት ክብረ በዓላት የሚያበለጽጉ የሥነ ሥርዓት አገልግሎት ዝርዝሮች ያሉበት እውነተኛ የቡና እንግዳ አቀባበል መነሳሳት።' },
+      { selector: '#page-inspiration .story-card:nth-child(1) .eyebrow', en: 'Inspiration Notes', am: 'የመነሳሳት ማስታወሻዎች' },
+      { selector: '#page-inspiration .story-card:nth-child(1) h3', en: 'Style every room with cultural continuity.', am: 'እያንዳንዱን ቦታ በባህላዊ ቀጣይነት ያስተካክሉ።' },
+      { selector: '#page-inspiration .story-card:nth-child(1) > p:nth-of-type(2)', en: 'Our inspiration process begins with authentic references, then translates them into coherent venue zones for Ethiopian, international, and multicultural celebrations.', am: 'የመነሳሳት ሂደታችን በእውነተኛ ማጣቀሻዎች ይጀምራል፣ ከዚያም ለኢትዮጵያዊ፣ ለአለም አቀፍ እና ለባህል ብዙ ክብረ በዓላት የተቀናጀ የቦታ ዞኖች ይሆናሉ።' },
+      { selector: '#page-inspiration .story-card:nth-child(1) .detail-list li:nth-child(1)', en: 'Create separate styling plans for Orthodox ceremonies, baptisms, receptions, and multicultural celebration spaces.', am: 'ለኦርቶዶክስ ሥነ ሥርዓቶች፣ ጥምቀቶች፣ ሬሰፕሽኖች እና ባህል ብዙ የክብረ በዓል ቦታዎች የተለያዩ የስታይል እቅዶችን ይፍጠሩ።' },
+      { selector: '#page-inspiration .story-card:nth-child(1) .detail-list li:nth-child(2)', en: 'Use intentional color, light, and cultural textures to keep each event elegant and welcoming.', am: 'እያንዳንዱ ክስተት የተዋበ እና አቀባበል ሙሉ እንዲሆን በአስተዋይ ሁኔታ ቀለም፣ ብርሃን እና ባህላዊ ገጽታዎችን ይጠቀሙ።' },
+      { selector: '#page-inspiration .story-card:nth-child(1) .detail-list li:nth-child(3)', en: 'Pair real-photo inspiration with production planning so each setup feels authentic on event day.', am: 'እያንዳንዱ አቀማመጥ በክስተት ቀን እውነተኛ እንዲሰማ እውነተኛ የፎቶ መነሳሳትን ከምርት እቅድ ጋር ያጣመሩ።' },
+      { selector: '#page-inspiration .story-card:nth-child(2) .eyebrow', en: 'Cultural Elements', am: 'ባህላዊ ክፍሎች' },
+      { selector: '#page-inspiration .story-card:nth-child(2) h3', en: 'Cultural touches that feel intentional, inclusive, and respectful.', am: 'በጥንቃቄ የተመረጡ፣ አካታች እና ክብር ያላቸው ባህላዊ ንክኪዎች።' },
+      { selector: '#page-inspiration .story-card:nth-child(2) .offer-list li:nth-child(1)', en: 'Ethiopian Orthodox wedding and baptism coordination with respectful ceremonial flow.', am: 'በክብር የሚመራ የሥነ ሥርዓት ሂደት ያለው የኢትዮጵያ ኦርቶዶክስ ሰርግ እና ጥምቀት ኮርዲኔሽን።' },
+      { selector: '#page-inspiration .story-card:nth-child(2) .offer-list li:nth-child(2)', en: 'International weddings, interfaith ceremonies, and multicultural event styling support.', am: 'የአለም አቀፍ ሰርጎች፣ የእምነት-ተሻጋሪ ሥነ ሥርዓቶች እና የባህል ብዙ ክስተት ስታይሊንግ ድጋፍ።' },
+      { selector: '#page-inspiration .story-card:nth-child(2) .offer-list li:nth-child(3)', en: 'Photo opportunities that highlight attire, heirloom accessories, and family storytelling from any culture.', am: 'ከማንኛውም ባህል የሚመጡ አለባበስ፣ ቅርስ ጌጣጌጦች እና የቤተሰብ ታሪክ የሚያሳዩ የፎቶ እድሎች።' },
+      { selector: '#page-contact .section-heading .eyebrow', en: 'Contact', am: 'አግኙን' },
+      { selector: '#contact-title', en: 'Start planning your celebration with clarity and confidence.', am: 'ክብረ በዓልዎን በግልጽነት እና በመተማመን ያቅዱ።' },
+      { selector: '#page-contact .section-heading p:nth-of-type(2)', en: 'Share your event type, guest count, and preferred planning support. We guide Ethiopian, international, and multicultural celebrations with equal care.', am: 'የክስተትዎን አይነት፣ የእንግዶች ብዛት እና የሚፈልጉትን የእቅድ ድጋፍ ያጋሩ። የኢትዮጵያዊ፣ የአለም አቀፍ እና የባህል ብዙ ክብረ በዓላትን በእኩል ትኩረት እንመራለን።' },
+      { selector: '#page-contact .contact-panel:nth-child(1) h3', en: 'Inquiry Options', am: 'የጥያቄ አማራጮች' },
+      { selector: '#page-contact .contact-list:first-of-type li:nth-child(1) strong', en: 'Phone Team:', am: 'የስልክ ቡድን:' },
+      { selector: '#page-contact .contact-phone-group:nth-child(1) small', en: 'Design & Inquiries', am: 'ዲዛይን እና ጥያቄዎች' },
+      { selector: '#page-contact .contact-phone-group:nth-child(2) small', en: 'Vendor Coordination', am: 'የአጋሮች ኮርዲኔሽን' },
+      { selector: '#page-contact .contact-phone-group:nth-child(3) small', en: 'Event Support', am: 'የክስተት ድጋፍ' },
+      { selector: '#page-contact .contact-phone-group:nth-child(4) small', en: 'Main Booking Line', am: 'ዋና የቦታ ማስያዣ መስመር' },
+      { selector: '#page-contact .contact-list:nth-of-type(2) li:nth-child(1)', en: 'Best for couples and families seeking authentic cultural celebrations with a luxury presentation.', am: 'እውነተኛ ባህላዊ ክብረ በዓላትን ከቅንጦት አቀራረብ ጋር ለሚፈልጉ ጥንዶች እና ቤተሰቦች ተስማሚ።' },
+      { selector: '#page-contact .contact-list:nth-of-type(2) li:nth-child(2)', en: 'Your celebration, your culture, your way—services are available for any cultural celebration.', am: 'ክብረ በዓልዎ፣ ባህልዎ፣ በመንገድዎ—ለማንኛውም ባህላዊ ክብረ በዓል አገልግሎት አለ።' },
+      { selector: '#page-contact .contact-list:nth-of-type(2) li:nth-child(3)', en: 'Ideal booking timeline: 6–12 months for larger celebrations, 3–6 months for intimate events.', am: 'ተስማሚ የማስያዣ ጊዜ፦ 6–12 ወር ለትልልቅ ክብረ በዓላት፣ 3–6 ወር ለቀረበ ክስተቶች።' },
+      { selector: '#page-contact .contact-list:nth-of-type(2) li:nth-child(4)', en: 'Consultations can cover Ethiopian Orthodox ceremonies, international weddings, interfaith events, and full-service planning.', am: 'ምክክሮች የኢትዮጵያ ኦርቶዶክስ ሥነ ሥርዓቶች፣ አለም አቀፍ ሰርጎች፣ እምነት-ተሻጋሪ ክስተቶች እና ሙሉ-አገልግሎት እቅድን ይሸፍናሉ።' },
+      { selector: '#page-contact .contact-panel:nth-child(2) h3', en: 'Send Your Inquiry', am: 'ጥያቄዎን ይላኩ' },
+      { selector: 'label[for="name"]', en: 'Full Name', am: 'ሙሉ ስም' },
+      { selector: 'label[for="email"]', en: 'Email Address', am: 'የኢሜይል አድራሻ' },
+      { selector: 'label[for="event-date"]', en: 'Event Date', am: 'የክስተት ቀን' },
+      { selector: 'label[for="guest-count"]', en: 'Guest Count', am: 'የእንግዶች ብዛት' },
+      { selector: 'label[for="package"]', en: 'Package Preference', am: 'የፓኬጅ ምርጫ' },
+      { selector: 'label[for="message"]', en: 'Message', am: 'መልዕክት' },
+      { selector: '#contact-form button[type="submit"]', en: 'Submit Inquiry', am: 'ጥያቄ ያስገቡ' },
+      { selector: '.site-footer p', en: '© 2026 Yotode Event Planner. Home, Services & Packages, Inspiration, and Contact remain available from the focused four-section navigation.', am: '© 2026 Yotode Event Planner። መነሻ፣ አገልግሎቶች እና ፓኬጆች፣ መነሳሳት፣ እና አግኙን ከተመረጠው አራት-ክፍል አሰሳ ጋር ይገኛሉ።' }
+    ];
+
+    const localizedHtml = [
+      { selector: '#page-contact .contact-list:first-of-type li:nth-child(2)', en: '<strong>Email:</strong>&nbsp;<a href="mailto:eyuab35@gmail.com">eyuab35@gmail.com</a>', am: '<strong>ኢሜይል:</strong>&nbsp;<a href="mailto:eyuab35@gmail.com">eyuab35@gmail.com</a>' },
+      { selector: '#page-contact .contact-list:first-of-type li:nth-child(3)', en: '<strong>Service Area:</strong>&nbsp;Seattle and destination celebrations by request', am: '<strong>የአገልግሎት አካባቢ:</strong>&nbsp;ሲያትል እና በጥያቄ የመዳረሻ ክብረ በዓላት' }
+    ];
+
+    const localizedAttributes = [
+      { selector: '#guest-count', attr: 'placeholder', en: 'Estimated guests', am: 'የተገመተ የእንግዶች ብዛት' },
+      { selector: '#message', attr: 'placeholder', en: 'Tell us about your celebration, venue ideas, cultural details, and the planning support you want most.', am: 'ስለ ክብረ በዓልዎ፣ ስለ ቦታ ሀሳብዎ፣ ስለ ባህላዊ ዝርዝሮች እና በጣም የሚፈልጉት የእቅድ ድጋፍ ይንገሩን።' },
+      { selector: '.brand', attr: 'aria-label', en: 'Yotode Event Planner home', am: 'የYotode Event Planner መነሻ' },
+      { selector: '.desktop-nav', attr: 'aria-label', en: 'Primary navigation', am: 'ዋና አሰሳ' },
+      { selector: '#menu-drawer', attr: 'aria-label', en: 'Primary navigation', am: 'ዋና አሰሳ' }
+    ];
+
+    const optionTexts = [
+      { index: 0, en: 'Select a package', am: 'ፓኬጅ ይምረጡ' },
+      { index: 1, en: 'Dirirsa — $8,500 to $12,000+', am: 'ድሪርሳ — $8,500 እስከ $12,000+' },
+      { index: 2, en: 'Qidus — $18,000 to $28,000+', am: 'ቅዱስ — $18,000 እስከ $28,000+' },
+      { index: 3, en: 'Melkam — $35,000 to $60,000+', am: 'መልካም — $35,000 እስከ $60,000+' },
+      { index: 4, en: 'Custom consultation', am: 'ብጁ ምክክር' }
+    ];
+
+    const pageTitlesByLang = {
+      en: { home: 'Home', services: 'Services & Packages', inspiration: 'Inspiration', contact: 'Contact' },
+      am: { home: 'መነሻ', services: 'አገልግሎቶች እና ፓኬጆች', inspiration: 'መነሳሳት', contact: 'አግኙን' }
+    };
+
+    const statusMessages = {
+      en: {
+        invalid: 'Please complete all required fields before submitting.',
+        sendingButton: 'Sending...',
+        sending: 'Sending your inquiry...',
+        success: 'Thank you. Your inquiry has been sent successfully.',
+        error: 'Unable to send right now. Please try again shortly.',
+        menuOpen: 'Open navigation menu',
+        menuClose: 'Close navigation menu',
+        drawerClose: 'Close navigation menu'
+      },
+      am: {
+        invalid: 'እባክዎ ከማስገባትዎ በፊት የሚያስፈልጉ መረጃዎችን ያጠናቅቁ።',
+        sendingButton: 'በመላክ ላይ...',
+        sending: 'ጥያቄዎ በመላክ ላይ...',
+        success: 'እናመሰግናለን። ጥያቄዎ በተሳካ ሁኔታ ተልኳል።',
+        error: 'አሁን መላክ አልተቻለም። እባክዎ በኋላ ደግመው ይሞክሩ።',
+        menuOpen: 'የአሰሳ ምናሌ ክፈት',
+        menuClose: 'የአሰሳ ምናሌ ዝጋ',
+        drawerClose: 'የአሰሳ ምናሌ ዝጋ'
+      }
+    };
+
+    const applyLanguage = (lang) => {
+      currentLanguage = lang === 'am' ? 'am' : 'en';
+      document.documentElement.lang = currentLanguage;
+
+      localizedText.forEach((item) => {
+        const target = document.querySelector(item.selector);
+        if (target) {
+          target.textContent = item[currentLanguage];
+        }
+      });
+
+      localizedHtml.forEach((item) => {
+        const target = document.querySelector(item.selector);
+        if (target) {
+          target.innerHTML = item[currentLanguage];
+        }
+      });
+
+      localizedAttributes.forEach((item) => {
+        const target = document.querySelector(item.selector);
+        if (target) {
+          target.setAttribute(item.attr, item[currentLanguage]);
+        }
+      });
+
+      if (packageSelect) {
+        optionTexts.forEach((item) => {
+          if (packageSelect.options[item.index]) {
+            packageSelect.options[item.index].textContent = item[currentLanguage];
+          }
+        });
+      }
+
+      languageButtons.forEach((button) => {
+        const isActive = button.dataset.lang === currentLanguage;
+        button.classList.toggle('active', isActive);
+        button.setAttribute('aria-pressed', String(isActive));
+      });
+
+      drawerClose?.setAttribute('aria-label', statusMessages[currentLanguage].drawerClose);
+      menuToggle?.setAttribute('aria-label', menuToggle?.getAttribute('aria-expanded') === 'true' ? statusMessages[currentLanguage].menuClose : statusMessages[currentLanguage].menuOpen);
+      setActivePage(getRoute(), false);
+    };
 
     const setMenuState = (open) => {
       menuDrawer.classList.toggle('open', open);
       menuOverlay.classList.toggle('open', open);
       document.body.classList.toggle('menu-open', open);
       menuToggle.setAttribute('aria-expanded', String(open));
-      menuToggle.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+      menuToggle.setAttribute('aria-label', open ? statusMessages[currentLanguage].menuClose : statusMessages[currentLanguage].menuOpen);
       menuDrawer.setAttribute('aria-hidden', String(!open));
       if (!open) {
         menuToggle.focus();
@@ -1505,7 +1777,7 @@
       return routes.includes(raw) ? raw : 'home';
     };
 
-    const setActivePage = (page) => {
+    const setActivePage = (page, shouldScroll = true) => {
       pagePanels.forEach((panel) => {
         const isActive = panel.dataset.page === page;
         panel.classList.toggle('active', isActive);
@@ -1534,11 +1806,14 @@
         }
       });
 
-      document.title = `Yotode Event Planner | ${pageTitles[page]}`;
+      const localizedTitle = pageTitlesByLang[currentLanguage][page];
+      document.title = `Yotode Event Planner | ${localizedTitle}`;
       if (pageIndicator) {
-        pageIndicator.textContent = pageTitles[page];
+        pageIndicator.textContent = localizedTitle;
       }
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (shouldScroll) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     };
 
     const navigate = (page) => {
@@ -1575,8 +1850,6 @@
       setActivePage(getRoute());
     });
 
-    setActivePage(getRoute());
-
     filterButtons.forEach((button) => {
       button.addEventListener('click', () => {
         const filter = button.dataset.filter || 'all';
@@ -1598,8 +1871,11 @@
       });
     });
 
-    const form = document.getElementById('contact-form');
-    const status = document.getElementById('form-status');
+    languageButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        applyLanguage(button.dataset.lang || 'en');
+      });
+    });
 
     if (form instanceof HTMLFormElement && status) {
       form.addEventListener('submit', async (event) => {
@@ -1607,19 +1883,19 @@
 
         if (!form.checkValidity()) {
           form.reportValidity();
-          status.textContent = 'Please complete all required fields before submitting.';
+          status.textContent = statusMessages[currentLanguage].invalid;
           return;
         }
 
         const submitButton = form.querySelector('button[type="submit"]');
-        const originalText = submitButton?.textContent || 'Submit Inquiry';
+        const originalText = submitButton?.textContent || (currentLanguage === 'am' ? 'ጥያቄ ያስገቡ' : 'Submit Inquiry');
 
         try {
           if (submitButton) {
             submitButton.disabled = true;
-            submitButton.textContent = 'Sending...';
+            submitButton.textContent = statusMessages[currentLanguage].sendingButton;
           }
-          status.textContent = 'Sending your inquiry...';
+          status.textContent = statusMessages[currentLanguage].sending;
 
           const response = await fetch(form.action, {
             method: 'POST',
@@ -1632,9 +1908,9 @@
           }
 
           form.reset();
-          status.textContent = 'Thank you. Your inquiry has been sent successfully.';
+          status.textContent = statusMessages[currentLanguage].success;
         } catch (error) {
-          status.textContent = 'Unable to send right now. Please try again shortly.';
+          status.textContent = statusMessages[currentLanguage].error;
         } finally {
           if (submitButton) {
             submitButton.disabled = false;
@@ -1643,6 +1919,9 @@
         }
       });
     }
+
+    applyLanguage('en');
+    setActivePage(getRoute(), false);
   </script>
 </body>
 </html>
