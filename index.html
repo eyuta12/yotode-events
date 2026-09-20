@@ -118,6 +118,34 @@
       gap: 0.75rem;
     }
 
+    .language-toggle {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.22rem;
+      border-radius: 999px;
+      border: 1px solid rgba(122, 28, 40, 0.25);
+      background: rgba(255, 255, 255, 0.78);
+      gap: 0.2rem;
+    }
+
+    .lang-btn {
+      border: 0;
+      background: transparent;
+      color: var(--burgundy);
+      font-weight: 700;
+      font-size: 0.74rem;
+      letter-spacing: 0.06em;
+      padding: 0.34rem 0.6rem;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .lang-btn.active {
+      background: linear-gradient(135deg, var(--burgundy), var(--burgundy-deep));
+      color: var(--white);
+    }
+
     .desktop-nav {
       display: none;
       align-items: center;
@@ -986,6 +1014,10 @@
         <a href="#contact" data-route="contact">Contact</a>
       </nav>
       <div class="header-actions">
+        <div class="language-toggle" role="group" aria-label="Language selector">
+          <button class="lang-btn active" type="button" data-lang="en">EN</button>
+          <button class="lang-btn" type="button" data-lang="am">አማ</button>
+        </div>
         <span class="page-kicker" id="page-indicator">Home</span>
         <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-drawer" aria-label="Open navigation menu">
           <span></span>
@@ -1000,8 +1032,8 @@
   <aside class="menu-drawer" id="menu-drawer" aria-label="Primary navigation" aria-hidden="true">
     <div class="drawer-top">
       <div>
-        <p class="eyebrow">Navigate</p>
-        <p class="drawer-title">Yotode Pages</p>
+        <p class="eyebrow" id="drawer-navigate">Navigate</p>
+        <p class="drawer-title" id="drawer-title">Yotode Pages</p>
       </div>
       <button class="menu-toggle" id="drawer-close" type="button" aria-expanded="true" aria-label="Close navigation menu">
         <span></span>
@@ -1012,25 +1044,25 @@
     <ul class="drawer-links">
       <li>
         <a href="#home" data-route="home">
-          <strong>Home</strong>
+          <strong id="drawer-home">Home</strong>
           <span>Brand story, featured event imagery, and a polished planning introduction.</span>
         </a>
       </li>
       <li>
         <a href="#services" data-route="services">
-          <strong>Services &amp; Packages</strong>
+          <strong id="drawer-services">Services &amp; Packages</strong>
           <span>Planning support, three signature packages, and the event process.</span>
         </a>
       </li>
       <li>
         <a href="#inspiration" data-route="inspiration">
-          <strong>Inspiration</strong>
+          <strong id="drawer-inspiration">Inspiration</strong>
           <span>Authentic decor, reception, floral, and cultural reference moments.</span>
         </a>
       </li>
       <li>
         <a href="#contact" data-route="contact">
-          <strong>Contact</strong>
+          <strong id="drawer-contact">Contact</strong>
           <span>Booking lines, department contacts, and the inquiry form.</span>
         </a>
       </li>
@@ -1046,23 +1078,23 @@
       <div class="page-hero">
         <div class="hero-layout">
           <div class="hero-copy">
-            <p class="eyebrow">Elegant Ethiopian Event Planning</p>
+            <p class="eyebrow" id="hero-eyebrow">Elegant Ethiopian Event Planning</p>
             <h1 id="home-title">Crafting unforgettable celebrations with culture, grace, and modern luxury.</h1>
-            <p>Yotode Event Planner creates polished wedding weekends, engagement celebrations, church ceremonies, and refined receptions with Ethiopian hospitality woven through every guest touchpoint.</p>
+            <p id="hero-body">Yotode Event Planner creates polished wedding weekends, engagement celebrations, church ceremonies, and refined receptions with Ethiopian hospitality and multicultural planning for every tradition.</p>
             <ul class="hero-highlights">
-              <li>Custom planning for Ethiopian Orthodox weddings, family celebrations, and milestone gatherings.</li>
-              <li>WE DO VENUE coordination, WE DO DECORATION, WE DO CATERING, and full event coordination.</li>
-              <li>Refined client journey with authentic visuals, signature packages, and clear four-section navigation.</li>
+              <li id="hero-highlight-1">Custom planning for Ethiopian Orthodox weddings, baptisms, multicultural family celebrations, and milestone gatherings.</li>
+              <li id="hero-highlight-2">WE DO VENUE coordination, WE DO DECORATION, WE DO CATERING, and full event coordination for all cultures.</li>
+              <li id="hero-highlight-3">Refined client journey with authentic visuals, signature packages, and clear four-section navigation.</li>
             </ul>
             <div class="hero-actions">
-              <a class="btn btn-primary" href="#contact" data-route="contact">Book a Consultation</a>
-              <a class="btn btn-secondary" href="#inspiration" data-route="inspiration">See Visual Inspiration</a>
+              <a class="btn btn-primary" id="cta-book" href="#contact" data-route="contact">Book a Consultation</a>
+              <a class="btn btn-secondary" id="cta-inspiration" href="#inspiration" data-route="inspiration">See Visual Inspiration</a>
             </div>
           </div>
 
           <article class="video-card" aria-label="Featured Yotode event portfolio image">
             <div class="video-shell" id="brand-film">
-              <img src="https://images.pexels.com/photos/2306281/pexels-photo-2306281.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Elegant reception decor with candlelit tables, floral centerpieces, and venue styling" loading="eager" decoding="async" fetchpriority="high">
+              <img src="https://github.com/user-attachments/assets/05580323-19cd-4a40-8131-8bbb89b929a1" alt="Authentic Ethiopian Orthodox wedding celebration decor and family styling" loading="eager" decoding="async" fetchpriority="high">
               <div class="video-caption">
                 <p class="eyebrow">Featured Portfolio</p>
                 <p>Reception styling, floral layering, and premium guest-table presentation aligned with Yotode’s burgundy-and-gold brand direction.</p>
@@ -1073,16 +1105,16 @@
 
         <div class="stats-grid" aria-label="Yotode highlights">
           <article class="stat-card">
-            <strong>4</strong>
-            <p>Dedicated destination-like pages for home, services, inspiration, and inquiry.</p>
+            <strong id="stat-1-title">All Cultures</strong>
+            <p id="stat-1-body">Inclusive planning for Ethiopian, East African, American, and global celebration traditions.</p>
           </article>
           <article class="stat-card">
-            <strong>360°</strong>
-            <p>Planning coverage from sacred ceremony flow to reception ambiance and vendor coordination.</p>
+            <strong id="stat-2-title">Orthodox + Beyond</strong>
+            <p id="stat-2-body">Expert support for Ethiopian Orthodox weddings, baptisms, receptions, and multicultural events.</p>
           </article>
           <article class="stat-card">
-            <strong>ደስታ</strong>
-            <p>Joy-centered design language inspired by Ethiopian celebrations, hospitality, and family traditions.</p>
+            <strong id="stat-3-title">Signature Service</strong>
+            <p id="stat-3-body">From concept to celebration day, every setup is coordinated with elegance and cultural respect.</p>
           </article>
         </div>
       </div>
@@ -1093,7 +1125,7 @@
         <div class="section-heading center">
           <p class="eyebrow">Services &amp; Packages</p>
           <h2 id="services-title">Full-service planning created for meaningful celebrations.</h2>
-          <p>We provide complete event support through three signature all-inclusive packages covering venue coordination, decoration, catering, and celebration-day leadership.</p>
+          <p>We provide complete event support through three signature all-inclusive packages covering venue coordination, decoration, catering, and celebration-day leadership for every culture and tradition.</p>
         </div>
 
         <div class="services-layout">
@@ -1258,65 +1290,65 @@
         <div class="section-heading center">
           <p class="eyebrow">Inspiration</p>
           <h2 id="inspiration-title">Authentic inspiration for ceremonies, receptions, florals, and Ethiopian celebration details.</h2>
-          <p>Browse real-event style references for ceremony moments, reception styling, cultural rituals, and floral details. Use the filters to focus each inspiration set.</p>
+          <p id="inspiration-body">Browse real-event style references for Orthodox ceremony moments, baptism celebrations, Bunna traditions, and multicultural reception styling.</p>
         </div>
 
         <div class="filter-bar" aria-label="Gallery filters">
-          <button class="filter-button active" type="button" data-filter="all">All</button>
-          <button class="filter-button" type="button" data-filter="ceremony">Ceremony</button>
-          <button class="filter-button" type="button" data-filter="reception">Reception</button>
-          <button class="filter-button" type="button" data-filter="cultural">Cultural</button>
-          <button class="filter-button" type="button" data-filter="florals">Florals</button>
+          <button class="filter-button active" id="filter-all" type="button" data-filter="all">All</button>
+          <button class="filter-button" id="filter-ceremony" type="button" data-filter="ceremony">Ceremony</button>
+          <button class="filter-button" id="filter-reception" type="button" data-filter="reception">Reception</button>
+          <button class="filter-button" id="filter-cultural" type="button" data-filter="cultural">Cultural</button>
+          <button class="filter-button" id="filter-florals" type="button" data-filter="florals">Florals</button>
         </div>
 
         <div class="gallery-grid" id="gallery-grid">
           <article class="gallery-card" data-category="ceremony cultural">
-            <img loading="lazy" decoding="async" src="https://images.pexels.com/photos/169189/pexels-photo-169189.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Ceremony aisle setup with chairs, floral decor, and event styling">
+            <img loading="lazy" decoding="async" src="https://github.com/user-attachments/assets/05580323-19cd-4a40-8131-8bbb89b929a1" alt="Ethiopian Orthodox wedding ceremony styling with authentic decor">
             <div class="gallery-copy">
-              <h3>Ceremony Arrival</h3>
-              <p>Processional styling reference with a polished aisle, guest seating flow, and decor framing suited to meaningful ceremony moments.</p>
+              <h3>Orthodox Wedding Ceremony</h3>
+              <p>Authentic Ethiopian Orthodox wedding inspiration with ceremonial decor, family-centered flow, and cultural detail.</p>
             </div>
           </article>
-          <article class="gallery-card" data-category="reception florals">
-            <img loading="lazy" decoding="async" src="https://images.pexels.com/photos/2306281/pexels-photo-2306281.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Reception venue with candlelight, florals, and formal table styling">
+          <article class="gallery-card" data-category="reception cultural">
+            <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/1/18/Traditional_Habesha_Dress.jpg" alt="Habesha celebration attire for formal receptions and wedding portraits">
             <div class="gallery-copy">
-              <h3>Reception Grandeur</h3>
-              <p>Reception inspiration with candlelit tables, layered linens, and guest-table styling that feels elevated yet warm.</p>
+              <h3>Reception Heritage Styling</h3>
+              <p>Reception inspiration grounded in Habesha elegance, family seating traditions, and polished hospitality.</p>
             </div>
           </article>
-          <article class="gallery-card" data-category="florals reception">
-            <img loading="lazy" decoding="async" src="https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Wedding floral centerpiece arrangement with layered blooms">
+          <article class="gallery-card" data-category="ceremony cultural">
+            <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Timkat_Ceremony_in_Ethiopia.jpg" alt="Ethiopian baptism celebration with ceremonial procession and cultural dress">
             <div class="gallery-copy">
-              <h3>Floral Styling</h3>
-              <p>Layered florals, draped textures, and refined centerpieces that complement burgundy and gold palettes.</p>
+              <h3>Baptism Celebration</h3>
+              <p>Real baptism inspiration with ceremonial processions, spiritual traditions, and respectful family-centered presentation.</p>
             </div>
           </article>
           <article class="gallery-card" data-category="cultural ceremony">
-            <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/1/18/Traditional_Habesha_Dress.jpg" alt="Traditional Habesha attire with embroidered Ethiopian dress details">
+            <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Traditional_Habesha_clothing.jpg" alt="Traditional Habesha attire with embroidered Ethiopian textile details">
             <div class="gallery-copy">
               <h3>Traditional Attire</h3>
               <p>Habesha-inspired looks, heritage silhouettes, and textile references that ground the event in Ethiopian identity.</p>
             </div>
           </article>
           <article class="gallery-card" data-category="cultural florals">
-            <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Ethiopian_coffee_ceremony_02.jpg" alt="Authentic Ethiopian coffee ceremony setup with traditional service elements">
+            <img loading="lazy" decoding="async" src="https://github.com/user-attachments/assets/5b11cc3e-a0bf-4ee1-bd6c-630449e0cbc0" alt="Authentic Ethiopian Bunna coffee ceremony setup with jebena and cups">
             <div class="gallery-copy">
               <h3>Bunna Ceremony Corner</h3>
               <p>Cultural setup ideas for coffee ceremony trays, woven accents, and meaningful guest interaction moments.</p>
             </div>
           </article>
-          <article class="gallery-card" data-category="reception ceremony">
-            <img loading="lazy" decoding="async" src="https://images.pexels.com/photos/256737/pexels-photo-256737.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Venue display with head-table styling and event setup">
+          <article class="gallery-card" data-category="cultural reception">
+            <img loading="lazy" decoding="async" src="https://github.com/user-attachments/assets/05580323-19cd-4a40-8131-8bbb89b929a1" alt="Orthodox wedding venue styling with authentic ceremonial setup">
             <div class="gallery-copy">
-              <h3>Venue Display</h3>
-              <p>Stage and head-table reference for framing the room with symmetry, florals, and clear sightlines for family seating.</p>
+              <h3>Ceremonial Venue Display</h3>
+              <p>Stage and family-zone reference for Ethiopian Orthodox and multicultural celebrations with clear guest sightlines.</p>
             </div>
           </article>
-          <article class="gallery-card" data-category="reception cultural">
-            <img loading="lazy" decoding="async" src="https://images.pexels.com/photos/713149/pexels-photo-713149.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Celebration crowd dancing at an event reception">
+          <article class="gallery-card" data-category="cultural florals">
+            <img loading="lazy" decoding="async" src="https://github.com/user-attachments/assets/5b11cc3e-a0bf-4ee1-bd6c-630449e0cbc0" alt="Coffee ceremony host serving guests in traditional Ethiopian setting">
             <div class="gallery-copy">
-              <h3>Celebration Energy</h3>
-              <p>Live celebration atmosphere for entrance timing, guest movement, and a reception experience that feels full of joy.</p>
+              <h3>Coffee Ceremony Experience</h3>
+              <p>Live Bunna ceremony inspiration that brings community warmth, storytelling, and hospitality into your celebration.</p>
             </div>
           </article>
         </div>
@@ -1325,19 +1357,19 @@
       <div class="video-gallery" aria-label="Celebration photo highlights">
         <article class="video-card">
           <div class="video-shell">
-            <img loading="lazy" decoding="async" src="https://images.pexels.com/photos/1679825/pexels-photo-1679825.jpeg?auto=compress&cs=tinysrgb&w=1400" alt="Decorated reception table with authentic celebration styling">
+            <img loading="lazy" decoding="async" src="https://github.com/user-attachments/assets/05580323-19cd-4a40-8131-8bbb89b929a1" alt="Orthodox wedding reception styling and ceremonial layout">
             <div class="video-caption">
-              <p class="eyebrow">Reception Styling</p>
-              <p>Decor-forward reception inspiration for layered tables, premium seating layouts, and guest-ready ambiance.</p>
+              <p class="eyebrow">Orthodox Wedding Styling</p>
+              <p>Authentic ceremony-to-reception inspiration with cultural elegance and polished guest experience.</p>
             </div>
           </div>
         </article>
         <article class="video-card">
           <div class="video-shell">
-            <img loading="lazy" decoding="async" src="https://images.pexels.com/photos/2306281/pexels-photo-2306281.jpeg?auto=compress&cs=tinysrgb&w=1400" alt="Reception decor with candles and floral arrangements">
+            <img loading="lazy" decoding="async" src="https://github.com/user-attachments/assets/5b11cc3e-a0bf-4ee1-bd6c-630449e0cbc0" alt="Traditional Ethiopian coffee ceremony host and setup">
             <div class="video-caption">
-              <p class="eyebrow">Venue Styling</p>
-              <p>Room-by-room inspiration for balancing luxury decor, family comfort, and coordinated vendor presentation.</p>
+              <p class="eyebrow">Bunna Ceremony Styling</p>
+              <p>Real coffee-ceremony visuals for cultural activation corners, family hospitality, and immersive event moments.</p>
             </div>
           </div>
         </article>
@@ -1371,7 +1403,7 @@
         <div class="section-heading center">
           <p class="eyebrow">Contact</p>
           <h2 id="contact-title">Start planning your celebration with clarity and confidence.</h2>
-          <p>Share your event type, guest count, and preferred planning support. We’ll guide you toward the right package and next steps.</p>
+          <p id="contact-body">Share your event type, guest count, and preferred planning support. We’ll guide you toward the right package and next steps.</p>
         </div>
 
         <div class="contact-layout">
@@ -1403,7 +1435,7 @@
               <li><strong>Service Area:</strong>&nbsp;Seattle and destination celebrations by request</li>
             </ul>
             <ul class="contact-list">
-              <li>Best for couples and families seeking Ethiopian cultural authenticity with a luxury presentation.</li>
+              <li>Best for couples and families seeking Ethiopian cultural authenticity or any multicultural celebration with a luxury presentation.</li>
               <li>Ideal booking timeline: 6–12 months for larger celebrations, 3–6 months for intimate events.</li>
               <li>Consultations can cover venue styling, full-service planning, or inspiration-to-execution support.</li>
             </ul>
@@ -1462,17 +1494,96 @@
 
   <footer class="site-footer">
     <div class="site-shell">
-      <p>&copy; 2026 Yotode Event Planner. Home, Services &amp; Packages, Inspiration, and Contact remain available from the focused four-section navigation.</p>
+      <p id="footer-copy">&copy; 2026 Yotode Event Planner. Home, Services &amp; Packages, Inspiration, and Contact remain available from the focused four-section navigation.</p>
     </div>
   </footer>
 
   <script>
     const routes = ['home', 'services', 'inspiration', 'contact'];
     const pageTitles = {
-      home: 'Home',
-      services: 'Services & Packages',
-      inspiration: 'Inspiration',
-      contact: 'Contact'
+      en: {
+        home: 'Home',
+        services: 'Services & Packages',
+        inspiration: 'Inspiration',
+        contact: 'Contact'
+      },
+      am: {
+        home: 'መነሻ',
+        services: 'አገልግሎቶች እና ፓኬጆች',
+        inspiration: 'ምስክር ሐሳቦች',
+        contact: 'አግኙን'
+      }
+    };
+
+    const i18n = {
+      en: {
+        title: 'Yotode Event Planner | Ethiopian Luxury Celebrations',
+        heroEyebrow: 'Elegant Ethiopian Event Planning',
+        heroTitle: 'Crafting unforgettable celebrations with culture, grace, and modern luxury.',
+        heroBody: 'Yotode Event Planner creates polished wedding weekends, engagement celebrations, church ceremonies, and refined receptions with Ethiopian hospitality and multicultural planning for every tradition.',
+        heroHighlight1: 'Custom planning for Ethiopian Orthodox weddings, baptisms, multicultural family celebrations, and milestone gatherings.',
+        heroHighlight2: 'WE DO VENUE coordination, WE DO DECORATION, WE DO CATERING, and full event coordination for all cultures.',
+        heroHighlight3: 'Refined client journey with authentic visuals, signature packages, and clear four-section navigation.',
+        ctaBook: 'Book a Consultation',
+        ctaInspiration: 'See Visual Inspiration',
+        stat1Title: 'All Cultures',
+        stat1Body: 'Inclusive planning for Ethiopian, East African, American, and global celebration traditions.',
+        stat2Title: 'Orthodox + Beyond',
+        stat2Body: 'Expert support for Ethiopian Orthodox weddings, baptisms, receptions, and multicultural events.',
+        stat3Title: 'Signature Service',
+        stat3Body: 'From concept to celebration day, every setup is coordinated with elegance and cultural respect.',
+        inspirationTitle: 'Authentic inspiration for ceremonies, receptions, florals, and Ethiopian celebration details.',
+        inspirationBody: 'Browse real-event style references for Orthodox ceremony moments, baptism celebrations, Bunna traditions, and multicultural reception styling.',
+        filterAll: 'All',
+        filterCeremony: 'Ceremony',
+        filterReception: 'Reception',
+        filterCultural: 'Cultural',
+        filterFlorals: 'Florals',
+        drawerNavigate: 'Navigate',
+        drawerTitle: 'Yotode Pages',
+        contactTitle: 'Start planning your celebration with clarity and confidence.',
+        contactBody: 'Share your event type, guest count, and preferred planning support. We'll guide you toward the right package and next steps.',
+        footer: '© 2026 Yotode Event Planner. Home, Services & Packages, Inspiration, and Contact remain available from the focused four-section navigation.',
+        statusRequired: 'Please complete all required fields before submitting.',
+        statusSending: 'Sending your inquiry...',
+        statusSuccess: 'Thank you. Your inquiry has been sent successfully.',
+        statusError: 'Unable to send right now. Please try again shortly.',
+        sendingButton: 'Sending...'
+      },
+      am: {
+        title: 'Yotode Event Planner | የኢትዮጵያ ዘመናዊ ክብረ በዓል እቅድ',
+        heroEyebrow: 'ውብ የኢትዮጵያ ክብረ በዓል እቅድ',
+        heroTitle: 'የማይረሱ ክብረ በዓላትን በባህል፣ በውበት እና በዘመናዊ ግርማ እንፈጥራለን።',
+        heroBody: 'Yotode Event Planner የጋብቻ፣ የእጮኝነት፣ የቤተክርስቲያን ስነ-ሥርዓት እና የምግብ ግብዣ ዝግጅቶችን በኢትዮጵያዊ እንግዳነት እና ለሁሉም ባህል ተስማሚ እቅድ ያቀርባል።',
+        heroHighlight1: 'ለኢትዮጵያ ኦርቶዶክስ ጋብቻ፣ ጥምቀት፣ ለብዙ ባህል ቤተሰብ ክብረ በዓላት እና ለልዩ ዝግጅቶች ብጁ እቅድ።',
+        heroHighlight2: 'ቦታ አስተባባሪ፣ ዲኮሬሽን፣ ካተሪንግ እና ሙሉ የዝግጅት አስተዳደር ለሁሉም ባህል እናቀርባለን።',
+        heroHighlight3: 'በእውነተኛ ምስሎች፣ በፓኬጆች እና በግልጽ 4-ክፍል ናቪጌሽን የተጠናከረ የደንበኛ ጉዞ።',
+        ctaBook: 'ምክክር ያስይዙ',
+        ctaInspiration: 'የምስል አስተሳሰብ ይመልከቱ',
+        stat1Title: 'ሁሉንም ባህል',
+        stat1Body: 'ለኢትዮጵያ፣ ለምሥራቅ አፍሪካ፣ ለአሜሪካ እና ለዓለም አቀፍ የክብረ በዓል ባህሎች የሚስማማ እቅድ።',
+        stat2Title: 'ኦርቶዶክስ እና ከዚያ በላይ',
+        stat2Body: 'ለኢትዮጵያ ኦርቶዶክስ ጋብቻ፣ ጥምቀት፣ ግብዣ እና ብዙ ባህል ዝግጅቶች ባለሙያ ድጋፍ።',
+        stat3Title: 'ልዩ አገልግሎት',
+        stat3Body: 'ከሃሳብ እስከ ቀን ድረስ ሁሉም አቀራረብ በክብር እና ባህላዊ ክብር ይተባበራል።',
+        inspirationTitle: 'ለስነ-ሥርዓት፣ ለግብዣ፣ ለአበባ እና ለኢትዮጵያዊ ዝርዝሮች እውነተኛ አስተሳሰብ።',
+        inspirationBody: 'ለኦርቶዶክስ ስነ-ሥርዓት፣ ለጥምቀት፣ ለቡና ሥርዓት እና ለብዙ ባህል ግብዣ እውነተኛ ምስሎችን ይመልከቱ።',
+        filterAll: 'ሁሉም',
+        filterCeremony: 'ስነ-ሥርዓት',
+        filterReception: 'ግብዣ',
+        filterCultural: 'ባህላዊ',
+        filterFlorals: 'አበባ',
+        drawerNavigate: 'ያስሱ',
+        drawerTitle: 'የYotode ገጾች',
+        contactTitle: 'ክብረ በዓልዎን በግልጽነት እና በእምነት ለመጀመር ያነጋግሩን።',
+        contactBody: 'የዝግጅት አይነትዎን፣ የእንግዶች ቁጥር እና የሚፈልጉትን የእቅድ ድጋፍ ያጋሩ። ተገቢውን ፓኬጅ እና ቀጣይ እርምጃ እንመራዎታለን።',
+        footer: '© 2026 Yotode Event Planner። መነሻ፣ አገልግሎቶች እና ፓኬጆች፣ ምስክር ሐሳቦች እና አግኙን ክፍሎች በቀላሉ ይገኛሉ።',
+        statusRequired: 'እባክዎ ከመላክዎ በፊት የሚፈለጉትን መስኮች ሁሉ ይሙሉ።',
+        statusSending: 'ጥያቄዎን እየላክን ነው...',
+        statusSuccess: 'እናመሰግናለን። ጥያቄዎ በተሳካ ሁኔታ ተልኳል።',
+        statusError: 'አሁን ላይ መላክ አልተቻለም። እባክዎ በኋላ ደግመው ይሞክሩ።',
+        sendingButton: 'በመላክ ላይ...'
+      }
     };
 
     const menuToggle = document.getElementById('menu-toggle');
@@ -1487,6 +1598,68 @@
     const galleryCards = Array.from(document.querySelectorAll('.gallery-card'));
     const inquiryButtons = Array.from(document.querySelectorAll('.package-inquiry'));
     const packageSelect = document.getElementById('package');
+    const languageButtons = Array.from(document.querySelectorAll('.lang-btn'));
+    let currentLanguage = 'en';
+
+    const setText = (id, value) => {
+      const node = document.getElementById(id);
+      if (node && typeof value === 'string') {
+        node.textContent = value;
+      }
+    };
+
+    const applyLanguage = (lang) => {
+      const locale = i18n[lang] || i18n.en;
+      currentLanguage = lang;
+      document.documentElement.lang = lang === 'am' ? 'am' : 'en';
+      document.title = locale.title;
+
+      setText('hero-eyebrow', locale.heroEyebrow);
+      setText('home-title', locale.heroTitle);
+      setText('hero-body', locale.heroBody);
+      setText('hero-highlight-1', locale.heroHighlight1);
+      setText('hero-highlight-2', locale.heroHighlight2);
+      setText('hero-highlight-3', locale.heroHighlight3);
+      setText('cta-book', locale.ctaBook);
+      setText('cta-inspiration', locale.ctaInspiration);
+      setText('stat-1-title', locale.stat1Title);
+      setText('stat-1-body', locale.stat1Body);
+      setText('stat-2-title', locale.stat2Title);
+      setText('stat-2-body', locale.stat2Body);
+      setText('stat-3-title', locale.stat3Title);
+      setText('stat-3-body', locale.stat3Body);
+      setText('inspiration-title', locale.inspirationTitle);
+      setText('inspiration-body', locale.inspirationBody);
+      setText('filter-all', locale.filterAll);
+      setText('filter-ceremony', locale.filterCeremony);
+      setText('filter-reception', locale.filterReception);
+      setText('filter-cultural', locale.filterCultural);
+      setText('filter-florals', locale.filterFlorals);
+      setText('drawer-navigate', locale.drawerNavigate);
+      setText('drawer-title', locale.drawerTitle);
+      setText('drawer-home', (pageTitles[lang] || pageTitles.en).home);
+      setText('drawer-services', (pageTitles[lang] || pageTitles.en).services);
+      setText('drawer-inspiration', (pageTitles[lang] || pageTitles.en).inspiration);
+      setText('drawer-contact', (pageTitles[lang] || pageTitles.en).contact);
+      setText('contact-title', locale.contactTitle);
+      setText('contact-body', locale.contactBody);
+      setText('footer-copy', locale.footer);
+
+      const navMap = pageTitles[lang] || pageTitles.en;
+      document.querySelectorAll('[data-route="home"]').forEach((el) => { if (el.childElementCount === 0) el.textContent = navMap.home; });
+      document.querySelectorAll('[data-route="services"]').forEach((el) => { if (el.childElementCount === 0) el.textContent = navMap.services; });
+      document.querySelectorAll('[data-route="inspiration"]').forEach((el) => { if (el.childElementCount === 0) el.textContent = navMap.inspiration; });
+      document.querySelectorAll('[data-route="contact"]').forEach((el) => { if (el.childElementCount === 0) el.textContent = navMap.contact; });
+
+      if (pageIndicator) {
+        const route = getRoute();
+        pageIndicator.textContent = navMap[route] || navMap.home;
+      }
+
+      languageButtons.forEach((button) => {
+        button.classList.toggle('active', button.dataset.lang === lang);
+      });
+    };
 
     const setMenuState = (open) => {
       menuDrawer.classList.toggle('open', open);
@@ -1534,9 +1707,10 @@
         }
       });
 
-      document.title = `Yotode Event Planner | ${pageTitles[page]}`;
+      const navMap = pageTitles[currentLanguage] || pageTitles.en;
+      document.title = `Yotode Event Planner | ${navMap[page]}`;
       if (pageIndicator) {
-        pageIndicator.textContent = pageTitles[page];
+        pageIndicator.textContent = navMap[page];
       }
       window.scrollTo({ top: 0, behavior: 'smooth' });
     };
@@ -1571,11 +1745,18 @@
       });
     });
 
+    languageButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        applyLanguage(button.dataset.lang || 'en');
+      });
+    });
+
     window.addEventListener('hashchange', () => {
       setActivePage(getRoute());
     });
 
     setActivePage(getRoute());
+    applyLanguage(currentLanguage);
 
     filterButtons.forEach((button) => {
       button.addEventListener('click', () => {
@@ -1607,7 +1788,7 @@
 
         if (!form.checkValidity()) {
           form.reportValidity();
-          status.textContent = 'Please complete all required fields before submitting.';
+          status.textContent = (i18n[currentLanguage] || i18n.en).statusRequired;
           return;
         }
 
@@ -1617,9 +1798,9 @@
         try {
           if (submitButton) {
             submitButton.disabled = true;
-            submitButton.textContent = 'Sending...';
+            submitButton.textContent = (i18n[currentLanguage] || i18n.en).sendingButton;
           }
-          status.textContent = 'Sending your inquiry...';
+          status.textContent = (i18n[currentLanguage] || i18n.en).statusSending;
 
           const response = await fetch(form.action, {
             method: 'POST',
@@ -1632,9 +1813,9 @@
           }
 
           form.reset();
-          status.textContent = 'Thank you. Your inquiry has been sent successfully.';
+          status.textContent = (i18n[currentLanguage] || i18n.en).statusSuccess;
         } catch (error) {
-          status.textContent = 'Unable to send right now. Please try again shortly.';
+          status.textContent = (i18n[currentLanguage] || i18n.en).statusError;
         } finally {
           if (submitButton) {
             submitButton.disabled = false;
