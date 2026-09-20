@@ -1015,8 +1015,8 @@
       </nav>
       <div class="header-actions">
         <div class="language-toggle" id="language-toggle" role="group" aria-label="Language selector">
-          <button class="lang-btn active" type="button" data-lang="en" aria-label="English" aria-pressed="true">EN</button>
-          <button class="lang-btn" type="button" data-lang="am" aria-label="Amharic" aria-pressed="false">አማ</button>
+          <button class="lang-btn active" id="lang-btn-en" type="button" data-lang="en" aria-label="English" aria-pressed="true">English</button>
+          <button class="lang-btn" id="lang-btn-am" type="button" data-lang="am" aria-label="Amharic" aria-pressed="false">አማርኛ</button>
         </div>
         <span class="page-kicker" id="page-indicator">Home</span>
         <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-drawer" aria-label="Open navigation menu">
@@ -1522,6 +1522,8 @@
         languageSelector: 'Language selector',
         languageButtonEn: 'English',
         languageButtonAm: 'Amharic',
+        languageButtonTextEn: 'English',
+        languageButtonTextAm: 'Amharic',
         heroEyebrow: 'Elegant Ethiopian Event Planning',
         heroTitle: 'Crafting unforgettable celebrations with culture, grace, and modern luxury.',
         heroBody: 'Yotode Event Planner creates polished wedding weekends, engagement celebrations, church ceremonies, and refined receptions with Ethiopian hospitality and multicultural planning for every tradition.',
@@ -1593,6 +1595,8 @@
         languageSelector: 'የቋንቋ ምርጫ',
         languageButtonEn: 'እንግሊዝኛ',
         languageButtonAm: 'አማርኛ',
+        languageButtonTextEn: 'English',
+        languageButtonTextAm: 'አማርኛ',
         heroEyebrow: 'ውብ የኢትዮጵያ ክብረ በዓል እቅድ',
         heroTitle: 'የማይረሱ ክብረ በዓላትን በባህል፣ በውበት እና በዘመናዊ ግርማ እንፈጥራለን።',
         heroBody: 'Yotode Event Planner የጋብቻ፣ የእጮኝነት፣ የቤተክርስቲያን ስነ-ሥርዓት እና የምግብ ግብዣ ዝግጅቶችን በኢትዮጵያዊ እንግዳነት እና ለሁሉም ባህል ተስማሚ እቅድ ያቀርባል።',
@@ -1705,7 +1709,6 @@
         // Ignore storage failures in restricted environments
       }
       document.documentElement.lang = lang === 'am' ? 'am' : 'en';
-      document.title = locale.title;
       const languageToggle = document.getElementById('language-toggle');
       if (languageToggle) {
         languageToggle.setAttribute('aria-label', locale.languageSelector);
@@ -1761,6 +1764,8 @@
       setText('video-card-1-body', locale.videoCard1Body);
       setText('video-card-2-title', locale.videoCard2Title);
       setText('video-card-2-body', locale.videoCard2Body);
+      setText('lang-btn-en', locale.languageButtonTextEn);
+      setText('lang-btn-am', locale.languageButtonTextAm);
       setAttr('hero-feature-image', 'alt', locale.heroFeatureAlt);
       setAttr('gallery-image-1', 'alt', locale.galleryImage1Alt);
       setAttr('gallery-image-2', 'alt', locale.galleryImage2Alt);
@@ -1784,6 +1789,7 @@
       if (pageIndicator) {
         const route = getRoute();
         pageIndicator.textContent = navMap[route] || navMap.home;
+        document.title = route === 'home' ? locale.title : `${locale.titlePrefix} | ${navMap[route] || navMap.home}`;
       }
 
       languageButtons.forEach((button) => {
@@ -1892,8 +1898,8 @@
       setActivePage(getRoute());
     });
 
-    setActivePage(getRoute());
     applyLanguage(currentLanguage);
+    setActivePage(getRoute());
 
     filterButtons.forEach((button) => {
       button.addEventListener('click', () => {
