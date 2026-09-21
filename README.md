@@ -1,97 +1,57 @@
-# Yotode Events - Ethiopian Orthodox Wedding Planner
+# Yotode Events Website
 
-## Welcome to Yotode Events
+Professional, bilingual (English/Amharic) event-planning website for Yotode Events, focused on Ethiopian Orthodox and multicultural celebrations.
 
-Yotode Events is a premium event planning service specializing in **authentic Ethiopian Orthodox wedding ceremonies**. We celebrate your traditions while bringing modern elegance to every detail of your special day.
+## Current Site Features
 
-## 🎊 Services
+- Single-page experience in `/home/runner/work/yotode-events/yotode-events/index.html`
+- Four-section navigation: Home, Services & Packages, Inspiration, Contact
+- English/Amharic language toggle with persistence (`localStorage` key: `yotode-language`)
+- Package showcase for Dirirsa, Qidus, and Melkam with inquiry shortcuts
+- Filterable inspiration gallery (Orthodox weddings, baptisms, coffee ceremony, multicultural)
+- Contact form via FormSubmit AJAX endpoint
 
-### Ethiopian Orthodox Ceremonies
-- **Betrothal (Emanget)** - The sacred family agreement and ring exchange
-- **Church Wedding** - The blessed union in the Ethiopian Orthodox Church
-- **Wedding Reception & Feast** - Traditional Ethiopian cuisine and celebration
-- **Amlak (Blessing)** - The spiritual blessing ceremony
+## Local Preview
 
-### Premium Planning Services
-- ✓ Full Event Planning & Coordination
-- ✓ Authentic Ethiopian Catering & Cuisine
-- ✓ Traditional Entertainment & Musicians
-- ✓ Professional Photography & Videography
-- ✓ Church & Priest Coordination
-- ✓ Elegant Venue Decoration
+Open `index.html` in a browser.
 
-## 🌟 Why Choose Yotode?
+## GitHub Pages + Custom Domain (`www.yotode_events.com`)
 
-- **Cultural Expertise** - Deep understanding of Ethiopian Orthodox traditions
-- **Attention to Detail** - Every sacred moment is handled with care
-- **Professional Team** - Experienced coordinators and service providers
-- **Personalized Service** - Customized planning for your unique vision
-- **Modern Elegance** - Honoring traditions with contemporary style
+This repository includes a `CNAME` file configured for:
 
-## 📍 Website Features
+```txt
+www.yotode_events.com
+```
 
-- Responsive design for all devices
-- Beautiful ceremonial showcase
-- Testimonials from happy couples
-- Easy contact and inquiry form
-- Social media integration
-- Professional gallery section
+### Publish Steps
 
-## 🔧 Technology Stack
+1. Push this repository to the branch used for Pages publishing (typically `main`).
+2. In GitHub: **Repository → Settings → Pages**.
+3. Under **Build and deployment**, choose **Deploy from a branch**.
+4. Select branch: `main`, folder: `/ (root)`, then **Save**.
+5. In **Custom domain**, set: `www.yotode_events.com`.
+6. Enable **Enforce HTTPS** after certificate provisioning completes.
 
-- **HTML5** - Semantic markup
-- **CSS3** - Modern styling with gradients and animations
-- **JavaScript** - Interactive features and smooth navigation
-- **Responsive Design** - Mobile-first approach
+### DNS Configuration
 
-## 📱 Responsive Design
+At your domain/DNS provider, add:
 
-The website is fully responsive and works beautifully on:
-- Desktop computers
-- Tablets
-- Mobile phones
+- `CNAME` record
+  - Host/Name: `www`
+  - Value/Target: `<your-github-username>.github.io`
 
-## 🎨 Color Palette
+Optional (for apex root redirect/support):
 
-- **Primary Red** (#C41E3A) - Inspired by the logo
-- **Dark Red** (#8B2E2E) - For depth and elegance
-- **Accent Gold** (#D4A574) - Traditional Ethiopian elegance
-- **Light Background** (#F5F1ED) - Warm and welcoming
+- `A` records for `@` pointing to GitHub Pages IPs:
+  - `185.199.108.153`
+  - `185.199.109.153`
+  - `185.199.110.153`
+  - `185.199.111.153`
 
-## 📞 Contact Information
+### Verification Checklist
 
-- **Phone:** +251 911 234 567
-- **Email:** info@yotodeevents.com
-- **Location:** Addis Ababa, Ethiopia
-- **Social Media:** Facebook, Instagram, Twitter, WhatsApp
+- GitHub Pages URL loads (e.g., `https://<username>.github.io/<repo>`)
+- Custom domain resolves (`https://www.yotode_events.com`)
+- HTTPS certificate issued and enabled
+- Navigation, language toggle, gallery filters, and inquiry form all work on live site
 
-## ✨ Getting Started
-
-1. Clone this repository
-2. Open `index.html` in your web browser
-3. Customize the content with your information
-4. Add your actual wedding photos to the gallery
-5. Update contact information
-6. Deploy to your hosting platform
-
-## 📝 Customization
-
-To customize the website:
-
-1. **Edit Content**: Update text in `index.html`
-2. **Change Colors**: Modify CSS variables in `styles.css`
-3. **Add Photos**: Replace placeholder gallery items with actual images
-4. **Update Contact**: Change phone, email, and social links
-5. **Add More Content**: Extend sections as needed
-
-## 🔒 License
-
-This website is created for Yotode Events. All rights reserved.
-
-## 🙏 Blessings
-
-May every wedding celebrated through Yotode Events be filled with joy, love, and the blessings of our Ethiopian Orthodox traditions.
-
----
-
-*Bringing Your Traditions to Life with Elegance & Grace*
