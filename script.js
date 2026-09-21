@@ -56,6 +56,7 @@ packageButtons.forEach((button) => {
 });
 
 const openLightbox = (card) => {
+  if (!lightbox || !lightboxImage || !lightboxTitle || !lightboxDescription) return;
   lightboxImage.src = card.dataset.image || '';
   lightboxImage.alt = card.querySelector('img')?.alt || '';
   lightboxTitle.textContent = card.dataset.title || '';
@@ -65,6 +66,7 @@ const openLightbox = (card) => {
 };
 
 const closeLightbox = () => {
+  if (!lightbox || !lightboxImage) return;
   lightbox.hidden = true;
   lightboxImage.src = '';
   document.body.style.overflow = '';
@@ -81,11 +83,11 @@ galleryCards.forEach((card) => {
 document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') {
     closeMenu();
-    if (!lightbox.hidden) closeLightbox();
+    if (lightbox && !lightbox.hidden) closeLightbox();
   }
 });
 
-if (form) {
+if (form && formStatus) {
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
     formStatus.textContent = 'Sending...';

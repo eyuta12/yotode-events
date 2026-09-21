@@ -132,7 +132,8 @@ a {
 .site-nav a:hover,
 .site-nav a:focus-visible {
   background: rgba(255, 255, 255, 0.12);
-  outline: none;
+  outline: 3px solid rgba(200, 160, 93, 0.85);
+  outline-offset: 2px;
 }
 
 .menu-toggle {
@@ -238,6 +239,18 @@ a {
 .gallery-card:hover,
 .gallery-card:focus-visible {
   transform: translateY(-2px);
+}
+
+.button:focus-visible,
+.gallery-card:focus-visible,
+.filter-button:focus-visible,
+.menu-toggle:focus-visible,
+.lightbox-dismiss:focus-visible,
+.lightbox-backdrop:focus-visible,
+.contact-form input:focus-visible,
+.contact-form textarea:focus-visible {
+  outline: 3px solid rgba(200, 160, 93, 0.9);
+  outline-offset: 3px;
 }
 
 .button-secondary {
