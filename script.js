@@ -48,9 +48,13 @@ filterButtons.forEach((button) => {
 packageButtons.forEach((button) => {
   button.addEventListener('click', () => {
     const packageName = button.dataset.package || '';
-    selectedPackageInput.value = packageName;
-    selectedPackage.hidden = !packageName;
-    selectedPackage.textContent = packageName ? `Selected package: ${packageName}` : '';
+    if (selectedPackageInput) {
+      selectedPackageInput.value = packageName;
+    }
+    if (selectedPackage) {
+      selectedPackage.hidden = !packageName;
+      selectedPackage.textContent = packageName ? `Selected package: ${packageName}` : '';
+    }
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 });
@@ -106,9 +110,13 @@ if (form && formStatus) {
       }
 
       form.reset();
-      selectedPackage.hidden = true;
-      selectedPackage.textContent = '';
-      selectedPackageInput.value = '';
+      if (selectedPackage) {
+        selectedPackage.hidden = true;
+        selectedPackage.textContent = '';
+      }
+      if (selectedPackageInput) {
+        selectedPackageInput.value = '';
+      }
       formStatus.textContent = 'Thank you. Your inquiry has been sent.';
     } catch (error) {
       formStatus.textContent = 'Unable to send right now. Please call one of the numbers above.';
