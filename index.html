@@ -3,1949 +3,223 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yotode Event Planner | Ethiopian Luxury Celebrations</title>
+  <title>Yotode Events | Elegant Celebration Planning</title>
+  <meta name="description" content="Yotode Events creates elegant Ethiopian and multicultural celebrations with refined planning, beautiful styling, and warm hospitality.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700&family=Noto+Sans+Ethiopic:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --burgundy: #7A1C28;
-      --burgundy-deep: #59131d;
-      --gold: #C5A059;
-      --gold-soft: #e7d4aa;
-      --cream: #FAF8F5;
-      --white: #ffffff;
-      --ink: #201715;
-      --muted: #695c56;
-      --line: rgba(122, 28, 40, 0.12);
-      --shadow: 0 20px 40px rgba(40, 19, 21, 0.1);
-      --radius: 24px;
-      --radius-sm: 16px;
-      --nav-width: min(24rem, calc(100vw - 2rem));
-      --font-sans: 'Montserrat', 'Avenir Next', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-serif: 'Cormorant Garamond', 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
-      --font-ethiopic: 'Noto Sans Ethiopic', var(--font-sans);
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html, body { min-height: 100%; }
-
-    body {
-      font-family: var(--font-sans);
-      background:
-        radial-gradient(circle at top left, rgba(197, 160, 89, 0.18), transparent 28%),
-        linear-gradient(180deg, #fffdfa 0%, var(--cream) 100%);
-      color: var(--ink);
-      line-height: 1.6;
-      overflow-x: hidden;
-      font-synthesis: none;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-    }
-
-    body.menu-open { overflow: hidden; }
-
-    html[lang="am"] body { font-family: var(--font-ethiopic); }
-
-    html[lang="am"] h1,
-    html[lang="am"] h2,
-    html[lang="am"] h3,
-    html[lang="am"] h4,
-    html[lang="am"] .drawer-links strong,
-    html[lang="am"] .brand-mark strong {
-      font-family: var(--font-ethiopic);
-      line-height: 1.2;
-    }
-
-    img { max-width: 100%; display: block; }
-
-    button, input, select, textarea { font: inherit; }
-
-    a { color: inherit; }
-
-    .site-shell {
-      width: min(1200px, calc(100% - 2rem));
-      margin: 0 auto;
-    }
-
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      backdrop-filter: blur(12px);
-      background: rgba(250, 248, 245, 0.86);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .header-bar {
-      min-height: 5.25rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.9rem;
-      text-decoration: none;
-      min-width: 0;
-    }
-
-    .brand img {
-      width: 3.4rem;
-      height: 3.4rem;
-      object-fit: contain;
-      filter: drop-shadow(0 8px 14px rgba(122, 28, 40, 0.16));
-    }
-
-    .brand-mark {
-      display: flex;
-      flex-direction: column;
-      min-width: 0;
-    }
-
-    .brand-mark strong {
-      font-family: var(--font-serif);
-      font-size: clamp(1.7rem, 2vw, 2rem);
-      color: var(--burgundy);
-      line-height: 1;
-    }
-
-    .brand-mark span,
-    .page-kicker,
-    .eyebrow {
-      text-transform: uppercase;
-      letter-spacing: 0.22em;
-      font-size: 0.68rem;
-      color: var(--muted);
-    }
-
-    .brand-mark span { color: var(--burgundy); }
-
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .language-toggle {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.15rem;
-      padding: 0.2rem;
-      border-radius: 999px;
-      border: 1px solid rgba(122, 28, 40, 0.2);
-      background: rgba(255, 255, 255, 0.75);
-    }
-
-    .language-button {
-      border: 0;
-      background: transparent;
-      color: var(--burgundy);
-      font-weight: 700;
-      border-radius: 999px;
-      padding: 0.35rem 0.65rem;
-      font-size: 0.78rem;
-      cursor: pointer;
-      transition: background 0.2s ease;
-    }
-
-    .language-button.active {
-      background: rgba(122, 28, 40, 0.12);
-    }
-
-    .desktop-nav {
-      display: none;
-      align-items: center;
-      gap: 0.45rem;
-      flex-wrap: wrap;
-    }
-
-    .desktop-nav a {
-      padding: 0.72rem 1rem;
-      border-radius: 999px;
-      text-decoration: none;
-      font-size: 0.92rem;
-      font-weight: 600;
-      color: var(--burgundy);
-      border: 1px solid transparent;
-      transition: background 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
-    }
-
-    .desktop-nav a:hover,
-    .desktop-nav a:focus-visible,
-    .desktop-nav a.active {
-      background: rgba(197, 160, 89, 0.16);
-      border-color: rgba(197, 160, 89, 0.45);
-      transform: translateY(-1px);
-    }
-
-    .page-kicker {
-      display: none;
-      padding: 0.55rem 0.85rem;
-      border-radius: 999px;
-      border: 1px solid rgba(197, 160, 89, 0.45);
-      background: rgba(255, 255, 255, 0.72);
-      color: var(--burgundy);
-      white-space: nowrap;
-    }
-
-    .menu-toggle {
-      width: 3.35rem;
-      height: 3.35rem;
-      border: 1px solid rgba(122, 28, 40, 0.34);
-      border-radius: 50%;
-      background: linear-gradient(145deg, rgba(122, 28, 40, 0.08), var(--white));
-      display: inline-grid;
-      place-items: center;
-      cursor: pointer;
-      box-shadow: 0 10px 20px rgba(122, 28, 40, 0.08);
-      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
-    }
-
-    .menu-toggle:hover,
-    .menu-toggle:focus-visible {
-      transform: translateY(-2px);
-      box-shadow: 0 14px 24px rgba(122, 28, 40, 0.14);
-      background: #fff8f1;
-    }
-
-    .menu-toggle span {
-      width: 1.35rem;
-      height: 2px;
-      background: var(--burgundy);
-      border-radius: 999px;
-      display: block;
-      transition: transform 0.28s ease, opacity 0.2s ease;
-    }
-
-    .menu-toggle span + span { margin-top: 0.28rem; }
-
-    .menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
-    .menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
-    .menu-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
-
-    .menu-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(36, 17, 18, 0.4);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.28s ease;
-      z-index: 900;
-    }
-
-    .menu-overlay.open {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .menu-drawer {
-      position: fixed;
-      top: 0.9rem;
-      right: 0.9rem;
-      bottom: 0.9rem;
-      width: var(--nav-width);
-      padding: 1.4rem;
-      border-radius: 2rem;
-      background:
-        linear-gradient(145deg, rgba(122, 28, 40, 0.98), rgba(89, 19, 29, 0.94)),
-        var(--burgundy);
-      color: var(--white);
-      box-shadow: 0 25px 50px rgba(20, 9, 9, 0.3);
-      transform: translateX(calc(100% + 2rem));
-      transition: transform 0.34s ease;
-      z-index: 950;
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
-      overflow: auto;
-    }
-
-    .menu-drawer.open { transform: translateX(0); }
-
-    .drawer-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.18);
-    }
-
-    .drawer-title {
-      font-family: var(--font-serif);
-      font-size: 1.9rem;
-      line-height: 1;
-    }
-
-    .drawer-links {
-      list-style: none;
-      display: grid;
-      gap: 0.8rem;
-      margin-top: 0.4rem;
-    }
-
-    .drawer-links a {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      padding: 1rem 1.05rem;
-      border-radius: 1.1rem;
-      text-decoration: none;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: transform 0.24s ease, background 0.24s ease, border-color 0.24s ease;
-    }
-
-    .drawer-links a:hover,
-    .drawer-links a:focus-visible,
-    .drawer-links a.active {
-      transform: translateX(-4px);
-      background: rgba(255, 255, 255, 0.16);
-      border-color: rgba(197, 160, 89, 0.7);
-    }
-
-    .drawer-links strong {
-      font-family: var(--font-serif);
-      font-size: 1.6rem;
-      font-weight: 600;
-    }
-
-    .drawer-links span {
-      color: rgba(255, 255, 255, 0.72);
-      font-size: 0.88rem;
-      max-width: 14rem;
-      text-align: right;
-    }
-
-    .drawer-note {
-      margin-top: auto;
-      padding: 1rem 1.05rem;
-      border-radius: 1.25rem;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      color: rgba(255, 255, 255, 0.82);
-    }
-
-    .main-stage {
-      padding: 2rem 0 4rem;
-      min-height: calc(100vh - 5.25rem);
-    }
-
-    .page-panel {
-      display: none;
-      animation: pageFade 0.45s ease;
-    }
-
-    .page-panel.active { display: block; }
-
-    @keyframes pageFade {
-      from { opacity: 0; transform: translateY(18px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .page-hero,
-    .section-card,
-    .stat-card,
-    .service-card,
-    .package-card,
-    .process-step,
-    .story-card,
-    .contact-panel,
-    .gallery-card,
-    .detail-card,
-    .video-card {
-      background: rgba(255, 255, 255, 0.94);
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow);
-      border-radius: var(--radius);
-    }
-
-    .hero-layout,
-    .services-layout,
-    .contact-layout,
-    .story-layout,
-    .gallery-grid,
-    .detail-grid,
-    .mini-grid,
-    .package-grid,
-    .process-grid,
-    .stats-grid,
-    .offer-grid {
-      display: grid;
-      gap: 1.4rem;
-    }
-
-    .hero-layout,
-    .services-layout,
-    .contact-layout { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-
-    .page-hero {
-      overflow: hidden;
-      padding: clamp(1.5rem, 3vw, 2rem);
-      position: relative;
-      isolation: isolate;
-    }
-
-    .page-hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at top right, rgba(197, 160, 89, 0.22), transparent 35%),
-        radial-gradient(circle at bottom left, rgba(122, 28, 40, 0.14), transparent 32%);
-      z-index: -1;
-    }
-
-    .hero-copy {
-      display: grid;
-      align-content: center;
-      gap: 1rem;
-      padding: 0.25rem;
-    }
-
-    .eyebrow { color: var(--burgundy); font-weight: 700; }
-
-    h1, h2, h3, h4 {
-      font-family: var(--font-serif);
-      line-height: 1.06;
-      color: var(--burgundy);
-    }
-
-    h1 { font-size: clamp(2.7rem, 7vw, 4.9rem); }
-    h2 { font-size: clamp(2.2rem, 4vw, 3.2rem); margin-bottom: 0.45rem; }
-    h3 { font-size: clamp(1.55rem, 3vw, 2rem); }
-    p { color: var(--muted); }
-
-    .hero-copy p { font-size: 1rem; max-width: 58ch; }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-      padding-top: 0.25rem;
-    }
-
-    .btn {
-      border: 1px solid transparent;
-      border-radius: 999px;
-      padding: 0.9rem 1.35rem;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.45rem;
-      cursor: pointer;
-      font-weight: 600;
-      transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
-    }
-
-    .btn:hover,
-    .btn:focus-visible { transform: translateY(-2px); }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--burgundy), var(--burgundy-deep));
-      color: var(--white);
-      box-shadow: 0 16px 24px rgba(122, 28, 40, 0.24);
-    }
-
-    .btn-secondary {
-      background: rgba(197, 160, 89, 0.16);
-      border-color: rgba(197, 160, 89, 0.5);
-      color: var(--burgundy);
-    }
-
-    .hero-highlights,
-    .timeline-list,
-    .detail-list,
-    .contact-list,
-    .package-list,
-    .offer-list {
-      list-style: none;
-      display: grid;
-      gap: 0.8rem;
-    }
-
-    .hero-highlights li,
-    .detail-list li,
-    .contact-list li,
-    .package-list li,
-    .offer-list li {
-      display: flex;
-      gap: 0.75rem;
-      align-items: flex-start;
-      color: var(--ink);
-    }
-
-    .hero-highlights li::before,
-    .detail-list li::before,
-    .contact-list li::before,
-    .package-list li::before,
-    .offer-list li::before {
-      content: "✦";
-      color: var(--gold);
-      margin-top: 0.12rem;
-      flex: none;
-    }
-
-    .video-card {
-      padding: 1rem;
-      position: relative;
-      overflow: hidden;
-      min-height: 100%;
-    }
-
-    .video-shell {
-      position: relative;
-      min-height: 26rem;
-      border-radius: 1.4rem;
-      overflow: hidden;
-      background: var(--burgundy-deep);
-      border: 1px solid rgba(197, 160, 89, 0.2);
-    }
-
-    .video-shell video,
-    .video-shell img {
-      width: 100%;
-      height: 100%;
-      min-height: 26rem;
-      object-fit: cover;
-      display: block;
-      background: #3f0f18;
-    }
-
-    .video-caption {
-      position: absolute;
-      left: 1rem;
-      right: 1rem;
-      bottom: 1rem;
-      padding: 0.85rem 1rem;
-      border-radius: 0.9rem;
-      background: rgba(23, 9, 12, 0.66);
-      border: 1px solid rgba(197, 160, 89, 0.36);
-      color: var(--white);
-      backdrop-filter: blur(4px);
-    }
-
-    .video-caption p {
-      color: var(--white);
-      font-size: 0.9rem;
-    }
-
-    .reel-slide {
-      position: absolute;
-      inset: 0;
-      padding: 1.4rem;
-      display: grid;
-      align-content: end;
-      opacity: 0;
-      transition: opacity 0.9s ease;
-      color: var(--white);
-      background-size: cover;
-      background-position: center;
-    }
-
-    .reel-slide::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(28, 7, 11, 0.12), rgba(28, 7, 11, 0.82));
-    }
-
-    .reel-slide.active { opacity: 1; }
-
-    .reel-content {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      gap: 0.55rem;
-      max-width: 22rem;
-    }
-
-    .reel-content h3,
-    .reel-content p,
-    .film-caption h3,
-    .film-caption p { color: var(--white); }
-
-    .film-ui {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 1rem;
-      pointer-events: none;
-    }
-
-    .film-meta,
-    .film-controls {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.75rem;
-    }
-
-    .film-pill,
-    .film-time {
-      pointer-events: auto;
-      padding: 0.45rem 0.8rem;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.13);
-      backdrop-filter: blur(8px);
-      font-size: 0.82rem;
-      color: var(--white);
-    }
-
-    .film-toggle {
-      pointer-events: auto;
-      width: 3rem;
-      height: 3rem;
-      border-radius: 50%;
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      background: rgba(255, 255, 255, 0.14);
-      color: var(--white);
-      cursor: pointer;
-    }
-
-    .film-progress {
-      flex: 1;
-      height: 0.3rem;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.18);
-      overflow: hidden;
-      pointer-events: auto;
-    }
-
-    .film-progress span {
-      display: block;
-      height: 100%;
-      width: 33.333%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, var(--gold), var(--gold-soft));
-      transition: transform 0.45s ease;
-      transform-origin: left center;
-    }
-
-    .stats-grid,
-    .offer-grid,
-    .gallery-grid,
-    .detail-grid,
-    .mini-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-
-    .stats-grid { margin-top: 1.4rem; }
-
-    .stat-card,
-    .story-card,
-    .detail-card,
-    .service-card,
-    .process-step,
-    .gallery-card,
-    .contact-panel {
-      padding: 1.25rem;
-    }
-
-    .stat-card strong {
-      display: block;
-      font-size: 2rem;
-      font-family: var(--font-serif);
-      color: var(--burgundy);
-    }
-
-    .section-card { padding: clamp(1.4rem, 2vw, 2rem); }
-
-    .section-heading {
-      margin-bottom: 1.2rem;
-      display: grid;
-      gap: 0.35rem;
-    }
-
-    .section-heading.center { text-align: center; }
-
-    .service-card h3,
-    .package-card h3,
-    .process-step h3,
-    .story-card h3,
-    .gallery-card h3,
-    .detail-card h3,
-    .contact-panel h3 { margin-bottom: 0.45rem; }
-
-    .package-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-
-    .package-card {
-      padding: 0;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .package-top {
-      padding: 1.8rem 1.35rem 1.55rem;
-      background: linear-gradient(160deg, rgba(122, 28, 40, 0.98), rgba(89, 19, 29, 0.93));
-      color: var(--white);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      text-align: center;
-    }
-
-    .package-top h3,
-    .package-top p,
-    .package-top .eyebrow { color: var(--white); }
-
-    .package-top strong {
-      display: block;
-      font-size: 2.15rem;
-      font-family: var(--font-serif);
-      line-height: 1;
-      margin: 0.45rem 0;
-    }
-
-    .package-badge {
-      position: absolute;
-      top: 1.1rem;
-      right: -3.2rem;
-      padding: 0.5rem 3.8rem;
-      background: linear-gradient(135deg, var(--gold-soft), var(--gold));
-      color: var(--burgundy-deep);
-      font-size: 0.76rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      transform: rotate(42deg);
-      box-shadow: 0 10px 20px rgba(89, 19, 29, 0.18);
-    }
-
-    .package-price {
-      padding: 1.4rem 1.35rem 1.05rem;
-      text-align: center;
-      background: rgba(255, 255, 255, 0.98);
-      border-bottom: 1px solid rgba(122, 28, 40, 0.08);
-    }
-
-    .package-price strong {
-      font-family: var(--font-serif);
-      font-size: clamp(2.2rem, 4vw, 3.2rem);
-      line-height: 1;
-      color: var(--burgundy);
-    }
-
-    .package-price span {
-      color: var(--muted);
-      font-size: 1rem;
-      font-weight: 600;
-    }
-
-    .package-price .price-prefix {
-      color: var(--burgundy);
-      font-size: 1.5rem;
-      margin-right: 0.35rem;
-    }
-
-    .package-guests {
-      padding: 0.9rem 1rem;
-      text-align: center;
-      color: var(--burgundy);
-      font-weight: 700;
-      background: linear-gradient(180deg, rgba(122, 28, 40, 0.06) 0%, rgba(122, 28, 40, 0.12) 100%);
-      border-top: 1px solid rgba(122, 28, 40, 0.06);
-      border-bottom: 1px solid rgba(122, 28, 40, 0.08);
-    }
-
-    .package-body {
-      padding: 1.35rem;
-      display: grid;
-      gap: 1rem;
-    }
-
-    .package-body .btn {
-      width: 100%;
-      margin-top: 0.35rem;
-    }
-
-    .process-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-
-    .process-step {
-      position: relative;
-      padding-top: 3rem;
-    }
-
-    .step-index {
-      position: absolute;
-      top: 1rem;
-      left: 1rem;
-      width: 2rem;
-      height: 2rem;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      background: var(--burgundy);
-      color: var(--white);
-      font-weight: 700;
-    }
-
-    .story-layout { grid-template-columns: 1.2fr 0.8fr; align-items: start; }
-
-    .story-card.accent {
-      background: linear-gradient(180deg, rgba(122, 28, 40, 0.96), rgba(89, 19, 29, 0.94));
-      border-color: rgba(197, 160, 89, 0.36);
-    }
-
-    .story-card.accent h3,
-    .story-card.accent p,
-    .story-card.accent li,
-    .story-card.accent .eyebrow { color: var(--white); }
-
-    .filter-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.7rem;
-      justify-content: center;
-      margin-bottom: 1.2rem;
-    }
-
-    .filter-button {
-      border: 1px solid rgba(122, 28, 40, 0.14);
-      background: rgba(255, 255, 255, 0.88);
-      color: var(--burgundy);
-      border-radius: 999px;
-      padding: 0.75rem 1rem;
-      cursor: pointer;
-      font-weight: 600;
-      transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
-    }
-
-    .filter-button.active,
-    .filter-button:hover,
-    .filter-button:focus-visible {
-      background: rgba(197, 160, 89, 0.16);
-      border-color: rgba(197, 160, 89, 0.6);
-      transform: translateY(-2px);
-    }
-
-    .gallery-card {
-      overflow: hidden;
-      padding: 0;
-      transition: transform 0.24s ease, box-shadow 0.24s ease;
-    }
-
-    .gallery-card:hover { transform: translateY(-4px); }
-
-    .gallery-card[hidden] { display: none; }
-
-    .gallery-card img {
-      width: 100%;
-      aspect-ratio: 4 / 5;
-      object-fit: cover;
-      background: rgba(197, 160, 89, 0.22);
-    }
-
-    .gallery-copy { padding: 1rem 1rem 1.1rem; }
-
-    .gallery-copy p { font-size: 0.92rem; }
-
-    .video-gallery {
-      margin-top: 1.4rem;
-      display: grid;
-      gap: 1.2rem;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .contact-layout { align-items: start; }
-
-    .contact-panel .contact-list + .contact-list { margin-top: 1rem; }
-
-    .contact-phone-links {
-      display: grid;
-      gap: 0.45rem;
-    }
-
-    .contact-phone-group {
-      display: grid;
-      gap: 0.18rem;
-      padding: 0.8rem 0.9rem;
-      border-radius: 1rem;
-      background: rgba(122, 28, 40, 0.04);
-      border: 1px solid rgba(122, 28, 40, 0.08);
-    }
-
-    .contact-phone-group small {
-      color: var(--muted);
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      font-weight: 700;
-    }
-
-    .contact-phone-link {
-      color: var(--burgundy);
-      font-weight: 700;
-      text-decoration: none;
-    }
-
-    .contact-phone-link:hover,
-    .contact-phone-link:focus-visible {
-      text-decoration: underline;
-      text-decoration-color: rgba(122, 28, 40, 0.5);
-    }
-
-    .contact-form {
-      display: grid;
-      gap: 0.95rem;
-    }
-
-    .field-grid {
-      display: grid;
-      gap: 0.95rem;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .field label {
-      display: block;
-      margin-bottom: 0.35rem;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--muted);
-    }
-
-    .field input,
-    .field select,
-    .field textarea {
-      width: 100%;
-      padding: 0.82rem 0.9rem;
-      border-radius: 1rem;
-      border: 1px solid rgba(122, 28, 40, 0.16);
-      background: var(--white);
-      color: var(--ink);
-    }
-
-    .field input:focus,
-    .field select:focus,
-    .field textarea:focus {
-      outline: 2px solid rgba(197, 160, 89, 0.35);
-      border-color: rgba(197, 160, 89, 0.8);
-    }
-
-    .field textarea {
-      min-height: 9.5rem;
-      resize: vertical;
-    }
-
-    .form-footer {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.8rem;
-    }
-
-    .status {
-      min-height: 1.4rem;
-      font-size: 0.9rem;
-      color: var(--burgundy);
-    }
-
-    .site-footer {
-      padding: 2rem 0 2.6rem;
-      color: var(--muted);
-      text-align: center;
-    }
-
-    .site-footer a {
-      color: var(--burgundy);
-      text-decoration: none;
-    }
-
-    @media (min-width: 900px) {
-      .page-kicker { display: inline-flex; }
-      .desktop-nav { display: inline-flex; }
-      .header-actions .menu-toggle { display: none; }
-    }
-
-    @media (max-width: 980px) {
-      .hero-layout,
-      .services-layout,
-      .contact-layout,
-      .story-layout,
-      .package-grid,
-      .process-grid,
-      .stats-grid,
-      .offer-grid,
-      .gallery-grid,
-      .detail-grid,
-      .mini-grid,
-      .video-gallery,
-      .field-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .video-shell { min-height: 23rem; }
-      .page-kicker { display: none; }
-      .desktop-nav { display: none; }
-    }
-
-    @media (max-width: 720px) {
-      .site-shell { width: min(100% - 1rem, 1200px); }
-      .main-stage { padding-top: 1rem; }
-      .menu-drawer {
-        inset: auto 0.5rem 0.5rem 0.5rem;
-        width: auto;
-        top: 0.5rem;
-        border-radius: 1.4rem;
-      }
-
-      .brand img {
-        width: 3rem;
-        height: 3rem;
-      }
-
-      .brand-mark strong { font-size: 1.45rem; }
-      .hero-actions,
-      .form-footer { align-items: stretch; }
-      .form-footer .btn { width: 100%; }
-      .header-bar { gap: 0.6rem; }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
 </head>
 <body>
   <header class="site-header">
-    <div class="site-shell header-bar">
-      <a class="brand" href="#home" data-route="home" aria-label="Yotode Event Planner home">
-        <img src="https://github.com/user-attachments/assets/dcff9725-c5b8-48ea-aedd-3794b2caf85b" alt="Yotode Event Planner floral logo">
-        <span class="brand-mark">
+    <div class="shell nav-shell">
+      <a class="brand" href="#home" aria-label="Yotode Events home">
+        <img src="https://github.com/user-attachments/assets/dcff9725-c5b8-48ea-aedd-3794b2caf85b" alt="Yotode Events logo">
+        <span class="brand-copy">
           <strong>Yotode</strong>
-          <span>Event Planner</span>
+          <span>Events</span>
         </span>
       </a>
-      <nav class="desktop-nav" aria-label="Primary navigation">
-        <a href="#home" data-route="home">Home</a>
-        <a href="#services" data-route="services">Services &amp; Packages</a>
-        <a href="#inspiration" data-route="inspiration">Inspiration</a>
-        <a href="#contact" data-route="contact">Contact</a>
-      </nav>
-      <div class="header-actions">
-        <div class="language-toggle" role="group" aria-label="Language selector">
-          <button class="language-button active" id="lang-en" type="button" data-lang="en" aria-pressed="true">EN</button>
-          <button class="language-button" id="lang-am" type="button" data-lang="am" aria-pressed="false">አማ</button>
-        </div>
-        <span class="page-kicker" id="page-indicator">Home</span>
-        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-drawer" aria-label="Open navigation menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </div>
-    </div>
-  </header>
 
-  <div class="menu-overlay" id="menu-overlay"></div>
-  <aside class="menu-drawer" id="menu-drawer" aria-label="Primary navigation" aria-hidden="true">
-    <div class="drawer-top">
-      <div>
-        <p class="eyebrow">Navigate</p>
-        <p class="drawer-title">Yotode Pages</p>
-      </div>
-      <button class="menu-toggle" id="drawer-close" type="button" aria-expanded="true" aria-label="Close navigation menu">
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
         <span></span>
         <span></span>
         <span></span>
       </button>
-    </div>
-    <ul class="drawer-links">
-      <li>
-        <a href="#home" data-route="home">
-          <strong>Home</strong>
-          <span>Brand story, featured event imagery, and a polished planning introduction.</span>
-        </a>
-      </li>
-      <li>
-        <a href="#services" data-route="services">
-          <strong>Services &amp; Packages</strong>
-          <span>Planning support, three signature packages, and the event process.</span>
-        </a>
-      </li>
-      <li>
-        <a href="#inspiration" data-route="inspiration">
-          <strong>Inspiration</strong>
-          <span>Authentic decor, reception, floral, and cultural reference moments.</span>
-        </a>
-      </li>
-      <li>
-        <a href="#contact" data-route="contact">
-          <strong>Contact</strong>
-          <span>Booking lines, department contacts, and the inquiry form.</span>
-        </a>
-      </li>
-    </ul>
-    <div class="drawer-note">
-      <p class="eyebrow">Signature aesthetic</p>
-      <p>Rooted in Ethiopian celebration traditions, finished with a refined burgundy-and-gold presentation for luxury events.</p>
-    </div>
-  </aside>
 
-  <main class="site-shell main-stage" id="main-stage">
-    <section class="page-panel active" id="page-home" data-page="home" aria-labelledby="home-title">
-      <div class="page-hero">
-        <div class="hero-layout">
-          <div class="hero-copy">
-            <p class="eyebrow">Elegant Ethiopian Event Planning</p>
-            <h1 id="home-title">Luxury celebrations rooted in culture, family, and beauty.</h1>
-            <p>Yotode Event Planner designs weddings, graduations, birthdays, baptisms, shimgelina gatherings, and coffee ceremonies with polished coordination and warm hospitality.</p>
-            <ul class="hero-highlights">
-              <li>Signature planning for Ethiopian Orthodox weddings, family milestones, and cultural celebrations.</li>
-              <li>Refined venue styling, decoration, catering coordination, and guest-experience management.</li>
-              <li>Authentic cultural touches—from bunna corners to ceremonial flow—presented with a professional finish.</li>
-              <li>Clear planning support from the first consultation to event-day leadership.</li>
-            </ul>
-            <div class="hero-actions">
-              <a class="btn btn-primary" href="#contact" data-route="contact">Book a Consultation</a>
-              <a class="btn btn-secondary" href="#inspiration" data-route="inspiration">See Visual Inspiration</a>
-            </div>
-          </div>
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#inspiration">Inspiration</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-          <article class="video-card" aria-label="Featured Yotode event portfolio image">
-            <div class="video-shell" id="brand-film">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Wedding_ceremony%2C_Ethiopian_Orthodox_Church%2C_Addis_Ababa.jpg" alt="Ethiopian Orthodox wedding ceremony in Addis Ababa church" loading="eager" decoding="async" fetchpriority="high">
-              <div class="video-caption">
-                <p class="eyebrow">Featured Portfolio</p>
-                <p>A refined Yotode celebration blends elegant styling, authentic traditions, and gracious hospitality for unforgettable family moments.</p>
-              </div>
-            </div>
-          </article>
+  <main>
+    <section class="hero" id="home">
+      <div class="shell hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Yotode Events</p>
+          <h1>Elegant celebrations, beautifully brought to life.</h1>
+          <p class="hero-text">Wedding days, family milestones, and cultural gatherings styled with grace, warmth, and refined detail.</p>
+          <a class="button" href="#contact">Book Now</a>
+        </div>
+
+        <div class="hero-media">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Wedding_ceremony%2C_Ethiopian_Orthodox_Church%2C_Addis_Ababa.jpg" alt="Elegant couple celebrating an Ethiopian Orthodox wedding ceremony" loading="eager" decoding="async" fetchpriority="high">
         </div>
       </div>
     </section>
 
-    <section class="page-panel" id="page-services" data-page="services" aria-labelledby="services-title">
-      <div class="section-card">
-        <div class="section-heading center">
-          <p class="eyebrow">Services &amp; Packages</p>
-          <h2 id="services-title">Full-service planning created for meaningful celebrations.</h2>
-          <p>We celebrate all cultures and traditions with complete event support through three signature all-inclusive packages.</p>
+    <section class="section" id="services">
+      <div class="shell">
+        <div class="section-heading">
+          <p class="eyebrow">Services</p>
+          <h2>Signature packages</h2>
         </div>
 
-        <div class="services-layout">
-          <div class="offer-grid">
-            <article class="service-card">
-              <h3>Ceremony Design</h3>
-              <p>Planning for Ethiopian Orthodox church flow, international ceremonies, and interfaith transitions with cultural respect.</p>
-            </article>
-            <article class="service-card">
-              <h3>DECORATION &amp; Florals</h3>
-              <p>Luxury floral direction, candlelit tablescapes, sweetheart staging, and culturally inspired texture layering.</p>
-            </article>
-            <article class="service-card">
-              <h3>CATERING &amp; Hospitality</h3>
-              <p>Guest seating, buffet styling, coffee ceremony areas, dessert presentation, and polished service management.</p>
-            </article>
-            <article class="service-card">
-              <h3>Photo &amp; Video Coordination</h3>
-              <p>Shot lists, procession timing, family portrait management, and vendor alignment for smooth visual coverage.</p>
-            </article>
-            <article class="service-card">
-              <h3>Zemari &amp; Cultural Programming</h3>
-              <p>Rehearsal planning, ceremonial musicians, and cultural programming tailored for Ethiopian, international, and multicultural events.</p>
-            </article>
-            <article class="service-card">
-              <h3>VENUE Coordination &amp; Styling</h3>
-              <p>Spatial planning for head tables, lounge vignettes, welcome moments, and premium guest circulation.</p>
-            </article>
-          </div>
-
-          <article class="story-card accent">
-            <p class="eyebrow">What We Offer</p>
-            <h3>Luxury details that honor every family story and cultural identity.</h3>
-            <ul class="offer-list">
-              <li>Custom mood boards inspired by weddings, graduations, birthdays, baptisms, shimgelina, and coffee ceremony aesthetics.</li>
-              <li>Vendor curation for florals, catering, photography, entertainment, rentals, and any cultural ceremony needs.</li>
-              <li>Guest-experience planning that keeps elders, family members, and out-of-town visitors fully cared for.</li>
-              <li>Design guidance for believable, elevated setups using authentic real-event visuals.</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-
-      <div class="section-card" style="margin-top: 1.4rem;">
-        <div class="section-heading center">
-          <p class="eyebrow">Packages</p>
-          <h2>💎 Our Packages</h2>
-          <p>Comprehensive all-inclusive packages including full coordination, catering, decoration, photography, cake, Zemari, and Mezemran with rehearsal.</p>
-        </div>
         <div class="package-grid">
           <article class="package-card">
-            <div class="package-top">
-              <p class="eyebrow">Micro Celebration</p>
-              <h3>Yotode</h3>
-              <p>Micro Event</p>
-            </div>
-            <div class="package-price">
-              <span class="price-prefix">$</span>
-              <strong>8,500</strong>
-              <span>- $12,000+</span>
-            </div>
-            <p class="package-guests">50–75 Guests</p>
-            <div class="package-body">
-              <ul class="package-list">
-                <li>Full event coordination and planning</li>
-                <li>Venue selection, layout planning, and setup</li>
-                <li>Decoration team support and floral arrangements</li>
-                <li>Catering team oversight and full meal service</li>
-                <li>Professional photographer coordination</li>
-                <li>Custom cake, desserts, Zemari, and Mezemran with rehearsal</li>
-                <li>4–6 hours of event management and family support</li>
-              </ul>
-              <button class="btn btn-primary package-inquiry" type="button" data-package="Yotode">Inquire for Yotode</button>
-            </div>
+            <p class="package-label">Yotode</p>
+            <h3>$8,500 – $12,000+</h3>
+            <p>Perfect for intimate celebrations with polished coordination, elevated styling, and thoughtful guest care from start to finish.</p>
+            <button class="button button-secondary package-inquiry" type="button" data-package="Yotode">Inquire</button>
           </article>
-          <article class="package-card">
-            <span class="package-badge">Most Popular</span>
-            <div class="package-top">
-              <p class="eyebrow">Signature Celebration</p>
-              <h3>Qidus</h3>
-              <p>Standard Event</p>
-            </div>
-            <div class="package-price">
-              <span class="price-prefix">$</span>
-              <strong>18,000</strong>
-              <span>- $28,000+</span>
-            </div>
-            <p class="package-guests">75–150 Guests</p>
-            <div class="package-body">
-              <ul class="package-list">
-                <li>Premium event coordination with upgraded planning support</li>
-                <li>Premium venue styling, elegant setup, and reception flow</li>
-                <li>Decoration team leadership with floral centerpieces</li>
-                <li>Full catering team and hospitality management</li>
-                <li>Professional photographer and videographer coordination</li>
-                <li>Custom premium cakes, desserts, Zemari, and Mezemran rehearsal</li>
-                <li>8+ hours of event management with vendor coordination</li>
-              </ul>
-              <button class="btn btn-secondary package-inquiry" type="button" data-package="Qidus">Inquire for Qidus</button>
-            </div>
-          </article>
-          <article class="package-card">
-            <div class="package-top">
-              <p class="eyebrow">Grand Celebration</p>
-              <h3>Melkam</h3>
-              <p>Grand Celebration</p>
-            </div>
-            <div class="package-price">
-              <span class="price-prefix">$</span>
-              <strong>35,000</strong>
-              <span>- $60,000+</span>
-            </div>
-            <p class="package-guests">150–300+ Guests</p>
-            <div class="package-body">
-              <ul class="package-list">
-                <li>Large-scale planning with concierge-level venue coordination</li>
-                <li>Luxury decoration installs, stage builds, and premium florals</li>
-                <li>Expanded catering service for major family celebrations</li>
-                <li>Dedicated photo, video, Zemari, and Mezemran coordination</li>
-                <li>Multiple ceremony and reception zones with guest-experience oversight</li>
-                <li>Rehearsal management, timeline production, and all-day event leadership</li>
-              </ul>
-              <button class="btn btn-primary package-inquiry" type="button" data-package="Melkam">Inquire for Melkam</button>
-            </div>
-          </article>
-        </div>
-      </div>
 
-      <div class="section-card" style="margin-top: 1.4rem;">
-        <div class="section-heading center">
-          <p class="eyebrow">Our Process</p>
-          <h2>How Yotode brings your event to life.</h2>
-          <p>A clear four-step process keeps your planning journey organized, collaborative, and reassuring from start to finish.</p>
-        </div>
-        <div class="process-grid">
-          <article class="process-step">
-            <span class="step-index">1</span>
-            <h3>Consult</h3>
-            <p>We learn your vision, traditions, venue priorities, and the feeling you want guests to remember.</p>
+          <article class="package-card featured">
+            <p class="package-label">Qidus</p>
+            <h3>$18,000 – $28,000+</h3>
+            <p>A balanced full-planning experience for elegant weddings and milestone events with design, logistics, and hospitality beautifully aligned.</p>
+            <button class="button package-inquiry" type="button" data-package="Qidus">Inquire</button>
           </article>
-          <article class="process-step">
-            <span class="step-index">2</span>
-            <h3>Curate</h3>
-            <p>We build a cohesive design direction, recommend vendors, and shape the guest journey room by room.</p>
-          </article>
-          <article class="process-step">
-            <span class="step-index">3</span>
-            <h3>Coordinate</h3>
-            <p>We manage production details, ceremony sequencing, rehearsal notes, and hospitality logistics.</p>
-          </article>
-          <article class="process-step">
-            <span class="step-index">4</span>
-            <h3>Celebrate</h3>
-            <p>On event day, our team oversees timing, presentation, and family comfort so you can be fully present.</p>
+
+          <article class="package-card">
+            <p class="package-label">Melkam</p>
+            <h3>$35,000 – $60,000+</h3>
+            <p>Our most comprehensive service for grand celebrations that need full-scale production, premium styling, and seamless event leadership.</p>
+            <button class="button button-secondary package-inquiry" type="button" data-package="Melkam">Inquire</button>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="page-panel" id="page-inspiration" data-page="inspiration" aria-labelledby="inspiration-title">
-      <div class="section-card">
-        <div class="section-heading center">
+    <section class="section inspiration" id="inspiration">
+      <div class="shell">
+        <div class="section-heading">
           <p class="eyebrow">Inspiration</p>
-          <h2 id="inspiration-title">Authentic celebration inspiration for weddings, graduations, birthdays, baptisms, shimgelina, and coffee ceremony moments.</h2>
-          <p>Browse real-photo references curated around the celebrations Yotode plans most—beautiful weddings, family milestones, baptism ceremonies, shimgelina traditions, coffee hospitality, and more.</p>
+          <h2>Beautiful moments to inspire your day</h2>
         </div>
 
-        <div class="filter-bar" aria-label="Gallery filters">
+        <div class="filter-bar" aria-label="Inspiration categories">
           <button class="filter-button active" type="button" data-filter="all">All</button>
-          <button class="filter-button" type="button" data-filter="wedding">Weddings</button>
-          <button class="filter-button" type="button" data-filter="graduation">Graduations</button>
-          <button class="filter-button" type="button" data-filter="birthday">Birthdays</button>
+          <button class="filter-button" type="button" data-filter="weddings">Weddings</button>
+          <button class="filter-button" type="button" data-filter="graduations">Graduations</button>
+          <button class="filter-button" type="button" data-filter="birthdays">Birthdays</button>
           <button class="filter-button" type="button" data-filter="baptism">Baptism</button>
           <button class="filter-button" type="button" data-filter="shimgelina">Shimgelina</button>
           <button class="filter-button" type="button" data-filter="more">More</button>
           <button class="filter-button" type="button" data-filter="coffee">Coffee Ceremony</button>
         </div>
 
-        <div class="gallery-grid" id="gallery-grid">
-          <article class="gallery-card" data-category="wedding">
-            <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Ethiopian_Orthodox_wedding_01.JPG" alt="Ethiopian Orthodox wedding ceremony with the couple and guests gathered in celebration">
-            <div class="gallery-copy">
-              <h3>Ethiopian Wedding Celebration</h3>
-              <p>Real wedding inspiration with ceremonial beauty, formal family moments, and elegant presentation rooted in Ethiopian tradition.</p>
-            </div>
-          </article>
-          <article class="gallery-card" data-category="graduation">
-            <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/7/79/Addis_Ababa_University_graduation.jpg" alt="Graduates celebrating together during a graduation ceremony at Addis Ababa University">
-            <div class="gallery-copy">
-              <h3>Graduation Milestone</h3>
-              <p>Elegant graduation inspiration for proud family gatherings, stage moments, and beautifully coordinated milestone celebrations.</p>
-            </div>
-          </article>
-          <article class="gallery-card" data-category="birthday">
-            <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/8/85/Birthday_party_candles.jpg" alt="Birthday celebration with candles and a festive gathering atmosphere">
-            <div class="gallery-copy">
-              <h3>Birthday Gathering</h3>
-              <p>Warm birthday-party inspiration with celebratory details, candlelit moments, and a polished setup for joyful guests.</p>
-            </div>
-          </article>
-          <article class="gallery-card" data-category="baptism">
-            <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Timkat-Kidane_Mehrat_Church-Addis_Ababa-Ethiopia-12Jan2014.jpg" alt="Faith-centered Ethiopian baptism celebration with a ceremonial gathering outside a church">
-            <div class="gallery-copy">
-              <h3>Baptism Ceremony</h3>
-              <p>Beautiful baptism inspiration highlighting reverent ceremony flow, family participation, and a meaningful community atmosphere.</p>
-            </div>
-          </article>
-          <article class="gallery-card" data-category="shimgelina">
-            <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/f/f0/Ethiopian_Elders.jpg" alt="Ethiopian elders gathered together in a traditional setting suitable for shimgelina inspiration">
-            <div class="gallery-copy">
-              <h3>Shimgelina Tradition</h3>
-              <p>Respectful inspiration for shimgelina gatherings centered on elders, family dialogue, and culturally grounded hosting.</p>
-            </div>
-          </article>
-          <article class="gallery-card" data-category="more">
-            <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/1/18/Traditional_Habesha_Dress.jpg" alt="Traditional Ethiopian attire styled for a cultural celebration portrait">
-            <div class="gallery-copy">
-              <h3>More Cultural Celebrations</h3>
-              <p>Additional inspiration for heritage-rich gatherings with beautiful attire, family storytelling, and refined cultural styling.</p>
-            </div>
-          </article>
-          <article class="gallery-card" data-category="coffee">
-            <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/1/1d/Ethiopian_coffee_ceremony_prep.jpg" alt="Coffee ceremony setup with traditional Ethiopian service and cultural decor">
-            <div class="gallery-copy">
-              <h3>Coffee Ceremony Setup I</h3>
-              <p>Authentic bunna setup showcasing traditional presentation, hospitality flow, and elegant event styling.</p>
-            </div>
-          </article>
-          <article class="gallery-card" data-category="coffee">
-            <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Ethiopian_coffee_ceremony_02.jpg" alt="Second coffee ceremony setup image with Ethiopian cultural event styling">
-            <div class="gallery-copy">
-              <h3>Coffee Ceremony Setup II</h3>
-              <p>Additional coffee-ceremony imagery for authentic cultural corners and warm guest-experience moments.</p>
-            </div>
-          </article>
+        <div class="gallery-grid">
+          <button class="gallery-card" type="button" data-category="weddings" data-title="Weddings" data-image="https://upload.wikimedia.org/wikipedia/commons/b/b5/Ethiopian_Orthodox_wedding_01.JPG" data-description="Elegant wedding inspiration with timeless ceremony styling.">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Ethiopian_Orthodox_wedding_01.JPG" alt="Wedding inspiration" loading="lazy" decoding="async">
+            <span>Weddings</span>
+          </button>
+
+          <button class="gallery-card" type="button" data-category="graduations" data-title="Graduations" data-image="https://upload.wikimedia.org/wikipedia/commons/7/79/Addis_Ababa_University_graduation.jpg" data-description="Graduation gatherings with polished celebratory details.">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/79/Addis_Ababa_University_graduation.jpg" alt="Graduation inspiration" loading="lazy" decoding="async">
+            <span>Graduations</span>
+          </button>
+
+          <button class="gallery-card" type="button" data-category="birthdays" data-title="Birthdays" data-image="https://upload.wikimedia.org/wikipedia/commons/8/85/Birthday_party_candles.jpg" data-description="Minimal, joyful birthday styling for unforgettable moments.">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/85/Birthday_party_candles.jpg" alt="Birthday inspiration" loading="lazy" decoding="async">
+            <span>Birthdays</span>
+          </button>
+
+          <button class="gallery-card" type="button" data-category="baptism" data-title="Baptism" data-image="https://upload.wikimedia.org/wikipedia/commons/d/d3/Timkat-Kidane_Mehrat_Church-Addis_Ababa-Ethiopia-12Jan2014.jpg" data-description="Graceful baptism celebrations centered on family and faith.">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Timkat-Kidane_Mehrat_Church-Addis_Ababa-Ethiopia-12Jan2014.jpg" alt="Baptism inspiration" loading="lazy" decoding="async">
+            <span>Baptism</span>
+          </button>
+
+          <button class="gallery-card" type="button" data-category="shimgelina" data-title="Shimgelina" data-image="https://upload.wikimedia.org/wikipedia/commons/f/f0/Ethiopian_Elders.jpg" data-description="Respectful inspiration for shimgelina and family gatherings.">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/f/f0/Ethiopian_Elders.jpg" alt="Shimgelina inspiration" loading="lazy" decoding="async">
+            <span>Shimgelina</span>
+          </button>
+
+          <button class="gallery-card" type="button" data-category="more" data-title="More" data-image="https://upload.wikimedia.org/wikipedia/commons/1/18/Traditional_Habesha_Dress.jpg" data-description="More elegant cultural celebrations and styled gatherings.">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/Traditional_Habesha_Dress.jpg" alt="More celebration inspiration" loading="lazy" decoding="async">
+            <span>More</span>
+          </button>
+
+          <button class="gallery-card" type="button" data-category="coffee" data-title="Coffee Ceremony" data-image="https://upload.wikimedia.org/wikipedia/commons/1/1d/Ethiopian_coffee_ceremony_prep.jpg" data-description="Warm coffee ceremony hospitality for meaningful guest experiences.">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/1/1d/Ethiopian_coffee_ceremony_prep.jpg" alt="Coffee ceremony inspiration" loading="lazy" decoding="async">
+            <span>Coffee Ceremony</span>
+          </button>
+
+          <button class="gallery-card" type="button" data-category="weddings" data-title="Wedding Portraits" data-image="https://upload.wikimedia.org/wikipedia/commons/b/b1/Wedding_ceremony%2C_Ethiopian_Orthodox_Church%2C_Addis_Ababa.jpg" data-description="Refined portraits and elegant wedding-day details.">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Wedding_ceremony%2C_Ethiopian_Orthodox_Church%2C_Addis_Ababa.jpg" alt="Wedding portrait inspiration" loading="lazy" decoding="async">
+            <span>Wedding Portraits</span>
+          </button>
         </div>
-      </div>
-
-      <div class="video-gallery" aria-label="Celebration photo highlights">
-        <article class="video-card">
-          <div class="video-shell">
-            <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/1/18/Traditional_Habesha_Dress.jpg" alt="Traditional Ethiopian attire reference for ceremony styling">
-            <div class="video-caption">
-              <p class="eyebrow">Cultural Attire</p>
-              <p>Traditional attire references for weddings, birthdays, shimgelina, and other family celebrations where heritage and elegance meet.</p>
-            </div>
-          </div>
-        </article>
-        <article class="video-card">
-          <div class="video-shell">
-            <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Ethiopian_coffee_ceremony_02.jpg" alt="Traditional Ethiopian coffee ceremony service setup">
-            <div class="video-caption">
-              <p class="eyebrow">Coffee Hospitality</p>
-              <p>Authentic bunna hospitality inspiration with ritual service details that enrich all types of celebrations.</p>
-            </div>
-          </div>
-        </article>
-      </div>
-
-      <div class="story-layout" style="margin-top: 1.4rem;">
-        <article class="story-card">
-          <p class="eyebrow">Inspiration Notes</p>
-          <h3>Style every room with cultural continuity.</h3>
-          <p>Our inspiration process begins with authentic references, then translates them into coherent venue zones for weddings, graduations, birthdays, baptisms, shimgelina, and coffee ceremony moments.</p>
-          <ul class="detail-list" style="margin-top: 1rem;">
-            <li>Create separate styling plans for weddings, graduations, birthdays, baptisms, coffee ceremony corners, and shimgelina spaces.</li>
-            <li>Use intentional color, light, and cultural textures to keep each event elegant and welcoming.</li>
-            <li>Pair real-photo inspiration with production planning so each setup feels authentic on event day.</li>
-          </ul>
-        </article>
-        <article class="story-card accent">
-          <p class="eyebrow">Cultural Elements</p>
-          <h3>Cultural touches that feel intentional, inclusive, and respectful.</h3>
-          <ul class="offer-list">
-            <li>Ethiopian Orthodox wedding and baptism coordination with respectful ceremonial flow.</li>
-            <li>Graduations, birthdays, shimgelina gatherings, and coffee ceremony styling planned with equal care.</li>
-            <li>Photo opportunities that highlight attire, heirloom accessories, elders, and family storytelling.</li>
-          </ul>
-        </article>
       </div>
     </section>
 
-    <section class="page-panel" id="page-contact" data-page="contact" aria-labelledby="contact-title">
-      <div class="section-card">
-        <div class="section-heading center">
+    <section class="section contact-section" id="contact">
+      <div class="shell contact-grid">
+        <div class="contact-copy">
           <p class="eyebrow">Contact</p>
-          <h2 id="contact-title">Start planning your celebration with clarity and confidence.</h2>
-          <p>Share your event type, guest count, and preferred planning support. We guide weddings, graduations, birthdays, baptisms, shimgelina gatherings, and coffee ceremonies with equal care.</p>
+          <h2>Let’s plan something beautiful.</h2>
+
+          <ul class="contact-list">
+            <li><span>Design &amp; Inquiries</span><a href="tel:+12534106119">(253) 410-6119</a></li>
+            <li><span>Vendor Coordination</span><a href="tel:+12063779424">+1 (206) 377-9424</a></li>
+            <li><span>Event Support</span><a href="tel:+12063765246">206-376-5246</a></li>
+            <li><span>Main Booking</span><a href="tel:+12065365389">+1 (206) 536-5389</a></li>
+          </ul>
         </div>
 
-        <div class="contact-layout">
-          <article class="contact-panel">
-            <h3>Inquiry Options</h3>
-            <ul class="contact-list">
-              <li>
-                <strong>Phone Team:</strong>
-                <span class="contact-phone-links" aria-label="Phone numbers">
-                  <span class="contact-phone-group">
-                    <small>Design &amp; Inquiries</small>
-                    <a class="contact-phone-link" href="tel:+12534106119">(253) 410-6119</a>
-                  </span>
-                  <span class="contact-phone-group">
-                    <small>Vendor Coordination</small>
-                    <a class="contact-phone-link" href="tel:+12063779424">+1 (206) 377-9424</a>
-                  </span>
-                  <span class="contact-phone-group">
-                    <small>Event Support</small>
-                    <a class="contact-phone-link" href="tel:+12063765246">206-376-5246</a>
-                  </span>
-                  <span class="contact-phone-group">
-                    <small>Main Booking Line</small>
-                    <a class="contact-phone-link" href="tel:2065365389">+1 (206) 536-5389</a>
-                  </span>
-                </span>
-              </li>
-              <li><strong>Email:</strong>&nbsp;<a href="mailto:eyuab35@gmail.com">eyuab35@gmail.com</a></li>
-              <li><strong>Service Area:</strong>&nbsp;Seattle and destination celebrations by request</li>
-            </ul>
-            <ul class="contact-list">
-              <li>Best for couples and families seeking authentic cultural celebrations with a luxury presentation.</li>
-              <li>Your celebration, your culture, your way—services are available for any cultural celebration.</li>
-              <li>Ideal booking timeline: 6–12 months for larger celebrations, 3–6 months for intimate events.</li>
-              <li>Consultations can cover Ethiopian Orthodox ceremonies, international weddings, interfaith events, and full-service planning.</li>
-            </ul>
-          </article>
+        <form class="contact-form" id="contact-form" action="https://formsubmit.co/ajax/eyuab35@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="New Yotode Events Inquiry">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="Selected Package" id="selected-package-input" value="">
 
-          <article class="contact-panel">
-            <h3>Send Your Inquiry</h3>
-            <form id="contact-form" class="contact-form" action="https://formsubmit.co/ajax/eyuab35@gmail.com" method="POST" novalidate>
-              <div class="field-grid">
-                <div class="field">
-                  <label for="name">Full Name</label>
-                  <input id="name" name="name" type="text" autocomplete="name" required>
-                </div>
-                <div class="field">
-                  <label for="email">Email Address</label>
-                  <input id="email" name="email" type="email" autocomplete="email" required>
-                </div>
-              </div>
-              <div class="field-grid">
-                <div class="field">
-                  <label for="event-date">Event Date</label>
-                  <input id="event-date" name="event_date" type="date" required>
-                </div>
-                <div class="field">
-                  <label for="guest-count">Guest Count</label>
-                  <input id="guest-count" name="guest_count" type="number" min="1" inputmode="numeric" placeholder="Estimated guests" required>
-                </div>
-              </div>
-              <div class="field-grid">
-                <div class="field">
-                  <label for="package">Package Preference</label>
-                  <select id="package" name="package" required>
-                    <option value="">Select a package</option>
-                    <option value="Yotode">Yotode — $8,500 to $12,000+</option>
-                    <option value="Qidus">Qidus — $18,000 to $28,000+</option>
-                    <option value="Melkam">Melkam — $35,000 to $60,000+</option>
-                    <option value="Custom">Custom consultation</option>
-                  </select>
-                </div>
-              </div>
-              <div class="field">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" minlength="10" required placeholder="Tell us about your celebration, venue ideas, cultural details, and the planning support you want most."></textarea>
-              </div>
-              <input type="hidden" name="_subject" value="New Yotode Event Inquiry">
-              <div class="form-footer">
-                <button class="btn btn-primary" type="submit">Submit Inquiry</button>
-                <p id="form-status" class="status" role="status" aria-live="polite"></p>
-              </div>
-            </form>
-          </article>
-        </div>
+          <div class="form-grid">
+            <label>
+              <span>Name</span>
+              <input type="text" name="Name" autocomplete="name" required>
+            </label>
+
+            <label>
+              <span>Email</span>
+              <input type="email" name="Email" autocomplete="email" required>
+            </label>
+
+            <label>
+              <span>Event Date</span>
+              <input type="date" name="Event Date" required>
+            </label>
+
+            <label class="message-field">
+              <span>Message</span>
+              <textarea name="Message" rows="6" placeholder="Tell us a little about your celebration." required></textarea>
+            </label>
+          </div>
+
+          <p class="selected-package" id="selected-package" hidden></p>
+          <button class="button" type="submit">Send Inquiry</button>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="site-shell">
-      <p>&copy; 2026 Yotode Event Planner. Home, Services &amp; Packages, Inspiration, and Contact remain available from the focused four-section navigation.</p>
+    <div class="shell footer-shell">
+      <p>Yotode Events</p>
+      <nav aria-label="Footer">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#inspiration">Inspiration</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </div>
   </footer>
 
-  <script>
-    const routes = ['home', 'services', 'inspiration', 'contact'];
-    let currentLanguage = 'en';
+  <div class="lightbox" id="lightbox" hidden>
+    <button class="lightbox-backdrop" id="lightbox-close" type="button" aria-label="Close image viewer"></button>
+    <div class="lightbox-dialog" role="dialog" aria-modal="true" aria-labelledby="lightbox-title">
+      <button class="lightbox-dismiss" id="lightbox-dismiss" type="button" aria-label="Close image viewer">×</button>
+      <img id="lightbox-image" src="" alt="">
+      <div class="lightbox-copy">
+        <h3 id="lightbox-title"></h3>
+        <p id="lightbox-description"></p>
+      </div>
+    </div>
+  </div>
 
-    const menuToggle = document.getElementById('menu-toggle');
-    const drawerClose = document.getElementById('drawer-close');
-    const menuDrawer = document.getElementById('menu-drawer');
-    const menuOverlay = document.getElementById('menu-overlay');
-    const pageIndicator = document.getElementById('page-indicator');
-    const routeLinks = Array.from(document.querySelectorAll('[data-route]'));
-    const drawerLinks = Array.from(document.querySelectorAll('.drawer-links [data-route]'));
-    const pagePanels = Array.from(document.querySelectorAll('.page-panel'));
-    const filterButtons = Array.from(document.querySelectorAll('.filter-button'));
-    const galleryCards = Array.from(document.querySelectorAll('.gallery-card'));
-    const inquiryButtons = Array.from(document.querySelectorAll('.package-inquiry'));
-    const packageSelect = document.getElementById('package');
-    const languageButtons = Array.from(document.querySelectorAll('.language-button'));
-    const form = document.getElementById('contact-form');
-    const status = document.getElementById('form-status');
-
-    const localizedText = [
-      { selector: '.desktop-nav a[data-route="home"]', en: 'Home', am: 'መነሻ' },
-      { selector: '.desktop-nav a[data-route="services"]', en: 'Services & Packages', am: 'አገልግሎቶች እና ፓኬጆች' },
-      { selector: '.desktop-nav a[data-route="inspiration"]', en: 'Inspiration', am: 'መነሳሳት' },
-      { selector: '.desktop-nav a[data-route="contact"]', en: 'Contact', am: 'አግኙን' },
-      { selector: '.drawer-top .eyebrow', en: 'Navigate', am: 'አሰሳ' },
-      { selector: '.drawer-title', en: 'Yotode Pages', am: 'የYotode ገጾች' },
-      { selector: '.drawer-links li:nth-child(1) strong', en: 'Home', am: 'መነሻ' },
-      { selector: '.drawer-links li:nth-child(1) span', en: 'Brand story, featured event imagery, and a polished planning introduction.', am: 'የብራንድ ታሪክ፣ የተመረጡ የክስተት ምስሎች፣ እና የተዋበ የእቅድ መግቢያ።' },
-      { selector: '.drawer-links li:nth-child(2) strong', en: 'Services & Packages', am: 'አገልግሎቶች እና ፓኬጆች' },
-      { selector: '.drawer-links li:nth-child(2) span', en: 'Planning support, three signature packages, and the event process.', am: 'የእቅድ ድጋፍ፣ 3 ፈርማ ፓኬጆች፣ እና የክስተት ሂደት።' },
-      { selector: '.drawer-links li:nth-child(3) strong', en: 'Inspiration', am: 'መነሳሳት' },
-      { selector: '.drawer-links li:nth-child(3) span', en: 'Weddings, graduations, birthdays, baptisms, shimgelina, and coffee ceremony references.', am: 'የሰርግ፣ የምረቃ፣ የልደት፣ የጥምቀት፣ የሽምግሊና እና የቡና ሥነ ሥርዓት ማጣቀሻዎች።' },
-      { selector: '.drawer-links li:nth-child(4) strong', en: 'Contact', am: 'አግኙን' },
-      { selector: '.drawer-links li:nth-child(4) span', en: 'Booking lines, department contacts, and the inquiry form.', am: 'የቦታ ማስያዣ መስመሮች፣ የክፍል አገናኞች እና የጥያቄ ቅጽ።' },
-      { selector: '.drawer-note .eyebrow', en: 'Signature aesthetic', am: 'ልዩ ውበት' },
-      { selector: '.drawer-note p', en: 'Elegant planning for weddings, family milestones, baptisms, shimgelina, and coffee ceremonies rooted in Ethiopian celebration traditions.', am: 'በኢትዮጵያ የክብረ በዓል ልማዶች የተመሠረተ ለሰርግ፣ ለቤተሰብ ዋና ዋና ጊዜያት፣ ለጥምቀት፣ ለሽምግሊና እና ለቡና ሥነ ሥርዓቶች የተዋበ እቅድ።' },
-      { selector: '#page-home .hero-copy .eyebrow', en: 'Elegant Ethiopian Event Planning', am: 'የተዋበ የኢትዮጵያ ክስተት እቅድ' },
-      { selector: '#home-title', en: 'Luxury celebrations rooted in culture, family, and beauty.', am: 'በባህል፣ በቤተሰብ እና በውበት የተመሠረቱ የቅንጦት ክብረ በዓላት።' },
-      { selector: '#page-home .hero-copy > p:nth-of-type(2)', en: 'Yotode Event Planner designs weddings, graduations, birthdays, baptisms, shimgelina gatherings, and coffee ceremonies with polished coordination and warm hospitality.', am: 'Yotode Event Planner ሰርጎችን፣ ምረቃዎችን፣ ልደቶችን፣ ጥምቀቶችን፣ የሽምግሊና ስብሰባዎችን እና የቡና ሥነ ሥርዓቶችን በተዋበ ኮርዲኔሽን እና በሞቅ ያለ እንግዳ አቀባበል ያዘጋጃል።' },
-      { selector: '#page-home .hero-highlights li:nth-child(1)', en: 'Signature planning for Ethiopian Orthodox weddings, family milestones, and cultural celebrations.', am: 'ለኢትዮጵያ ኦርቶዶክስ ሰርጎች፣ ለቤተሰብ ዋና ዋና ዝግጅቶች እና ለባህላዊ ክብረ በዓላት ልዩ እቅድ።' },
-      { selector: '#page-home .hero-highlights li:nth-child(2)', en: 'Refined venue styling, decoration, catering coordination, and guest-experience management.', am: 'የተጠናቀቀ የቦታ ስታይሊንግ፣ ዲኮሬሽን፣ የካተሪንግ ኮርዲኔሽን እና የእንግዳ ልምድ አስተዳደር።' },
-      { selector: '#page-home .hero-highlights li:nth-child(3)', en: 'Authentic cultural touches—from bunna corners to ceremonial flow—presented with a professional finish.', am: 'ከቡና ኮርነሮች እስከ የሥነ ሥርዓት ሂደት ድረስ ያሉ እውነተኛ ባህላዊ ንክኪዎች በሙያዊ አቀራረብ ይቀርባሉ።' },
-      { selector: '#page-home .hero-highlights li:nth-child(4)', en: 'Clear planning support from the first consultation to event-day leadership.', am: 'ከመጀመሪያ ምክክር እስከ የክስተት ቀን መሪነት ድረስ ግልጽ የእቅድ ድጋፍ።' },
-      { selector: '#page-home .hero-actions a:nth-child(1)', en: 'Book a Consultation', am: 'ምክክር ያስያዙ' },
-      { selector: '#page-home .hero-actions a:nth-child(2)', en: 'See Visual Inspiration', am: 'የምስል መነሳሳት ይመልከቱ' },
-      { selector: '#page-home .video-caption .eyebrow', en: 'Featured Portfolio', am: 'የተመረጠ ፖርትፎሊዮ' },
-      { selector: '#page-home .video-caption p:nth-of-type(2)', en: 'A refined Yotode celebration blends elegant styling, authentic traditions, and gracious hospitality for unforgettable family moments.', am: 'የተዋበ የYotode ክብረ በዓል ውብ ስታይልን፣ እውነተኛ ልማዶችን እና በጸጋ የተሞላ እንግዳ አቀባበልን ለማይረሱ የቤተሰብ ጊዜያት ያጣምራል።' },
-      { selector: '#page-services .section-card:nth-of-type(1) .section-heading .eyebrow', en: 'Services & Packages', am: 'አገልግሎቶች እና ፓኬጆች' },
-      { selector: '#services-title', en: 'Full-service planning created for meaningful celebrations.', am: 'ለትርጉም ያላቸው ክብረ በዓላት የተዘጋጀ ሙሉ-አገልግሎት እቅድ።' },
-      { selector: '#page-services .section-card:nth-of-type(1) .section-heading p:nth-of-type(2)', en: 'We celebrate all cultures and traditions with complete event support through three signature all-inclusive packages.', am: 'በ3 ፈርማ ሙሉ-አካታች ፓኬጆች ሙሉ የክስተት ድጋፍ እየሰጠን ሁሉንም ባህሎች እና ልማዶች እናከብራለን።' },
-      { selector: '#page-services .service-card:nth-child(1) h3', en: 'Ceremony Design', am: 'የሥነ ሥርዓት ዲዛይን' },
-      { selector: '#page-services .service-card:nth-child(1) p', en: 'Planning for Ethiopian Orthodox church flow, international ceremonies, and interfaith transitions with cultural respect.', am: 'በባህል ክብር ለኢትዮጵያ ኦርቶዶክስ ቤተክርስቲያን ሂደት፣ ለአለም አቀፍ ሥነ ሥርዓቶች እና ለእምነት-ተሻጋሪ ሽግግሮች እቅድ።' },
-      { selector: '#page-services .service-card:nth-child(2) h3', en: 'DECORATION & Florals', am: 'ዲኮሬሽን እና አበባዎች' },
-      { selector: '#page-services .service-card:nth-child(2) p', en: 'Luxury floral direction, candlelit tablescapes, sweetheart staging, and culturally inspired texture layering.', am: 'የቅንጦት የአበባ አቅጣጫ፣ የሻማ ብርሃን ጠረጴዛ ማቀናበር፣ የጥንዶች መድረክ እና በባህል የተነሳ የገጽታ ቅርፀ-ንብርብር።' },
-      { selector: '#page-services .service-card:nth-child(3) h3', en: 'CATERING & Hospitality', am: 'ካተሪንግ እና እንግዳ አቀባበል' },
-      { selector: '#page-services .service-card:nth-child(3) p', en: 'Guest seating, buffet styling, coffee ceremony areas, dessert presentation, and polished service management.', am: 'የእንግዳ መቀመጫ፣ የቡፌ ስታይሊንግ፣ የቡና ሥነ ሥርዓት አካባቢዎች፣ የጣፋጭ ቅርጸ ቀረብ እና የተስተካከለ የአገልግሎት አስተዳደር።' },
-      { selector: '#page-services .service-card:nth-child(4) h3', en: 'Photo & Video Coordination', am: 'የፎቶ እና ቪዲዮ ኮርዲኔሽን' },
-      { selector: '#page-services .service-card:nth-child(4) p', en: 'Shot lists, procession timing, family portrait management, and vendor alignment for smooth visual coverage.', am: 'የሾት ዝርዝሮች፣ የሰልፍ ጊዜ አሰጣጥ፣ የቤተሰብ ፎቶ አስተዳደር እና ለተስተካከለ የምስል ሽፋን የአጋሮች ማስተካከያ።' },
-      { selector: '#page-services .service-card:nth-child(5) h3', en: 'Zemari & Cultural Programming', am: 'ዘማሪ እና ባህላዊ ፕሮግራሞች' },
-      { selector: '#page-services .service-card:nth-child(5) p', en: 'Rehearsal planning, ceremonial musicians, and cultural programming tailored for Ethiopian, international, and multicultural events.', am: 'ለኢትዮጵያዊ፣ ለአለም አቀፍ እና ለባህል ብዙ ክስተቶች የተስማማ የልምምድ እቅድ፣ የሥነ ሥርዓት ሙዚቀኞች እና ባህላዊ ፕሮግራሞች።' },
-      { selector: '#page-services .service-card:nth-child(6) h3', en: 'VENUE Coordination & Styling', am: 'VENUE ኮርዲኔሽን እና ስታይሊንግ' },
-      { selector: '#page-services .service-card:nth-child(6) p', en: 'Spatial planning for head tables, lounge vignettes, welcome moments, and premium guest circulation.', am: 'ለዋና ጠረጴዛዎች፣ ላውንጅ አቀማመጦች፣ የእንኳን ደህና መጡ ክፍሎች እና ከፍተኛ የእንግዳ እንቅስቃሴ የቦታ እቅድ።' },
-      { selector: '#page-services .story-card.accent .eyebrow', en: 'What We Offer', am: 'የምናቀርበው' },
-      { selector: '#page-services .story-card.accent h3', en: 'Luxury details that honor every family story and cultural identity.', am: 'የእያንዳንዱን ቤተሰብ ታሪክ እና ባህላዊ ማንነት የሚያከብሩ የቅንጦት ዝርዝሮች።' },
-      { selector: '#page-services .story-card.accent li:nth-child(1)', en: 'Custom mood boards inspired by weddings, graduations, birthdays, baptisms, shimgelina, and coffee ceremony aesthetics.', am: 'ከሰርግ፣ ከምረቃ፣ ከልደት፣ ከጥምቀት፣ ከሽምግሊና እና ከቡና ሥነ ሥርዓት ውበት የተነሳ ብጁ ሙድ ቦርዶች።' },
-      { selector: '#page-services .story-card.accent li:nth-child(2)', en: 'Vendor curation for florals, catering, photography, entertainment, rentals, and any cultural ceremony needs.', am: 'ለአበባ፣ ካተሪንግ፣ ፎቶግራፊ፣ መዝናኛ፣ ኪራይ እና ለማንኛውም ባህላዊ ሥነ ሥርዓት ፍላጎት የአጋሮች ምርጫ።' },
-      { selector: '#page-services .story-card.accent li:nth-child(3)', en: 'Guest-experience planning that keeps elders, family members, and out-of-town visitors fully cared for.', am: 'ሽማግሌዎች፣ ቤተሰቦች እና ከሩቅ የሚመጡ እንግዶች ሙሉ እንክብካቤ የሚያገኙበት የእንግዳ ልምድ እቅድ።' },
-      { selector: '#page-services .story-card.accent li:nth-child(4)', en: 'Design guidance for believable, elevated setups using authentic real-event visuals.', am: 'እውነተኛ የክስተት ምስሎችን ተጠቅመው እምነታማ እና ከፍ ያሉ አቀማመጦች ለማድረግ የዲዛይን መመሪያ።' },
-      { selector: '#page-services .section-card:nth-of-type(2) .section-heading .eyebrow', en: 'Packages', am: 'ፓኬጆች' },
-      { selector: '#page-services .section-card:nth-of-type(2) .section-heading h2', en: '💎 Our Packages', am: '💎 የእኛ ፓኬጆች' },
-      { selector: '#page-services .section-card:nth-of-type(2) .section-heading p', en: 'Comprehensive all-inclusive packages including full coordination, catering, decoration, photography, cake, Zemari, and Mezemran with rehearsal.', am: 'ሙሉ ኮርዲኔሽን፣ ካተሪንግ፣ ዲኮሬሽን፣ ፎቶግራፊ፣ ኬክ፣ ዘማሪ እና መዘምራን ከልምምድ ጋር የሚያካትቱ ሙሉ አካታች ፓኬጆች።' },
-      { selector: '.package-card:nth-child(1) .package-top .eyebrow', en: 'Micro Celebration', am: 'አነስተኛ ክብረ በዓል' },
-      { selector: '.package-card:nth-child(1) .package-top h3', en: 'Yotode', am: 'ዮቶዴ (Yotode)' },
-      { selector: '.package-card:nth-child(1) .package-top p', en: 'Micro Event', am: 'አነስተኛ ክስተት' },
-      { selector: '.package-card:nth-child(1) .package-guests', en: '50–75 Guests', am: '50–75 እንግዶች' },
-      { selector: '.package-card:nth-child(1) .package-list li:nth-child(1)', en: 'Full event coordination and planning', am: 'ሙሉ የክስተት ኮርዲኔሽን እና እቅድ' },
-      { selector: '.package-card:nth-child(1) .package-list li:nth-child(2)', en: 'Venue selection, layout planning, and setup', am: 'የቦታ ምርጫ፣ የአቀማመጥ እቅድ እና ማሰናዳት' },
-      { selector: '.package-card:nth-child(1) .package-list li:nth-child(3)', en: 'Decoration team support and floral arrangements', am: 'የዲኮሬሽን ቡድን ድጋፍ እና የአበባ አቀማመጦች' },
-      { selector: '.package-card:nth-child(1) .package-list li:nth-child(4)', en: 'Catering team oversight and full meal service', am: 'የካተሪንግ ቡድን ክትትል እና ሙሉ የምግብ አገልግሎት' },
-      { selector: '.package-card:nth-child(1) .package-list li:nth-child(5)', en: 'Professional photographer coordination', am: 'የሙያ ፎቶግራፈር ኮርዲኔሽን' },
-      { selector: '.package-card:nth-child(1) .package-list li:nth-child(6)', en: 'Custom cake, desserts, Zemari, and Mezemran with rehearsal', am: 'ብጁ ኬክ፣ ጣፋጮች፣ ዘማሪ እና መዘምራን ከልምምድ ጋር' },
-      { selector: '.package-card:nth-child(1) .package-list li:nth-child(7)', en: '4–6 hours of event management and family support', am: '4–6 ሰዓት የክስተት አስተዳደር እና የቤተሰብ ድጋፍ' },
-      { selector: '.package-card:nth-child(1) .package-inquiry', en: 'Inquire for Yotode', am: 'ስለ ዮቶዴ ይጠይቁ' },
-      { selector: '.package-card:nth-child(2) .package-badge', en: 'Most Popular', am: 'በጣም ታዋቂ' },
-      { selector: '.package-card:nth-child(2) .package-top .eyebrow', en: 'Signature Celebration', am: 'ፈርማ ክብረ በዓል' },
-      { selector: '.package-card:nth-child(2) .package-top h3', en: 'Qidus', am: 'ቅዱስ (Qidus)' },
-      { selector: '.package-card:nth-child(2) .package-top p', en: 'Standard Event', am: 'መደበኛ ክስተት' },
-      { selector: '.package-card:nth-child(2) .package-guests', en: '75–150 Guests', am: '75–150 እንግዶች' },
-      { selector: '.package-card:nth-child(2) .package-list li:nth-child(1)', en: 'Premium event coordination with upgraded planning support', am: 'ከፍተኛ የክስተት ኮርዲኔሽን ከተሻሻለ የእቅድ ድጋፍ ጋር' },
-      { selector: '.package-card:nth-child(2) .package-list li:nth-child(2)', en: 'Premium venue styling, elegant setup, and reception flow', am: 'ከፍተኛ የቦታ ስታይሊንግ፣ የተዋበ ማሰናዳት እና የሬሰፕሽን ሂደት' },
-      { selector: '.package-card:nth-child(2) .package-list li:nth-child(3)', en: 'Decoration team leadership with floral centerpieces', am: 'በአበባ ማዕከላዊ አቀማመጦች የዲኮሬሽን ቡድን መሪነት' },
-      { selector: '.package-card:nth-child(2) .package-list li:nth-child(4)', en: 'Full catering team and hospitality management', am: 'ሙሉ የካተሪንግ ቡድን እና የእንግዳ አስተዳደር' },
-      { selector: '.package-card:nth-child(2) .package-list li:nth-child(5)', en: 'Professional photographer and videographer coordination', am: 'የሙያ ፎቶግራፈር እና ቪዲዮግራፈር ኮርዲኔሽን' },
-      { selector: '.package-card:nth-child(2) .package-list li:nth-child(6)', en: 'Custom premium cakes, desserts, Zemari, and Mezemran rehearsal', am: 'ብጁ ከፍተኛ ኬኮች፣ ጣፋጮች፣ ዘማሪ እና የመዘምራን ልምምድ' },
-      { selector: '.package-card:nth-child(2) .package-list li:nth-child(7)', en: '8+ hours of event management with vendor coordination', am: '8+ ሰዓት የክስተት አስተዳደር ከአጋሮች ኮርዲኔሽን ጋር' },
-      { selector: '.package-card:nth-child(2) .package-inquiry', en: 'Inquire for Qidus', am: 'ስለ ቅዱስ ይጠይቁ' },
-      { selector: '.package-card:nth-child(3) .package-top .eyebrow', en: 'Grand Celebration', am: 'ታላቅ ክብረ በዓል' },
-      { selector: '.package-card:nth-child(3) .package-top h3', en: 'Melkam', am: 'መልካም (Melkam)' },
-      { selector: '.package-card:nth-child(3) .package-top p', en: 'Grand Celebration', am: 'ታላቅ ክብረ በዓል' },
-      { selector: '.package-card:nth-child(3) .package-guests', en: '150–300+ Guests', am: '150–300+ እንግዶች' },
-      { selector: '.package-card:nth-child(3) .package-list li:nth-child(1)', en: 'Large-scale planning with concierge-level venue coordination', am: 'በከፍተኛ የቦታ ኮርዲኔሽን ትልቅ-መጠን እቅድ' },
-      { selector: '.package-card:nth-child(3) .package-list li:nth-child(2)', en: 'Luxury decoration installs, stage builds, and premium florals', am: 'የቅንጦት ዲኮሬሽን አቀማመጦች፣ የመድረክ ግንባታ እና ከፍተኛ አበባዎች' },
-      { selector: '.package-card:nth-child(3) .package-list li:nth-child(3)', en: 'Expanded catering service for major family celebrations', am: 'ለትልልቅ የቤተሰብ ክብረ በዓላት የተስፋፋ የካተሪንግ አገልግሎት' },
-      { selector: '.package-card:nth-child(3) .package-list li:nth-child(4)', en: 'Dedicated photo, video, Zemari, and Mezemran coordination', am: 'የተመደበ የፎቶ፣ ቪዲዮ፣ ዘማሪ እና መዘምራን ኮርዲኔሽን' },
-      { selector: '.package-card:nth-child(3) .package-list li:nth-child(5)', en: 'Multiple ceremony and reception zones with guest-experience oversight', am: 'ብዙ የሥነ ሥርዓት እና ሬሰፕሽን ዞኖች ከየእንግዳ ልምድ ክትትል ጋር' },
-      { selector: '.package-card:nth-child(3) .package-list li:nth-child(6)', en: 'Rehearsal management, timeline production, and all-day event leadership', am: 'የልምምድ አስተዳደር፣ የሰዓት ሰሌዳ አዘጋጅት እና ቀኑን ሙሉ የክስተት መሪነት' },
-      { selector: '.package-card:nth-child(3) .package-inquiry', en: 'Inquire for Melkam', am: 'ስለ መልካም ይጠይቁ' },
-      { selector: '#page-services .section-card:nth-of-type(3) .section-heading .eyebrow', en: 'Our Process', am: 'የእኛ ሂደት' },
-      { selector: '#page-services .section-card:nth-of-type(3) .section-heading h2', en: 'How Yotode brings your event to life.', am: 'Yotode ክስተትዎን እንዴት ወደ ሕይወት እንደሚያመጣው።' },
-      { selector: '#page-services .section-card:nth-of-type(3) .section-heading p', en: 'A clear four-step process keeps your planning journey organized, collaborative, and reassuring from start to finish.', am: 'ግልጽ 4-ደረጃ ሂደት የእቅድ ጉዞዎን ከመጀመሪያ እስከ መጨረሻ ድረስ የተደራጀ፣ የትብብር እና የማረጋጋት ያደርገዋል።' },
-      { selector: '#page-services .process-step:nth-child(1) h3', en: 'Consult', am: 'ምክክር' },
-      { selector: '#page-services .process-step:nth-child(1) p', en: 'We learn your vision, traditions, venue priorities, and the feeling you want guests to remember.', am: 'ራዕይዎን፣ ልማዶችዎን፣ የቦታ ቅድሚያዎችን እና እንግዶች እንዲያስታውሱ የሚፈልጉትን ስሜት እንማራለን።' },
-      { selector: '#page-services .process-step:nth-child(2) h3', en: 'Curate', am: 'እንመርጣለን' },
-      { selector: '#page-services .process-step:nth-child(2) p', en: 'We build a cohesive design direction, recommend vendors, and shape the guest journey room by room.', am: 'የተቀናጀ የዲዛይን አቅጣጫ እንገነባለን፣ አጋሮችን እንመክራለን፣ እና የእንግዳ ጉዞን ክፍል በክፍል እንቀርፃለን።' },
-      { selector: '#page-services .process-step:nth-child(3) h3', en: 'Coordinate', am: 'እናስተናግዳለን' },
-      { selector: '#page-services .process-step:nth-child(3) p', en: 'We manage production details, ceremony sequencing, rehearsal notes, and hospitality logistics.', am: 'የምርት ዝርዝሮችን፣ የሥነ ሥርዓት ተከታታይነትን፣ የልምምድ ማስታወሻዎችን እና የእንግዳ ሎጂስቲክስን እናስተዳድራለን።' },
-      { selector: '#page-services .process-step:nth-child(4) h3', en: 'Celebrate', am: 'እናከብራለን' },
-      { selector: '#page-services .process-step:nth-child(4) p', en: 'On event day, our team oversees timing, presentation, and family comfort so you can be fully present.', am: 'በክስተት ቀን ቡድናችን ጊዜን፣ አቀራረብን እና የቤተሰብ ምቾትን ይቆጣጠራል እርስዎም ሙሉ ተሳትፎ እንዲኖርዎ።' },
-      { selector: '#page-inspiration .section-heading .eyebrow', en: 'Inspiration', am: 'መነሳሳት' },
-      { selector: '#inspiration-title', en: 'Authentic celebration inspiration for weddings, graduations, birthdays, baptisms, shimgelina, and coffee ceremony moments.', am: 'ለሰርግ፣ ለምረቃ፣ ለልደት፣ ለጥምቀት፣ ለሽምግሊና እና ለቡና ሥነ ሥርዓት ጊዜያት እውነተኛ መነሳሳት።' },
-      { selector: '#page-inspiration .section-heading p:nth-of-type(2)', en: 'Browse real-photo references curated around the celebrations Yotode plans most—beautiful weddings, family milestones, baptism ceremonies, shimgelina traditions, coffee hospitality, and more.', am: 'Yotode በብዛት የሚያቅዳቸውን ክብረ በዓላት—ውብ ሰርጎች፣ የቤተሰብ ዋና ዋና ጊዜያት፣ የጥምቀት ሥነ ሥርዓቶች፣ የሽምግሊና ልማዶች፣ የቡና እንግዳ አቀባበል እና ሌሎች ላይ የተመሰረቱ እውነተኛ የፎቶ ማጣቀሻዎችን ይመልከቱ።' },
-      { selector: '.filter-bar .filter-button:nth-child(1)', en: 'All', am: 'ሁሉም' },
-      { selector: '.filter-bar .filter-button:nth-child(2)', en: 'Weddings', am: 'ሰርጎች' },
-      { selector: '.filter-bar .filter-button:nth-child(3)', en: 'Graduations', am: 'ምረቃዎች' },
-      { selector: '.filter-bar .filter-button:nth-child(4)', en: 'Birthdays', am: 'ልደቶች' },
-      { selector: '.filter-bar .filter-button:nth-child(5)', en: 'Baptism', am: 'ጥምቀት' },
-      { selector: '.filter-bar .filter-button:nth-child(6)', en: 'Shimgelina', am: 'ሽምግሊና' },
-      { selector: '.filter-bar .filter-button:nth-child(7)', en: 'More', am: 'ተጨማሪ' },
-      { selector: '.filter-bar .filter-button:nth-child(8)', en: 'Coffee Ceremony', am: 'የቡና ሥነ ሥርዓት' },
-      { selector: '#gallery-grid .gallery-card:nth-child(1) h3', en: 'Ethiopian Wedding Celebration', am: 'የኢትዮጵያ የሰርግ ክብረ በዓል' },
-      { selector: '#gallery-grid .gallery-card:nth-child(1) p', en: 'Real wedding inspiration with ceremonial beauty, formal family moments, and elegant presentation rooted in Ethiopian tradition.', am: 'በኢትዮጵያ ልማድ የተመሠረተ የሥነ ሥርዓት ውበት፣ የቤተሰብ ጊዜያት እና የተዋበ አቀራረብ የሚያሳይ እውነተኛ የሰርግ መነሳሳት።' },
-      { selector: '#gallery-grid .gallery-card:nth-child(2) h3', en: 'Graduation Milestone', am: 'የምረቃ ዋና ጊዜ' },
-      { selector: '#gallery-grid .gallery-card:nth-child(2) p', en: 'Elegant graduation inspiration for proud family gatherings, stage moments, and beautifully coordinated milestone celebrations.', am: 'ለኩሩ የቤተሰብ ስብሰባዎች፣ ለመድረክ ጊዜያት እና በጥሩ ሁኔታ ለተቀናጀ የምረቃ ክብረ በዓል የተዋበ መነሳሳት።' },
-      { selector: '#gallery-grid .gallery-card:nth-child(3) h3', en: 'Birthday Gathering', am: 'የልደት ስብሰባ' },
-      { selector: '#gallery-grid .gallery-card:nth-child(3) p', en: 'Warm birthday-party inspiration with celebratory details, candlelit moments, and a polished setup for joyful guests.', am: 'የክብረ በዓል ዝርዝሮች፣ የሻማ ጊዜያት እና ለደስተኛ እንግዶች የተዋበ አቀማመጥ ያለው ሞቅ ያለ የልደት መነሳሳት።' },
-      { selector: '#gallery-grid .gallery-card:nth-child(4) h3', en: 'Baptism Ceremony', am: 'የጥምቀት ሥነ ሥርዓት' },
-      { selector: '#gallery-grid .gallery-card:nth-child(4) p', en: 'Beautiful baptism inspiration highlighting reverent ceremony flow, family participation, and a meaningful community atmosphere.', am: 'ከክብር የተሞላ የሥነ ሥርዓት ሂደት፣ የቤተሰብ ተሳትፎ እና ትርጉም ያለው ማህበረሰብ አየር ያለው ውብ የጥምቀት መነሳሳት።' },
-      { selector: '#gallery-grid .gallery-card:nth-child(5) h3', en: 'Shimgelina Tradition', am: 'የሽምግሊና ልማድ' },
-      { selector: '#gallery-grid .gallery-card:nth-child(5) p', en: 'Respectful inspiration for shimgelina gatherings centered on elders, family dialogue, and culturally grounded hosting.', am: 'በሽማግሌዎች፣ በቤተሰብ ውይይት እና በባህል የተመሠረተ እንግዳ አቀባበል ላይ የተመሰረተ የሽምግሊና ስብሰባ መነሳሳት።' },
-      { selector: '#gallery-grid .gallery-card:nth-child(6) h3', en: 'More Cultural Celebrations', am: 'ተጨማሪ ባህላዊ ክብረ በዓላት' },
-      { selector: '#gallery-grid .gallery-card:nth-child(6) p', en: 'Additional inspiration for heritage-rich gatherings with beautiful attire, family storytelling, and refined cultural styling.', am: 'በውብ አለባበስ፣ በቤተሰብ ታሪክ እና በተዋበ ባህላዊ ስታይሊንግ የተሞላ ተጨማሪ መነሳሳት።' },
-      { selector: '#gallery-grid .gallery-card:nth-child(7) h3', en: 'Coffee Ceremony Setup I', am: 'የቡና ሥነ ሥርዓት አቀማመጥ 1' },
-      { selector: '#gallery-grid .gallery-card:nth-child(7) p', en: 'Authentic bunna setup showcasing traditional presentation, hospitality flow, and elegant event styling.', am: 'ባህላዊ ቅርጸ ቀረብ፣ የእንግዳ አቀባበል ሂደት እና የተዋበ የክስተት ስታይሊንግ የሚያሳይ እውነተኛ የቡና አቀማመጥ።' },
-      { selector: '#gallery-grid .gallery-card:nth-child(8) h3', en: 'Coffee Ceremony Setup II', am: 'የቡና ሥነ ሥርዓት አቀማመጥ 2' },
-      { selector: '#gallery-grid .gallery-card:nth-child(8) p', en: 'Additional coffee-ceremony imagery for authentic cultural corners and warm guest-experience moments.', am: 'ለእውነተኛ ባህላዊ ኮርነሮች እና ለሞቅ ያለ የእንግዳ ልምድ አጨማሪ የቡና ሥነ ሥርዓት ምስል።' },
-      { selector: '#page-inspiration .video-gallery .video-card:nth-child(1) .eyebrow', en: 'Cultural Attire', am: 'ባህላዊ አለባበስ' },
-      { selector: '#page-inspiration .video-gallery .video-card:nth-child(1) p:nth-of-type(2)', en: 'Traditional attire references for weddings, birthdays, shimgelina, and other family celebrations where heritage and elegance meet.', am: 'ቅርስ እና ውበት የሚገናኙባቸው ለሰርግ፣ ለልደት፣ ለሽምግሊና እና ለሌሎች የቤተሰብ ክብረ በዓላት የባህላዊ አለባበስ ማጣቀሻዎች።' },
-      { selector: '#page-inspiration .video-gallery .video-card:nth-child(2) .eyebrow', en: 'Coffee Hospitality', am: 'የቡና እንግዳ አቀባበል' },
-      { selector: '#page-inspiration .video-gallery .video-card:nth-child(2) p:nth-of-type(2)', en: 'Authentic bunna hospitality inspiration with ritual service details that enrich all types of celebrations.', am: 'ሁሉንም አይነት ክብረ በዓላት የሚያበለጽጉ የሥነ ሥርዓት አገልግሎት ዝርዝሮች ያሉበት እውነተኛ የቡና እንግዳ አቀባበል መነሳሳት።' },
-      { selector: '#page-inspiration .story-card:nth-child(1) .eyebrow', en: 'Inspiration Notes', am: 'የመነሳሳት ማስታወሻዎች' },
-      { selector: '#page-inspiration .story-card:nth-child(1) h3', en: 'Style every room with cultural continuity.', am: 'እያንዳንዱን ቦታ በባህላዊ ቀጣይነት ያስተካክሉ።' },
-      { selector: '#page-inspiration .story-card:nth-child(1) > p:nth-of-type(2)', en: 'Our inspiration process begins with authentic references, then translates them into coherent venue zones for weddings, graduations, birthdays, baptisms, shimgelina, and coffee ceremony moments.', am: 'የመነሳሳት ሂደታችን በእውነተኛ ማጣቀሻዎች ይጀምራል፣ ከዚያም ለሰርግ፣ ለምረቃ፣ ለልደት፣ ለጥምቀት፣ ለሽምግሊና እና ለቡና ሥነ ሥርዓት ጊዜያት የተቀናጀ የቦታ ዞኖች ይሆናሉ።' },
-      { selector: '#page-inspiration .story-card:nth-child(1) .detail-list li:nth-child(1)', en: 'Create separate styling plans for weddings, graduations, birthdays, baptisms, coffee ceremony corners, and shimgelina spaces.', am: 'ለሰርግ፣ ለምረቃ፣ ለልደት፣ ለጥምቀት፣ ለቡና ሥነ ሥርዓት ኮርነሮች እና ለሽምግሊና ቦታዎች የተለያዩ የስታይል እቅዶችን ይፍጠሩ።' },
-      { selector: '#page-inspiration .story-card:nth-child(1) .detail-list li:nth-child(2)', en: 'Use intentional color, light, and cultural textures to keep each event elegant and welcoming.', am: 'እያንዳንዱ ክስተት የተዋበ እና አቀባበል ሙሉ እንዲሆን በአስተዋይ ሁኔታ ቀለም፣ ብርሃን እና ባህላዊ ገጽታዎችን ይጠቀሙ።' },
-      { selector: '#page-inspiration .story-card:nth-child(1) .detail-list li:nth-child(3)', en: 'Pair real-photo inspiration with production planning so each setup feels authentic on event day.', am: 'እያንዳንዱ አቀማመጥ በክስተት ቀን እውነተኛ እንዲሰማ እውነተኛ የፎቶ መነሳሳትን ከምርት እቅድ ጋር ያጣመሩ።' },
-      { selector: '#page-inspiration .story-card:nth-child(2) .eyebrow', en: 'Cultural Elements', am: 'ባህላዊ ክፍሎች' },
-      { selector: '#page-inspiration .story-card:nth-child(2) h3', en: 'Cultural touches that feel intentional, inclusive, and respectful.', am: 'በጥንቃቄ የተመረጡ፣ አካታች እና ክብር ያላቸው ባህላዊ ንክኪዎች።' },
-      { selector: '#page-inspiration .story-card:nth-child(2) .offer-list li:nth-child(1)', en: 'Ethiopian Orthodox wedding and baptism coordination with respectful ceremonial flow.', am: 'በክብር የሚመራ የሥነ ሥርዓት ሂደት ያለው የኢትዮጵያ ኦርቶዶክስ ሰርግ እና ጥምቀት ኮርዲኔሽን።' },
-      { selector: '#page-inspiration .story-card:nth-child(2) .offer-list li:nth-child(2)', en: 'Graduations, birthdays, shimgelina gatherings, and coffee ceremony styling planned with equal care.', am: 'ምረቃዎች፣ ልደቶች፣ የሽምግሊና ስብሰባዎች እና የቡና ሥነ ሥርዓት ስታይሊንግ በእኩል ትኩረት ይታቀዳሉ።' },
-      { selector: '#page-inspiration .story-card:nth-child(2) .offer-list li:nth-child(3)', en: 'Photo opportunities that highlight attire, heirloom accessories, elders, and family storytelling.', am: 'አለባበስ፣ ቅርስ ጌጣጌጦች፣ ሽማግሌዎች እና የቤተሰብ ታሪክ የሚያሳዩ የፎቶ እድሎች።' },
-      { selector: '#page-contact .section-heading .eyebrow', en: 'Contact', am: 'አግኙን' },
-      { selector: '#contact-title', en: 'Start planning your celebration with clarity and confidence.', am: 'ክብረ በዓልዎን በግልጽነት እና በመተማመን ያቅዱ።' },
-      { selector: '#page-contact .section-heading p:nth-of-type(2)', en: 'Share your event type, guest count, and preferred planning support. We guide weddings, graduations, birthdays, baptisms, shimgelina gatherings, and coffee ceremonies with equal care.', am: 'የክስተትዎን አይነት፣ የእንግዶች ብዛት እና የሚፈልጉትን የእቅድ ድጋፍ ያጋሩ። ለሰርግ፣ ለምረቃ፣ ለልደት፣ ለጥምቀት፣ ለሽምግሊና ስብሰባዎች እና ለቡና ሥነ ሥርዓቶች በእኩል ትኩረት እንመራለን።' },
-      { selector: '#page-contact .contact-panel:nth-child(1) h3', en: 'Inquiry Options', am: 'የጥያቄ አማራጮች' },
-      { selector: '#page-contact .contact-list:first-of-type li:nth-child(1) strong', en: 'Phone Team:', am: 'የስልክ ቡድን:' },
-      { selector: '#page-contact .contact-phone-group:nth-child(1) small', en: 'Design & Inquiries', am: 'ዲዛይን እና ጥያቄዎች' },
-      { selector: '#page-contact .contact-phone-group:nth-child(2) small', en: 'Vendor Coordination', am: 'የአጋሮች ኮርዲኔሽን' },
-      { selector: '#page-contact .contact-phone-group:nth-child(3) small', en: 'Event Support', am: 'የክስተት ድጋፍ' },
-      { selector: '#page-contact .contact-phone-group:nth-child(4) small', en: 'Main Booking Line', am: 'ዋና የቦታ ማስያዣ መስመር' },
-      { selector: '#page-contact .contact-list:nth-of-type(2) li:nth-child(1)', en: 'Best for couples and families seeking authentic cultural celebrations with a luxury presentation.', am: 'እውነተኛ ባህላዊ ክብረ በዓላትን ከቅንጦት አቀራረብ ጋር ለሚፈልጉ ጥንዶች እና ቤተሰቦች ተስማሚ።' },
-      { selector: '#page-contact .contact-list:nth-of-type(2) li:nth-child(2)', en: 'Your celebration, your culture, your way—services are available for any cultural celebration.', am: 'ክብረ በዓልዎ፣ ባህልዎ፣ በመንገድዎ—ለማንኛውም ባህላዊ ክብረ በዓል አገልግሎት አለ።' },
-      { selector: '#page-contact .contact-list:nth-of-type(2) li:nth-child(3)', en: 'Ideal booking timeline: 6–12 months for larger celebrations, 3–6 months for intimate events.', am: 'ተስማሚ የማስያዣ ጊዜ፦ 6–12 ወር ለትልልቅ ክብረ በዓላት፣ 3–6 ወር ለቀረበ ክስተቶች።' },
-      { selector: '#page-contact .contact-list:nth-of-type(2) li:nth-child(4)', en: 'Consultations can cover Ethiopian Orthodox ceremonies, international weddings, interfaith events, and full-service planning.', am: 'ምክክሮች የኢትዮጵያ ኦርቶዶክስ ሥነ ሥርዓቶች፣ አለም አቀፍ ሰርጎች፣ እምነት-ተሻጋሪ ክስተቶች እና ሙሉ-አገልግሎት እቅድን ይሸፍናሉ።' },
-      { selector: '#page-contact .contact-panel:nth-child(2) h3', en: 'Send Your Inquiry', am: 'ጥያቄዎን ይላኩ' },
-      { selector: 'label[for="name"]', en: 'Full Name', am: 'ሙሉ ስም' },
-      { selector: 'label[for="email"]', en: 'Email Address', am: 'የኢሜይል አድራሻ' },
-      { selector: 'label[for="event-date"]', en: 'Event Date', am: 'የክስተት ቀን' },
-      { selector: 'label[for="guest-count"]', en: 'Guest Count', am: 'የእንግዶች ብዛት' },
-      { selector: 'label[for="package"]', en: 'Package Preference', am: 'የፓኬጅ ምርጫ' },
-      { selector: 'label[for="message"]', en: 'Message', am: 'መልዕክት' },
-      { selector: '#contact-form button[type="submit"]', en: 'Submit Inquiry', am: 'ጥያቄ ያስገቡ' },
-      { selector: '.site-footer p', en: '© 2026 Yotode Event Planner. Home, Services & Packages, Inspiration, and Contact remain available from the focused four-section navigation.', am: '© 2026 Yotode Event Planner። መነሻ፣ አገልግሎቶች እና ፓኬጆች፣ መነሳሳት፣ እና አግኙን ከተመረጠው አራት-ክፍል አሰሳ ጋር ይገኛሉ።' }
-    ];
-
-    const localizedHtml = [
-      { selector: '#page-contact .contact-list:first-of-type li:nth-child(2)', en: '<strong>Email:</strong>&nbsp;<a href="mailto:eyuab35@gmail.com">eyuab35@gmail.com</a>', am: '<strong>ኢሜይል:</strong>&nbsp;<a href="mailto:eyuab35@gmail.com">eyuab35@gmail.com</a>' },
-      { selector: '#page-contact .contact-list:first-of-type li:nth-child(3)', en: '<strong>Service Area:</strong>&nbsp;Seattle and destination celebrations by request', am: '<strong>የአገልግሎት አካባቢ:</strong>&nbsp;ሲያትል እና በጥያቄ የመዳረሻ ክብረ በዓላት' }
-    ];
-
-    const localizedAttributes = [
-      { selector: '#guest-count', attr: 'placeholder', en: 'Estimated guests', am: 'የተገመተ የእንግዶች ብዛት' },
-      { selector: '#message', attr: 'placeholder', en: 'Tell us about your celebration, venue ideas, cultural details, and the planning support you want most.', am: 'ስለ ክብረ በዓልዎ፣ ስለ ቦታ ሀሳብዎ፣ ስለ ባህላዊ ዝርዝሮች እና በጣም የሚፈልጉት የእቅድ ድጋፍ ይንገሩን።' },
-      { selector: '.brand', attr: 'aria-label', en: 'Yotode Event Planner home', am: 'የYotode Event Planner መነሻ' },
-      { selector: '.desktop-nav', attr: 'aria-label', en: 'Primary navigation', am: 'ዋና አሰሳ' },
-      { selector: '#menu-drawer', attr: 'aria-label', en: 'Primary navigation', am: 'ዋና አሰሳ' }
-    ];
-
-    const optionTexts = [
-      { index: 0, en: 'Select a package', am: 'ፓኬጅ ይምረጡ' },
-      { index: 1, en: 'Yotode — $8,500 to $12,000+', am: 'ዮቶዴ — $8,500 እስከ $12,000+' },
-      { index: 2, en: 'Qidus — $18,000 to $28,000+', am: 'ቅዱስ — $18,000 እስከ $28,000+' },
-      { index: 3, en: 'Melkam — $35,000 to $60,000+', am: 'መልካም — $35,000 እስከ $60,000+' },
-      { index: 4, en: 'Custom consultation', am: 'ብጁ ምክክር' }
-    ];
-
-    const pageTitlesByLang = {
-      en: { home: 'Home', services: 'Services & Packages', inspiration: 'Inspiration', contact: 'Contact' },
-      am: { home: 'መነሻ', services: 'አገልግሎቶች እና ፓኬጆች', inspiration: 'መነሳሳት', contact: 'አግኙን' }
-    };
-
-    const statusMessages = {
-      en: {
-        invalid: 'Please complete all required fields before submitting.',
-        sendingButton: 'Sending...',
-        sending: 'Sending your inquiry...',
-        success: 'Thank you. Your inquiry has been sent successfully.',
-        error: 'Unable to send right now. Please try again shortly.',
-        menuOpen: 'Open navigation menu',
-        menuClose: 'Close navigation menu',
-        drawerClose: 'Close navigation menu'
-      },
-      am: {
-        invalid: 'እባክዎ ከማስገባትዎ በፊት የሚያስፈልጉ መረጃዎችን ያጠናቅቁ።',
-        sendingButton: 'በመላክ ላይ...',
-        sending: 'ጥያቄዎ በመላክ ላይ...',
-        success: 'እናመሰግናለን። ጥያቄዎ በተሳካ ሁኔታ ተልኳል።',
-        error: 'አሁን መላክ አልተቻለም። እባክዎ በኋላ ደግመው ይሞክሩ።',
-        menuOpen: 'የአሰሳ ምናሌ ክፈት',
-        menuClose: 'የአሰሳ ምናሌ ዝጋ',
-        drawerClose: 'የአሰሳ ምናሌ ዝጋ'
-      }
-    };
-
-    const applyLanguage = (lang) => {
-      currentLanguage = lang === 'am' ? 'am' : 'en';
-      document.documentElement.lang = currentLanguage;
-
-      localizedText.forEach((item) => {
-        const target = document.querySelector(item.selector);
-        if (target) {
-          target.textContent = item[currentLanguage];
-        }
-      });
-
-      localizedHtml.forEach((item) => {
-        const target = document.querySelector(item.selector);
-        if (target) {
-          target.innerHTML = item[currentLanguage];
-        }
-      });
-
-      localizedAttributes.forEach((item) => {
-        const target = document.querySelector(item.selector);
-        if (target) {
-          target.setAttribute(item.attr, item[currentLanguage]);
-        }
-      });
-
-      if (packageSelect) {
-        optionTexts.forEach((item) => {
-          if (packageSelect.options[item.index]) {
-            packageSelect.options[item.index].textContent = item[currentLanguage];
-          }
-        });
-      }
-
-      languageButtons.forEach((button) => {
-        const isActive = button.dataset.lang === currentLanguage;
-        button.classList.toggle('active', isActive);
-        button.setAttribute('aria-pressed', String(isActive));
-      });
-
-      drawerClose?.setAttribute('aria-label', statusMessages[currentLanguage].drawerClose);
-      menuToggle?.setAttribute('aria-label', menuToggle?.getAttribute('aria-expanded') === 'true' ? statusMessages[currentLanguage].menuClose : statusMessages[currentLanguage].menuOpen);
-      setActivePage(getRoute(), false);
-    };
-
-    const setMenuState = (open) => {
-      menuDrawer.classList.toggle('open', open);
-      menuOverlay.classList.toggle('open', open);
-      document.body.classList.toggle('menu-open', open);
-      menuToggle.setAttribute('aria-expanded', String(open));
-      menuToggle.setAttribute('aria-label', open ? statusMessages[currentLanguage].menuClose : statusMessages[currentLanguage].menuOpen);
-      menuDrawer.setAttribute('aria-hidden', String(!open));
-      if (!open) {
-        menuToggle.focus();
-      }
-    };
-
-    const getRoute = () => {
-      const raw = window.location.hash.replace('#', '').trim().toLowerCase();
-      return routes.includes(raw) ? raw : 'home';
-    };
-
-    const setActivePage = (page, shouldScroll = true) => {
-      pagePanels.forEach((panel) => {
-        const isActive = panel.dataset.page === page;
-        panel.classList.toggle('active', isActive);
-        panel.toggleAttribute('hidden', !isActive);
-      });
-
-      drawerLinks.forEach((link) => {
-        const isActive = link.dataset.route === page;
-        link.classList.toggle('active', isActive);
-        if (isActive) {
-          link.setAttribute('aria-current', 'page');
-        } else {
-          link.removeAttribute('aria-current');
-        }
-      });
-
-      routeLinks.forEach((link) => {
-        if (link.closest('.desktop-nav')) {
-          const isActive = link.dataset.route === page;
-          link.classList.toggle('active', isActive);
-          if (isActive) {
-            link.setAttribute('aria-current', 'page');
-          } else {
-            link.removeAttribute('aria-current');
-          }
-        }
-      });
-
-      const localizedTitle = pageTitlesByLang[currentLanguage][page];
-      document.title = `Yotode Event Planner | ${localizedTitle}`;
-      if (pageIndicator) {
-        pageIndicator.textContent = localizedTitle;
-      }
-      if (shouldScroll) {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-    };
-
-    const navigate = (page) => {
-      const hash = `#${page}`;
-      if (window.location.hash !== hash) {
-        window.location.hash = hash;
-      } else {
-        setActivePage(page);
-      }
-      setMenuState(false);
-    };
-
-    menuToggle?.addEventListener('click', () => {
-      const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
-      setMenuState(!isOpen);
-    });
-
-    drawerClose?.addEventListener('click', () => setMenuState(false));
-    menuOverlay?.addEventListener('click', () => setMenuState(false));
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') {
-        setMenuState(false);
-      }
-    });
-
-    routeLinks.forEach((link) => {
-      link.addEventListener('click', (event) => {
-        event.preventDefault();
-        navigate(link.dataset.route || 'home');
-      });
-    });
-
-    window.addEventListener('hashchange', () => {
-      setActivePage(getRoute());
-    });
-
-    filterButtons.forEach((button) => {
-      button.addEventListener('click', () => {
-        const filter = button.dataset.filter || 'all';
-        filterButtons.forEach((item) => item.classList.toggle('active', item === button));
-        galleryCards.forEach((card) => {
-          const categories = (card.dataset.category || '').split(/\s+/);
-          const show = filter === 'all' || categories.includes(filter);
-          card.hidden = !show;
-        });
-      });
-    });
-
-    inquiryButtons.forEach((button) => {
-      button.addEventListener('click', () => {
-        if (packageSelect) {
-          packageSelect.value = button.dataset.package || '';
-        }
-        navigate('contact');
-      });
-    });
-
-    languageButtons.forEach((button) => {
-      button.addEventListener('click', () => {
-        applyLanguage(button.dataset.lang || 'en');
-      });
-    });
-
-    if (form instanceof HTMLFormElement && status) {
-      form.addEventListener('submit', async (event) => {
-        event.preventDefault();
-
-        if (!form.checkValidity()) {
-          form.reportValidity();
-          status.textContent = statusMessages[currentLanguage].invalid;
-          return;
-        }
-
-        const submitButton = form.querySelector('button[type="submit"]');
-        const originalText = submitButton?.textContent || (currentLanguage === 'am' ? 'ጥያቄ ያስገቡ' : 'Submit Inquiry');
-
-        try {
-          if (submitButton) {
-            submitButton.disabled = true;
-            submitButton.textContent = statusMessages[currentLanguage].sendingButton;
-          }
-          status.textContent = statusMessages[currentLanguage].sending;
-
-          const response = await fetch(form.action, {
-            method: 'POST',
-            headers: { Accept: 'application/json' },
-            body: new FormData(form)
-          });
-
-          if (!response.ok) {
-            throw new Error('Submission failed. Please try again.');
-          }
-
-          form.reset();
-          status.textContent = statusMessages[currentLanguage].success;
-        } catch (error) {
-          status.textContent = statusMessages[currentLanguage].error;
-        } finally {
-          if (submitButton) {
-            submitButton.disabled = false;
-            submitButton.textContent = originalText;
-          }
-        }
-      });
-    }
-
-    applyLanguage('en');
-    setActivePage(getRoute(), false);
-  </script>
+  <script src="./script.js" defer></script>
 </body>
 </html>
