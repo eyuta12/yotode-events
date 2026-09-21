@@ -4,7 +4,7 @@ Professional, bilingual (English/Amharic) event-planning website for Yotode Even
 
 ## Current Site Features
 
-- Single-page experience in `/home/runner/work/yotode-events/yotode-events/index.html`
+- Single-page experience in `index.html`
 - Four-section navigation: Home, Services & Packages, Inspiration, Contact
 - English/Amharic language toggle with persistence (`localStorage` key: `yotode-language`)
 - Package showcase for Dirirsa, Qidus, and Melkam with inquiry shortcuts
@@ -38,7 +38,7 @@ At your domain/DNS provider, add:
 
 - `CNAME` record
   - Host/Name: `www`
-  - Value/Target: `<your-github-username>.github.io`
+  - Value/Target: Use the exact GitHub Pages target shown in **Settings → Pages → Custom domain** for this repository
 
 Optional (for apex root redirect/support):
 
